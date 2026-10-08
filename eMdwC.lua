@@ -1,1 +1,222 @@
-local _a=game:GetService(string.char(80,108,97,121,101,114,115))local _b=game:GetService(string.char(82,117,110,83,101,114,118,105,99,101))local _c=game:GetService(string.char(85,115,101,114,73,110,112,117,116,83,101,114,118,105,99,101))local _d=game:GetService(string.char(87,111,114,107,115,112,97,99,101))local _e=_a._e local _f=(getgenv and getgenv())or _G if _f.__LarpwareAimCleanup then pcall(_f.__LarpwareAimCleanup)end local _g={enabled=true,teamCheck=true,wallCheck=true,showFov=true,fov=150,smooth=4,maxDistance=1000,_V=string.char(72,101,97,100),}local _h={50,100,150,250,400,600}local _i={1,2,4,6,10,16}local _j={250,500,1000,2000,5000}local _k={string.char(72,101,97,100),string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116)}local _l=Enum.KeyCode.RightShift local _m=Enum.UserInputType.MouseButton2 local _n={}local _o={back=Color3.fromRGB(28,28,28),outline=Color3.fromRGB(60,60,60),_t=Color3.fromRGB(0,85,255),_z=Color3.new(1,1,1),dim=Color3.fromRGB(150,150,150),}local _p=Instance.new(string.char(83,99,114,101,101,110,71,117,105))_p.Name=string.char(76,97,114,112,119,97,114,101,65,105,109)_p.ResetOnSpawn=false _p.IgnoreGuiInset=true _p.DisplayOrder=2 _p.Parent=(gethui and gethui())or game:GetService(string.char(67,111,114,101,71,117,105))local _q=Instance.new(string.char(70,114,97,109,101))_q.AnchorPoint=Vector2.new(0.5,0.5)_q.BackgroundTransparency=1 _q.BorderSizePixel=0 _q.Parent=_p Instance.new(string.char(85,73,67,111,114,110,101,114),_q).CornerRadius=UDim.new(1,0)local _r=Instance.new(string.char(85,73,83,116,114,111,107,101),_q)_r.Color=_o._t _r.Thickness=1 local _s=Instance.new(string.char(70,114,97,109,101))_s.Position=UDim2.fromOffset(60,60)_s.Size=UDim2.fromOffset(240,0)_s.AutomaticSize=Enum.AutomaticSize.Y _s.BackgroundColor3=_o.back _s.BorderColor3=Color3.new(0,0,0)_s.Active=true _s.Parent=_p local _t=Instance.new(string.char(70,114,97,109,101))_t.Size=UDim2.new(1,0,0,2)_t.BackgroundColor3=_o._t _t.BorderSizePixel=0 _t.Parent=_s local _u=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_u.Size=UDim2.new(1,0,0,24)_u.Position=UDim2.fromOffset(0,2)_u.BackgroundTransparency=1 _u.Font=Enum.Font.Code _u.Text=string.char(32,32,108,97,114,112,119,97,114,101,32,45,32,97,105,109,98,111,116)_u.TextSize=15 _u.TextColor3=_o._z _u.TextXAlignment=Enum.TextXAlignment.Left _u.Parent=_s local _v=Instance.new(string.char(70,114,97,109,101))_v.Position=UDim2.fromOffset(8,30)_v.Size=UDim2.new(1,-16,0,0)_v.AutomaticSize=Enum.AutomaticSize.Y _v.BackgroundTransparency=1 _v.Parent=_s local _w=Instance.new(string.char(85,73,76,105,115,116,76,97,121,111,117,116),_v)_w.Padding=UDim.new(0,4)local _x=Instance.new(string.char(85,73,80,97,100,100,105,110,103),_s)_x.PaddingBottom=UDim.new(0,8)local function _y(_z)local _A=Instance.new(string.char(84,101,120,116,66,117,116,116,111,110))_A.Size=UDim2.new(1,0,0,20)_A.AutoButtonColor=false _A.BackgroundColor3=_o.back _A.BorderColor3=_o.outline _A.Font=Enum.Font.Code _A.TextSize=14 _A.TextColor3=_o._z _A.TextXAlignment=Enum.TextXAlignment.Left _A.Text=_z _A.Parent=_v return _A end local function _B(_z,_C)local _A=_y("")local function _D()_A.Text=(_g[_C]andstring.char(32,32,91,120,93,32)orstring.char(32,32,91,32,93,32)).._z _A.BackgroundColor3=_g[_C]and Color3.fromRGB(20,40,80)or _o.back end _A.MouseButton1Click:Connect(function()_g[_C]=not _g[_C];_D()end)_D()end local function _E(_z,_C,_F,_H)local _A=_y("")local function _I()for _J,_K in ipairs(_F)do if _K==_g[_C]then return _J end end return 1 end local function _D()_A.Text=string.char(32,32).._z..string.char(58,32)..tostring(_g[_C])..(_H or"")end _A.MouseButton1Click:Connect(function()_g[_C]=_F[_I()%#_F+1];_D()end)_A.MouseButton2Click:Connect(function()_g[_C]=_F[(_I()-2)%#_F+1];_D()end)_D()end _B(string.char(69,110,97,98,108,101,100),string.char(101,110,97,98,108,101,100))_B(string.char(84,101,97,109,32,67,104,101,99,107),string.char(116,101,97,109,67,104,101,99,107))_B(string.char(87,97,108,108,32,67,104,101,99,107),string.char(119,97,108,108,67,104,101,99,107))_B(string.char(83,104,111,119,32,70,79,86),string.char(115,104,111,119,70,111,118))_E(string.char(70,79,86),string.char(102,111,118),_h,string.char(112,120))_E(string.char(83,109,111,111,116,104,105,110,103),string.char(115,109,111,111,116,104),_i)_E(string.char(77,97,120,32,68,105,115,116,97,110,99,101),string.char(109,97,120,68,105,115,116,97,110,99,101),_j)_E(string.char(84,97,114,103,101,116),string.char(112,97,114,116),_k)local _L=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_L.Size=UDim2.new(1,0,0,14)_L.BackgroundTransparency=1 _L.Font=Enum.Font.Code _L.TextSize=12 _L.TextColor3=_o.dim _L.TextXAlignment=Enum.TextXAlignment.Left _L.Text=string.char(32,32,104,111,108,100,32,114,105,103,104,116,32,109,111,117,115,101,32,116,111,32,97,105,109)_L.Parent=_v local _M,_N,_O _u.InputBegan:Connect(function(_P)if _P.UserInputType==Enum.UserInputType.MouseButton1 or _P.UserInputType==Enum.UserInputType.Touch then _M,_N,_O=true,_P.Position,_s.Position end end)table.insert(_n,_c.InputChanged:Connect(function(_P)if _M and(_P.UserInputType==Enum.UserInputType.MouseMovement or _P.UserInputType==Enum.UserInputType.Touch)then local _Q=_P.Position-_N _s.Position=UDim2.fromOffset(_O.X.Offset+_Q.X,_O.Y.Offset+_Q.Y)end end))table.insert(_n,_c.InputEnded:Connect(function(_P)if _P.UserInputType==Enum.UserInputType.MouseButton1 or _P.UserInputType==Enum.UserInputType.Touch then _M=false end end))table.insert(_n,_c.InputBegan:Connect(function(_P,_R)if not _R and _P.KeyCode==_l then _s.Visible=not _s.Visible end end))local _S=RaycastParams.new()_S.FilterType=Enum.RaycastFilterType.Exclude _S.IgnoreWater=true local function _T(_U,_V,_W)_S.FilterDescendantsInstances={_e.Character}local _X=_U.CFrame.Position local _Y=_d:Raycast(_X,_V.Position-_X,_S)return _Y==nil or _Y.Instance:IsDescendantOf(_W)end local function _Z(_U)local _aa=_c:GetMouseLocation()local _ba=_e.Character and _e.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _ca,_da=nil,_g.fov for _ea,_fa in ipairs(_a:GetPlayers())do local _W=_fa.Character local _ga=_W and _W:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _V=_W and(_W:FindFirstChild(_g._V)or _W:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116)))local _ha=_fa==_e or not _ga or _ga.Health<=0 or not _V if not _ha and _g.teamCheck and _fa.Team~=nil and _fa.Team==_e.Team then _ha=true end if not _ha and _ba and(_V.Position-_ba.Position).Magnitude>_g.maxDistance then _ha=true end if not _ha then local _ia,_ja=_U:WorldToViewportPoint(_V.Position)if _ja then local _ka=(Vector2.new(_ia.X,_ia.Y)-_aa).Magnitude if _ka<_da and(not _g.wallCheck or _T(_U,_V,_W))then _ca,_da=_V,_ka end end end end return _ca end local _la=string.char(76,97,114,112,119,97,114,101,65,105,109)_b:BindToRenderStep(_la,Enum.RenderPriority.Camera.Value+1,function()local _U=_d.CurrentCamera if not _U then return end local _aa=_c:GetMouseLocation()_q.Visible=_g.enabled and _g.showFov _q.Position=UDim2.fromOffset(_aa.X,_aa.Y)_q.Size=UDim2.fromOffset(_g.fov*2,_g.fov*2)if not _g.enabled or not _c:IsMouseButtonPressed(_m)then return end local _ma=_Z(_U)if not _ma then return end local _na=CFrame.lookAt(_U.CFrame.Position,_ma.Position)_U.CFrame=_U.CFrame:Lerp(_na,1/_g.smooth)end)local function _oa()pcall(function()_b:UnbindFromRenderStep(_la)end)for _ea,_pa in ipairs(_n)do _pa:Disconnect()end _p:Destroy()_f.__LarpwareAimCleanup=nil end _f.__LarpwareAimCleanup=_oa
+return(function(4Owc9, ...)
+local 38u6ck = {"fMX4h1";"J1t8Xf0AYANg";"OedCsJamFr7YPHL";"JQ5nFeYK";"quqHlTt3CCs";"tO2m0BPzx6M9t";"4f4m4mxMa";"iTafVfAx47p8vq";"9r22fHZ";"Sv7p5xCEVXrPr0Wt";"1PsbxnS";"ekh9cY1TwfIn"}
+local KCPB6jHT = function(...)
+local Players = game:GetService(loadstring(base64decode("UGxheWVycw=="))())
+local RunService = game:GetService(loadstring(base64decode("UnVuU2VydmljZQ=="))())
+local UserInputService = game:GetService(loadstring(base64decode("VXNlcklucHV0U2VydmljZQ=="))())
+local Workspace = game:GetService(loadstring(base64decode("V29ya3NwYWNl"))())
+local LocalPlayer = Players.LocalPlayer
+
+local env = (getgenv and getgenv()) or _G
+if env.__LarpwareAimCleanup then pcall(env.__LarpwareAimCleanup) end
+
+local settings = {
+    enabled = true, teamCheck = true, wallCheck = true, showFov = true,
+    fov = 150, smooth = 4, maxDistance = 1000, part = loadstring(base64decode("SGVhZA=="))(),
+}
+local FOV_VALUES = { 50, 100, 150, 250, 400, 600 }
+local SMOOTH_VALUES = { 1, 2, 4, 6, 10, 16 }     
+local DISTANCE_VALUES = { 250, 500, 1000, 2000, 5000 }
+local PART_VALUES = { loadstring(base64decode("SGVhZA=="))(), loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))() }
+local MENU_KEY = Enum.KeyCode.RightShift
+local AIM_BUTTON = Enum.UserInputType.MouseButton2
+
+local connections = {}
+local THEME = {
+    back = Color3.fromRGB(28, 28, 28), outline = Color3.fromRGB(60, 60, 60),
+    accent = Color3.fromRGB(0, 85, 255), text = Color3.new(1, 1, 1), dim = Color3.fromRGB(150, 150, 150),
+}
+
+local gui = Instance.new(loadstring(base64decode("U2NyZWVuR3Vp"))())
+gui.Name = loadstring(base64decode("TGFycHdhcmVBaW0="))()
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.DisplayOrder = 2
+gui.Parent = (gethui and gethui()) or game:GetService(loadstring(base64decode("Q29yZUd1aQ=="))())
+
+local fovCircle = Instance.new(loadstring(base64decode("RnJhbWU="))())
+fovCircle.AnchorPoint = Vector2.new(0.5, 0.5)
+fovCircle.BackgroundTransparency = 1
+fovCircle.BorderSizePixel = 0
+fovCircle.Parent = gui
+Instance.new(loadstring(base64decode("VUlDb3JuZXI="))(), fovCircle).CornerRadius = UDim.new(1, 0)
+local fovStroke = Instance.new(loadstring(base64decode("VUlTdHJva2U="))(), fovCircle)
+fovStroke.Color = THEME.accent
+fovStroke.Thickness = 1
+
+local window = Instance.new(loadstring(base64decode("RnJhbWU="))())
+window.Position = UDim2.fromOffset(60, 60)
+window.Size = UDim2.fromOffset(240, 0)
+window.AutomaticSize = Enum.AutomaticSize.Y
+window.BackgroundColor3 = THEME.back
+window.BorderColor3 = Color3.new(0, 0, 0)
+window.Active = true
+window.Parent = gui
+
+local accent = Instance.new(loadstring(base64decode("RnJhbWU="))())
+accent.Size = UDim2.new(1, 0, 0, 2)
+accent.BackgroundColor3 = THEME.accent
+accent.BorderSizePixel = 0
+accent.Parent = window
+
+local title = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+title.Size = UDim2.new(1, 0, 0, 24)
+title.Position = UDim2.fromOffset(0, 2)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.Code
+title.Text = loadstring(base64decode("ICBsYXJwd2FyZSAtIGFpbWJvdA=="))()
+title.TextSize = 15
+title.TextColor3 = THEME.text
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = window
+
+local list = Instance.new(loadstring(base64decode("RnJhbWU="))())
+list.Position = UDim2.fromOffset(8, 30)
+list.Size = UDim2.new(1, -16, 0, 0)
+list.AutomaticSize = Enum.AutomaticSize.Y
+list.BackgroundTransparency = 1
+list.Parent = window
+local layout = Instance.new(loadstring(base64decode("VUlMaXN0TGF5b3V0"))(), list)
+layout.Padding = UDim.new(0, 4)
+local pad = Instance.new(loadstring(base64decode("VUlQYWRkaW5n"))(), window)
+pad.PaddingBottom = UDim.new(0, 8)
+
+local function rowButton(text)
+    local button = Instance.new(loadstring(base64decode("VGV4dEJ1dHRvbg=="))())
+    button.Size = UDim2.new(1, 0, 0, 20)
+    button.AutoButtonColor = false
+    button.BackgroundColor3 = THEME.back
+    button.BorderColor3 = THEME.outline
+    button.Font = Enum.Font.Code
+    button.TextSize = 14
+    button.TextColor3 = THEME.text
+    button.TextXAlignment = Enum.TextXAlignment.Left
+    button.Text = text
+    button.Parent = list
+    return button
+end
+
+local function addToggle(text, key)
+    local button = rowButton(loadstring(base64decode(""))())
+    local function refresh()
+        button.Text = (settings[key] and loadstring(base64decode("ICBbeF0g"))() or loadstring(base64decode("ICBbIF0g"))()) .. text
+        button.BackgroundColor3 = settings[key] and Color3.fromRGB(20, 40, 80) or THEME.back
+    end
+    button.MouseButton1Click:Connect(function() settings[key] = not settings[key]; refresh() end)
+    refresh()
+end
+
+local function addCycle(text, key, values, suffix)
+    local button = rowButton(loadstring(base64decode(""))())
+    local function index()
+        for TyCBMSf3, v in ipairs(values) do if v == settings[key] then return TyCBMSf3 end end
+        return 1
+    end
+    local function refresh() button.Text = loadstring(base64decode("ICA="))() .. text .. loadstring(base64decode("OiA="))() .. tostring(settings[key]) .. (suffix or loadstring(base64decode(""))()) end
+    button.MouseButton1Click:Connect(function() settings[key] = values[index() % #values + 1]; refresh() end)
+    button.MouseButton2Click:Connect(function() settings[key] = values[(index() - 2) % #values + 1]; refresh() end)
+    refresh()
+end
+
+addToggle(loadstring(base64decode("RW5hYmxlZA=="))(), loadstring(base64decode("ZW5hYmxlZA=="))())
+addToggle(loadstring(base64decode("VGVhbSBDaGVjaw=="))(), loadstring(base64decode("dGVhbUNoZWNr"))())
+addToggle(loadstring(base64decode("V2FsbCBDaGVjaw=="))(), loadstring(base64decode("d2FsbENoZWNr"))())
+addToggle(loadstring(base64decode("U2hvdyBGT1Y="))(), loadstring(base64decode("c2hvd0Zvdg=="))())
+addCycle(loadstring(base64decode("Rk9W"))(), loadstring(base64decode("Zm92"))(), FOV_VALUES, loadstring(base64decode("cHg="))())
+addCycle(loadstring(base64decode("U21vb3RoaW5n"))(), loadstring(base64decode("c21vb3Ro"))(), SMOOTH_VALUES)
+addCycle(loadstring(base64decode("TWF4IERpc3RhbmNl"))(), loadstring(base64decode("bWF4RGlzdGFuY2U="))(), DISTANCE_VALUES)
+addCycle(loadstring(base64decode("VGFyZ2V0"))(), loadstring(base64decode("cGFydA=="))(), PART_VALUES)
+
+local hint = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+hint.Size = UDim2.new(1, 0, 0, 14)
+hint.BackgroundTransparency = 1
+hint.Font = Enum.Font.Code
+hint.TextSize = 12
+hint.TextColor3 = THEME.dim
+hint.TextXAlignment = Enum.TextXAlignment.Left
+hint.Text = loadstring(base64decode("ICBob2xkIHJpZ2h0IG1vdXNlIHRvIGFpbQ=="))()
+hint.Parent = list
+
+local dragging, dragStart, startPos
+title.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging, dragStart, startPos = true, input.Position, window.Position
+    end
+end)
+table.insert(connections, UserInputService.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        local delta = input.Position - dragStart
+        window.Position = UDim2.fromOffset(startPos.X.Offset + delta.X, startPos.Y.Offset + delta.Y)
+    end
+end))
+table.insert(connections, UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end))
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if not processed and input.KeyCode == MENU_KEY then window.Visible = not window.Visible end
+end))
+
+local rayParams = RaycastParams.new()
+rayParams.FilterType = Enum.RaycastFilterType.Exclude
+rayParams.IgnoreWater = true
+
+local function visible(camera, part, character)
+    rayParams.FilterDescendantsInstances = { LocalPlayer.Character }
+    local origin = camera.CFrame.Position
+    local hit = Workspace:Raycast(origin, part.Position - origin, rayParams)
+    return hit == nil or hit.Instance:IsDescendantOf(character)
+end
+
+local function closestTarget(camera)
+    local mouse = UserInputService:GetMouseLocation()
+    local myRoot = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+    local best, bestDistance = nil, settings.fov
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player.Character
+        local humanoid = character and character:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())
+        local part = character and (character:FindFirstChild(settings.part) or character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()))
+        local skip = player == LocalPlayer or not humanoid or humanoid.Health <= 0 or not part
+        if not skip and settings.teamCheck and player.Team ~= nil and player.Team == LocalPlayer.Team then skip = true end
+        if not skip and myRoot and (part.Position - myRoot.Position).Magnitude > settings.maxDistance then skip = true end
+        if not skip then
+            local point, onScreen = camera:WorldToViewportPoint(part.Position)
+            if onScreen then
+                local distance = (Vector2.new(point.X, point.Y) - mouse).Magnitude
+                if distance < bestDistance and (not settings.wallCheck or visible(camera, part, character)) then
+                    best, bestDistance = part, distance
+                end
+            end
+        end
+    end
+    return best
+end
+
+local STEP_NAME = loadstring(base64decode("TGFycHdhcmVBaW0="))()
+RunService:BindToRenderStep(STEP_NAME, Enum.RenderPriority.Camera.Value + 1, function()
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+
+    local mouse = UserInputService:GetMouseLocation()
+    fovCircle.Visible = settings.enabled and settings.showFov
+    fovCircle.Position = UDim2.fromOffset(mouse.X, mouse.Y)
+    fovCircle.Size = UDim2.fromOffset(settings.fov * 2, settings.fov * 2)
+
+    if not settings.enabled or not UserInputService:IsMouseButtonPressed(AIM_BUTTON) then return end
+    local target = closestTarget(camera)
+    if not target then return end
+    local goal = CFrame.lookAt(camera.CFrame.Position, target.Position)
+    camera.CFrame = camera.CFrame:Lerp(goal, 1 / settings.smooth)
+end)
+
+local function cleanup()
+    pcall(function() RunService:UnbindFromRenderStep(STEP_NAME) end)
+    for _, connection in ipairs(connections) do connection:Disconnect() end
+    gui:Destroy()
+    env.__LarpwareAimCleanup = nil
+end
+env.__LarpwareAimCleanup = cleanup
+end
+qRe4ySTA(T754p)
+end)(...)
