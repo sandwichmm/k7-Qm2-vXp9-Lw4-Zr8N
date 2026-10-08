@@ -1,1 +1,56 @@
-local _a=game:GetService(string.char(80,108,97,121,101,114,115))local _b=game:GetService(string.char(85,115,101,114,73,110,112,117,116,83,101,114,118,105,99,101))local _c=_a._c local _d=(gethui and gethui())or game:GetService(string.char(67,111,114,101,71,117,105))local _e=Instance.new(string.char(83,99,114,101,101,110,71,117,105))_e.Name=string.char(76,97,114,112,119,97,114,101,77,101,110,117)_e.ResetOnSpawn=false _e.DisplayOrder=2 _e.Parent=_d local _f=Instance.new(string.char(70,114,97,109,101))_f.Size=UDim2.fromOffset(560,430)_f.Position=UDim2.fromOffset(60,60)_f.BackgroundColor3=Color3.fromRGB(28,28,28)_f.BorderColor3=Color3.new(0,0,0)_f.Active=true _f.Parent=_e local _g=Instance.new(string.char(70,114,97,109,101))_g.Size=UDim2.new(1,0,0,2)_g.BackgroundColor3=Color3.fromRGB(0,85,255)_g.BorderSizePixel=0 _g.Parent=_f local _h=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_h.Size=UDim2.new(1,0,0,24)_h.Position=UDim2.fromOffset(0,2)_h.BackgroundTransparency=1 _h.Font=Enum.Font.Code _h.Text=string.char(32,32,108,97,114,112,119,97,114,101,32,45,32,99,111,109,98,97,116,32,115,117,114,102)_h.TextSize=15 _h.TextColor3=Color3.new(1,1,1)_h.TextXAlignment=Enum.TextXAlignment.Left _h.Parent=_f local _i=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_i.Size=UDim2.new(1,-20,1,-40)_i.Position=UDim2.fromOffset(10,32)_i.BackgroundTransparency=1 _i.Font=Enum.Font.Code _i.Text=string.char(110,111,116,104,105,110,103,32,104,101,114,101,32,121,101,116)_i.TextSize=14 _i.TextColor3=Color3.fromRGB(150,150,150)_i.TextXAlignment=Enum.TextXAlignment.Left _i.TextYAlignment=Enum.TextYAlignment.Top _i.Parent=_f _b.InputBegan:Connect(function(_j,_k)if not _k and _j.KeyCode==Enum.KeyCode.RightShift then _f.Visible=not _f.Visible end end)
+
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+
+local parentGui = (gethui and gethui()) or game:GetService("CoreGui")
+
+local menu = Instance.new("ScreenGui")
+menu.Name = "LarpwareMenu"
+menu.ResetOnSpawn = false
+menu.DisplayOrder = 2
+menu.Parent = parentGui
+
+local window = Instance.new("Frame")
+window.Size = UDim2.fromOffset(560, 430)
+window.Position = UDim2.fromOffset(60, 60)
+window.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
+window.BorderColor3 = Color3.new(0, 0, 0)
+window.Active = true
+window.Parent = menu
+
+local accent = Instance.new("Frame")
+accent.Size = UDim2.new(1, 0, 0, 2)
+accent.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+accent.BorderSizePixel = 0
+accent.Parent = window
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 24)
+title.Position = UDim2.fromOffset(0, 2)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.Code
+title.Text = "  larpware - combat surf"
+title.TextSize = 15
+title.TextColor3 = Color3.new(1, 1, 1)
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = window
+
+local body = Instance.new("TextLabel")
+body.Size = UDim2.new(1, -20, 1, -40)
+body.Position = UDim2.fromOffset(10, 32)
+body.BackgroundTransparency = 1
+body.Font = Enum.Font.Code
+body.Text = "nothing here yet"
+body.TextSize = 14
+body.TextColor3 = Color3.fromRGB(150, 150, 150)
+body.TextXAlignment = Enum.TextXAlignment.Left
+body.TextYAlignment = Enum.TextYAlignment.Top
+body.Parent = window
+
+UserInputService.InputBegan:Connect(function(input, processed)
+    if not processed and input.KeyCode == Enum.KeyCode.RightShift then
+        window.Visible = not window.Visible
+    end
+end)
