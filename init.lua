@@ -5,7 +5,7 @@ local BASE = "https://raw.githubusercontent.com/sandwichmm/k7-Qm2-vXp9-Lw4-Zr8N/
 local SCRIPTS = {
     [4991214437] = "Mg8F0.lua",   
     [16167223198] = "h4Cpc.lua",      
-    [286090429] = "eMdwC.lua",
+    [286090429] = "Xp9Lw.lua",
 }
 local FALLBACK = "eMdwC.lua"  
 
